@@ -118,12 +118,12 @@
   /* ---------- Welcome: who's travelling? (opens on the homepage, and from "Chat with us") ---------- */
   // [href, image, EN line, IT line] — names come from PAGES so they stay identical everywhere.
   var PKG = {
-    'italian-memories.html': ['assets/img/pool-fountain.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
-    'family-reset-package.html': ['assets/img/suite-terrace.jpg', 'Room, breakfast and spa in one booking. €30 coupon.', 'Camera, colazione e spa in una prenotazione. Coupon da 30 €.'],
-    'ciao-again.html': ['assets/img/garden-gazebo.jpg', 'Welcome back. Your Italian story continues.', 'Bentornati. La tua storia italiana continua.'],
-    'business-travel.html': ['assets/img/villa-adriatic.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
-    'executive-business-stay.html': ['assets/img/suite-seaview.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
-    'padel-experience.html': ['assets/img/gardens.jpg', 'Play, recover, toast, dine. For returning guests.', 'Gioca, recupera, brinda, cena. Per chi torna.']
+    'italian-memories.html': ['assets/img/people/family-pool.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
+    'family-reset-package.html': ['assets/img/people/family-terrace.jpg', 'Room, breakfast and spa in one booking. €30 coupon.', 'Camera, colazione e spa in una prenotazione. Coupon da 30 €.'],
+    'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'Welcome back. Your Italian story continues.', 'Bentornati. La tua storia italiana continua.'],
+    'business-travel.html': ['assets/img/people/business-desk.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
+    'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
+    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Play, recover, toast, dine. For returning guests.', 'Gioca, recupera, brinda, cena. Per chi torna.']
   };
   var GROUPS = {
     family: { en: 'Packages for families', it: 'Pacchetti per le famiglie', list: PAGES.families },
@@ -154,9 +154,9 @@
         '<h2 class="h2" id="welcome-title" data-it="Chi viaggia <i>oggi?</i>">Who\'s travelling <i>today?</i></h2>' +
         '<p class="w-lead" data-it="Scegli e ti mostriamo i pacchetti giusti per te.">Choose one and we\'ll show you the packages made for you.</p>' +
         '<div class="w-choices">' +
-          choice('family', 'assets/img/pool-park.jpg', 'Family', 'Famiglia', 'Holidays together by the sea', 'Vacanze insieme sul mare') +
-          choice('business', 'assets/img/meeting-room.jpg', 'Business', 'Business', 'Work, meetings and recovery', 'Lavoro, riunioni e recupero') +
-          choice('back', 'assets/img/garden-gazebo.jpg', 'I\'ve stayed before', 'Ci sono già stato', 'Welcome back to Villa Maria', 'Bentornati a Villa Maria') +
+          choice('family', 'assets/img/people/family-pool.jpg', 'Family', 'Famiglia', 'Holidays together by the sea', 'Vacanze insieme sul mare') +
+          choice('business', 'assets/img/people/business-desk.jpg', 'Business', 'Business', 'Work, meetings and recovery', 'Lavoro, riunioni e recupero') +
+          choice('back', 'assets/img/people/family-welcome-back.jpg', 'I\'ve stayed before', 'Ci sono già stato', 'Welcome back to Villa Maria', 'Bentornati a Villa Maria') +
         '</div>' +
       '</div>' +
       '<div class="w-step" data-step="list" hidden>' +
