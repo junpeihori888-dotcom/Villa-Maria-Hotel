@@ -63,8 +63,9 @@ body.no-scroll{overflow:hidden}
 .logo img{height:54px;width:auto}
 .header-right{justify-self:end;display:flex;align-items:center;gap:14px}
 .lang{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:#fff}
-.lang button{appearance:none;border:0;background:none;color:var(--slate);font:700 11px/1 var(--f-body);letter-spacing:.16em;width:40px;height:30px;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--slate);color:#fff}
+.lang a{display:inline-grid;place-items:center;color:var(--slate);font:700 11px/1 var(--f-body);letter-spacing:.16em;width:40px;height:30px;border-radius:999px;text-decoration:none}
+.lang a[aria-current="true"]{background:var(--slate);color:#fff}
+.lang a:not([aria-current]):hover{background:var(--sand-2)}
 .header-book{min-height:40px;padding:0 18px}
 @media (max-width:760px){
   :root{--header-h:64px}
@@ -266,51 +267,49 @@ a.card:hover .ph img{transform:scale(1.04)}
 .modal .code{margin-top:18px;border:1px dashed var(--olive);background:#fff;padding:14px;text-align:center;font:700 22px/1 var(--f-body);letter-spacing:.24em;color:var(--olive)}
 .modal small{display:block;margin-top:12px;font-size:12px;color:var(--muted)}
 
-/* ---------- Floating Help button ---------- */
-.chat-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;padding:0 18px;box-shadow:0 10px 24px rgba(0,0,0,.2)}
-/* keep the coupon strip's button clear of the Help button */
-@media (max-width:1400px){.ribbon .wrap{padding-right:calc(var(--gutter) + 92px)}}
+/* ---------- Help button (desktop) and booking bar (phones) ---------- */
+.help-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;padding:0 18px;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.book-bar{display:none}
+@media (max-width:760px){
+  .help-fab{display:none}
+  .book-bar{display:grid;grid-template-columns:1fr 2fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:35;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--white);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+  .book-bar .btn{min-height:46px;padding:0 12px}
+  body{padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
+}
+
+/* ---------- Contact details ---------- */
+.contact-list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;font-size:14px}
+.contact-list li{display:grid;grid-template-columns:84px 1fr;gap:8px}
+.contact-list .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding-top:2px;opacity:.75}
+.contact-list a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.help-links{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:14px}
+.help-links a{color:var(--slate);font-weight:600}
+.modal .terms{font-size:13px;color:var(--ink);font-weight:600;margin-top:12px}
+.terms-line{margin:14px 0 0;font-size:14px;font-weight:600}
+.review-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
-/* ---------- Welcome chooser (homepage + "Help") ---------- */
-.welcome{position:fixed;inset:0;z-index:70;background:var(--sand);overflow-y:auto;display:flex;flex-direction:column;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-.welcome > .wrap{width:100%}
-.w-top{min-height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
-.w-logo{height:48px;width:auto}
-.w-right{display:flex;align-items:center;gap:16px}
-.w-skip,.w-back,.w-skip-low{appearance:none;background:none;border:0;cursor:pointer;color:var(--slate);font:700 12px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;padding:12px 0;min-height:44px}
-.w-skip:hover,.w-back:hover,.w-skip-low:hover{color:var(--ink)}
-.w-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(28px,6vh,64px)}
-.w-step .h2{max-width:none}
-.w-lead{margin:12px 0 0;color:var(--muted);max-width:52ch}
-.w-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;max-width:860px}
-.w-choice{appearance:none;border:1px solid var(--line);background:#fff;border-radius:2px;padding:0 0 20px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,transform .2s}
-.w-choice:hover{border-color:var(--slate);transform:translateY(-2px)}
-.w-ph{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--sand-2)}
-.w-ph img{width:100%;height:100%;object-fit:cover}
-.w-t{font-family:var(--f-display);font-size:30px;line-height:1.1;padding:16px 20px 0}
-.w-s{font-size:14px;color:var(--muted);padding:4px 20px 0}
-.w-back{align-self:flex-start}
-.w-pkgs{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:24px;margin-top:28px;max-width:calc(var(--n,3) * 380px)}
-.w-pkgs .card{display:flex;flex-direction:column;min-width:0}
-.w-pkgs .card .ph,.w-pkgs .card .t,.w-pkgs .card .s,.w-pkgs .card .more{display:block}
-.w-pkgs .card .t{margin-top:14px}
-.w-step{min-width:0}
-.w-skip-low{align-self:center;margin-top:32px;text-decoration:underline;text-underline-offset:4px;letter-spacing:.12em}
-@media (max-width:760px){
-  .w-choices{grid-template-columns:1fr;gap:10px;margin-top:20px}
-  .w-choice{flex-direction:row;align-items:center;padding:0}
-  .w-ph{width:96px;flex:none;aspect-ratio:1}
-  .w-t{font-size:24px;padding:0 16px}
-  .w-choice > .w-t + .w-s{display:none}
-  .w-pkgs{grid-template-columns:1fr;gap:10px;margin-top:20px}
-  .w-pkgs .card{display:grid;grid-template-columns:96px 1fr;column-gap:14px;align-items:center;background:#fff;border:1px solid var(--line)}
-  .w-pkgs .card .ph{grid-row:1/4;width:96px;height:100%;min-height:96px;aspect-ratio:auto}
-  .w-pkgs .card .t{margin-top:12px;font-size:21px}
-  .w-pkgs .card .s{font-size:13px;margin-top:2px;padding-right:12px}
-  .w-pkgs .card .more{margin:6px 0 12px;font-size:11px}
-  .w-logo{height:38px}
-  .w-right{gap:10px}
-}
+/* ---------- Homepage: choose your stay (families / business) ---------- */
+.stay{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.stay-col{min-width:0}
+.stay-ph{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;border-radius:2px;background:var(--sand-2)}
+.stay-ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.stay-ph:hover img{transform:scale(1.04)}
+.stay-ph .eb{position:absolute;left:16px;bottom:14px;background:var(--white);color:var(--olive);padding:8px 12px;border-radius:2px}
+.stay-list{list-style:none;margin:8px 0 0;padding:0}
+.stay-list a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.stay-list b{display:block;font-family:var(--f-display);font-weight:500;font-size:26px;line-height:1.15}
+.stay-list span{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.stay-list a:hover b{color:var(--olive)}
+.stay-list b::after{content:" →";font-family:var(--f-body);font-size:16px;color:var(--olive)}
+@media (max-width:760px){.stay{grid-template-columns:1fr;gap:40px}}
+.section.white .contact-list{margin-top:0}
+
+/* ---------- Basic pages ---------- */
+.hero.hero-short{min-height:min(60vh,520px)}
+.prose{max-width:720px}
+.prose p{color:var(--muted);margin:12px 0 0}
+.h3{font-family:var(--f-display);font-weight:500;font-size:26px;line-height:1.15;margin:32px 0 0}
+.section.dark p{color:rgba(244,241,234,.85);margin:0}

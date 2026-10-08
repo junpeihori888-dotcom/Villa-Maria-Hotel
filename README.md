@@ -1,15 +1,27 @@
 # Villa Maria Hotel & Spa — website
 
-Static site (HTML/CSS/JS, no build step). Open `index.html` or serve the folder (`python3 -m http.server`).
+Static site (HTML/CSS/JS, no build server). Serve the folder (`python3 -m http.server`) and open `index.html`.
 
-## Structure
-- `index.html` — homepage: persona split (families / business), all six campaigns, the hotel, €30 coupon
+## Pages
+- Home: `index.html`
 - Families: `italian-memories.html` (La Dolce Family), `family-reset-package.html` (Family Reset: €30 Off), `ciao-again.html` (Ciao Again)
 - Business: `business-travel.html` (Business, Minus the Stress), `executive-business-stay.html` (Office With a Sea View), `padel-experience.html` (Padel & Partners)
-- `assets/js/site.js` — shared header (MENU top-left), menu overlay, footer, €30 coupon modal, EN/IT toggle, and the welcome chooser (Family / Business, with Skip). It opens once per visit on the homepage (`<body data-welcome>`) and from every "Help" button
-- `assets/css/style.css` — design tokens and components
+- Hotel: `rooms.html`, `spa.html`, `restaurant.html`, `contact.html` (getting here & contact), `privacy.html`
+- Italian: the same pages in `it/`, generated — do not edit them by hand
 
-## Editing
-- Booking link and coupon code: `CONFIG` at the top of `assets/js/site.js`.
-- Italian copy lives next to the English in `data-it="…"` attributes.
-- The coupon form is front-end only: it shows the code and does not send the email anywhere.
+## Hotel facts — edit in one place
+All contact details, legal numbers, review score, booking-engine address and offer terms live in
+the `HOTEL` and `OFFERS` blocks at the top of `assets/js/site.js`. Any field left empty is hidden on
+the site, so nothing invented is ever shown. Fill in before going live:
+`phone`, `email`, `whatsapp`, `legalName`, `vat` (P.IVA), `cin`, `receptionHours`,
+`reviews.googleRating` + `googleCount`, `booking.url` + `booking.promoParam`,
+and `OFFERS.familyReset` (`fromPrice`, `validFrom`, `validTo`, `minNights`). Confirm `address`.
+
+## Italian pages
+English pages are the source; Italian text sits next to it in `data-it="…"` attributes.
+After editing any page, rebuild the Italian site:
+
+    python3 tools/build-it.py
+
+This writes `it/*.html` with the Italian text baked in (so Google indexes it), Italian titles and
+descriptions, and hreflang links. Set `SITE_URL` in the script to the live address.
