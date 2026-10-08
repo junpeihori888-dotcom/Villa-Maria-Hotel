@@ -14,8 +14,10 @@ from bs4 import BeautifulSoup
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / 'it'
-# Final address of the English site, used for hreflang links (Google needs full URLs).
-SITE_URL = 'https://www.hvillamaria.it'
+# Final address of your own site, e.g. 'https://www.villamaria-example.com'. Used for the
+# hreflang links that tell Google the EN and IT pages belong together (Google needs full
+# URLs). Leave empty until the domain is known: the links are then left out.
+SITE_URL = ''
 
 IT_META = {
     'index.html': ('Villa Maria Hotel & Spa · Francavilla al Mare, Abruzzo',
@@ -40,6 +42,8 @@ IT_META = {
                         'Il ristorante di Villa Maria Hotel & Spa: ricette abruzzesi, colazione e cene con vista.'),
     'contact.html': ('Come arrivare e contatti · Villa Maria Hotel & Spa',
                      'Come raggiungere Villa Maria Hotel & Spa a Francavilla al Mare: indirizzo, mappa e indicazioni in aereo, treno o auto.'),
+    'booking.html': ('Prenota il tuo soggiorno · Villa Maria Hotel & Spa',
+                     'Prenota il tuo soggiorno a Villa Maria Hotel & Spa a Francavilla al Mare: scegli date, pacchetto e camera e invia la richiesta.'),
     'privacy.html': ('Privacy e cookie · Villa Maria Hotel & Spa',
                      'Informativa privacy e cookie del sito di Villa Maria Hotel & Spa.'),
 }
@@ -54,6 +58,8 @@ def set_alternates(soup, page):
     head = soup.head
     for link in head.find_all('link', rel='alternate'):
         link.decompose()
+    if not SITE_URL:
+        return
     for lang, code in (('en', 'en'), ('it', 'it'), ('en', 'x-default')):
         tag = soup.new_tag('link', rel='alternate', hreflang=code, href=url(lang, page))
         head.append(tag)
@@ -78,6 +84,9 @@ def build(page):
         for node in list(BeautifulSoup(el['data-it'], 'html.parser').contents):
             el.append(node)
         del el['data-it']
+    for el in soup.select('[data-it-placeholder]'):
+        el['placeholder'] = el['data-it-placeholder']
+        del el['data-it-placeholder']
     for el in soup.select('[data-it-alt]'):
         el['alt'] = el['data-it-alt']
         del el['data-it-alt']

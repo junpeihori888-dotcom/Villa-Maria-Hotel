@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Book your stay · Villa Maria Hotel &amp; Spa</title>
+<meta content="Book your stay at Villa Maria Hotel &amp; Spa in Francavilla al Mare: choose your dates, package and room and send your booking request." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
+<link href="assets/img/logo.png" rel="icon"/>
+</head>
+<body>
+<main id="main">
+<section class="book-head">
+<div class="wrap">
+<p class="eb" data-it="Prenota direttamente con Villa Maria">Book direct with Villa Maria</p>
+<h1 class="h2" data-it="Prenota il tuo &lt;i&gt;soggiorno.&lt;/i&gt;">Book your <i>stay.</i></h1>
+<p class="muted" data-it="Scegli date, pacchetto e camera. Ti confermiamo prezzo e disponibilità via email.">Choose your dates, package and room. We confirm the price and availability by email.</p>
+</div>
+</section>
+<section class="section tight">
+<div class="wrap booking">
+<form class="book-form" id="booking-form" novalidate="">
+<fieldset class="step">
+<legend><span class="n">1</span><span data-it="Il tuo soggiorno">Your stay</span></legend>
+<div class="grid-2">
+<div class="field"><label data-it="Arrivo" for="checkin">Check-in</label><input id="checkin" name="checkin" required="" type="date"/></div>
+<div class="field"><label data-it="Partenza" for="checkout">Check-out</label><input id="checkout" name="checkout" required="" type="date"/></div>
+<div class="field"><label data-it="Adulti" for="adults">Adults</label>
+<select id="adults" name="adults"><option>1</option><option selected="">2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+<div class="field"><label data-it="Bambini e ragazzi (0–17)" for="children">Children &amp; teens (0–17)</label>
+<select id="children" name="children"><option selected="">0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+</div>
+<p class="err" data-it="Scegli una data di partenza successiva all'arrivo." hidden="" id="err-dates">Choose a check-out date after your check-in date.</p>
+</fieldset>
+<fieldset class="step">
+<legend><span class="n">2</span><span data-it="Pacchetto">Package</span></legend>
+<div class="choices">
+<label class="choice"><input checked="" name="package" type="radio" value="room-only"/>
+<span><b data-it="Solo camera e colazione">Room &amp; breakfast</b><small data-it="Il soggiorno classico a Villa Maria.">A classic stay at Villa Maria.</small></span></label>
+<label class="choice"><input name="package" type="radio" value="family-discount"/>
+<span><b data-it="Sconto Famiglia">Family Discount</b><small data-it="Camera, colazione e spa inclusi. Voucher da 20 € alla prima prenotazione diretta.">Room, breakfast and spa included. €20 voucher on your first direct booking.</small></span></label>
+<label class="choice"><input name="package" type="radio" value="executive"/>
+<span><b data-it="Pacchetto Executive Business Stay">Executive Business Stay Package</b><small data-it="Colazione presto, Wi-Fi veloce, spa e sala riunioni su richiesta.">Early breakfast, fast Wi-Fi, spa and a meeting room on request.</small></span></label>
+<label class="choice"><input name="package" type="radio" value="padel"/>
+<span><b data-it="La Padel Experience">The Padel Experience</b><small data-it="Campo da padel, sauna e spa, aperitivo e cena dello chef.">Padel court, sauna and spa, aperitivo and the chef's dinner.</small></span></label>
+</div>
+</fieldset>
+<fieldset class="step">
+<legend><span class="n">3</span><span data-it="Camera">Room</span></legend>
+<div class="rooms">
+<label class="room"><input checked="" name="room" type="radio" value="superior"/>
+<span class="ph"><img alt="" loading="lazy" src="assets/img/superior-room.jpg"/></span>
+<span class="txt"><b data-it="Camera Superior">Superior Room</b><small data-it="Vista giardino o parziale vista mare.">Garden or partial sea view.</small><em data-rate="superior"></em></span></label>
+<label class="room"><input name="room" type="radio" value="deluxe"/>
+<span class="ph"><img alt="" loading="lazy" src="assets/img/deluxe-room.jpg"/></span>
+<span class="txt"><b data-it="Camera Deluxe">Deluxe Room</b><small data-it="Vista mare, più spazio.">Sea view, more space.</small><em data-rate="deluxe"></em></span></label>
+<label class="room"><input name="room" type="radio" value="suite"/>
+<span class="ph"><img alt="" loading="lazy" src="assets/img/suite-terrace.jpg"/></span>
+<span class="txt"><b>Suite</b><small data-it="Terrazza privata con vasca idromassaggio.">Private terrace with a hot tub.</small><em data-rate="suite"></em></span></label>
+</div>
+</fieldset>
+<fieldset class="step">
+<legend><span class="n">4</span><span data-it="I tuoi dati">Your details</span></legend>
+<div class="grid-2">
+<div class="field"><label data-it="Nome e cognome" for="name">Full name</label><input autocomplete="name" id="name" name="name" required=""/></div>
+<div class="field"><label for="email">Email</label><input autocomplete="email" id="email" name="email" required="" type="email"/></div>
+<div class="field"><label data-it="Telefono" for="phone">Phone</label><input autocomplete="tel" id="phone" name="phone" type="tel"/></div>
+<div class="field"><label data-it="Orario di arrivo previsto" for="arrival">Expected arrival time</label>
+<select id="arrival" name="arrival"><option data-it="Non lo so ancora" value="">Not sure yet</option><option>14:00–16:00</option><option>16:00–18:00</option><option>18:00–20:00</option><option data-it="Dopo le 20:00">After 20:00</option></select></div>
+</div>
+<div class="grid-2 business-only" hidden="">
+<div class="field"><label data-it="Azienda (per la fattura)" for="company">Company (for invoicing)</label><input autocomplete="organization" id="company" name="company"/></div>
+<div class="field"><label data-it="Codice aziendale (facoltativo)" for="companycode">Company code (optional)</label><input id="companycode" name="companycode"/></div>
+</div>
+<div class="field"><label data-it="Richieste (facoltativo)" for="notes">Requests (optional)</label>
+<textarea data-it-placeholder="Es. culla, camera tranquilla, intolleranze alimentari" id="notes" name="notes" placeholder="E.g. a cot, a quiet room, food allergies" rows="3"></textarea></div>
+<label class="check"><input id="returning" name="returning" type="checkbox"/><span data-it="Ho già soggiornato a Villa Maria">I have stayed at Villa Maria before</span></label>
+<label class="check"><input id="consent" name="consent" required="" type="checkbox"/><span data-it="Accetto che Villa Maria usi questi dati per rispondere alla mia richiesta, come descritto nell'&lt;a href=&quot;privacy.html&quot;&gt;informativa privacy&lt;/a&gt;.">I agree that Villa Maria uses these details to answer my request, as described in the <a href="privacy.html">privacy notice</a>.</span></label>
+<p class="err" data-it="Completa i campi evidenziati." hidden="" id="err-form">Please complete the highlighted fields.</p>
+</fieldset>
+<button class="btn btn-slate btn-block book-submit" data-it="Invia la richiesta di prenotazione" type="submit">Send booking request</button>
+<p class="muted small" data-it="Nessun pagamento ora. Ti rispondiamo via email con prezzo e conferma.">No payment now. We reply by email with the price and confirmation.</p>
+</form>
+<aside aria-live="polite" class="book-sum">
+<p class="eb" data-it="Il tuo soggiorno">Your stay</p>
+<dl>
+<dt data-it="Date">Dates</dt><dd id="s-dates">—</dd>
+<dt data-it="Notti">Nights</dt><dd id="s-nights">—</dd>
+<dt data-it="Ospiti">Guests</dt><dd id="s-guests">—</dd>
+<dt data-it="Pacchetto">Package</dt><dd id="s-package">—</dd>
+<dt data-it="Camera">Room</dt><dd id="s-room">—</dd>
+<dt data-it="Prezzo">Price</dt><dd id="s-price">—</dd>
+</dl>
+<ul class="sum-perks" id="s-perks"></ul>
+<div class="sum-help"><span data-it="Domande?">Questions?</span> <button class="linkish" data-help="" data-it="Chiedi a noi" type="button">Ask us</button></div>
+</aside>
+<div class="book-done" hidden="" id="book-done" tabindex="-1"></div>
+</div>
+</section>
+</main>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/booking.js"></script>
+</body>
+</html>

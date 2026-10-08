@@ -14,24 +14,23 @@
     cin: '',                  // Codice Identificativo Nazionale, e.g. 'IT069035A1XXXXXXXX'
     phone: '',                // e.g. '+39 085 000 0000'
     whatsapp: '',             // digits only with country code, e.g. '39333000000'
-    email: '',                // e.g. 'info@hvillamaria.it'
+    email: '',                // e.g. 'info@yourhotel.it'
     receptionHours: { en: '', it: '' },   // e.g. { en: 'Reception open 24 hours', it: 'Reception aperta 24 ore su 24' }
     // Address as shown on booking sites. Confirm before going live.
     address: 'Contrada Pretaro, Via San Paolo, 66023 Francavilla al Mare (CH), Italy',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Villa+Maria+Hotel+%26+Spa+Francavilla+al+Mare',
-    website: 'https://www.hvillamaria.it/',
     reviews: {
-      googleRating: '',       // e.g. '4.6' — shown only together with googleCount
-      googleCount: '',        // e.g. '1,240'
-      googleUrl: 'https://www.google.com/maps/search/?api=1&query=Villa+Maria+Hotel+%26+Spa+Francavilla+al+Mare',
-      tripadvisorUrl: 'https://www.tripadvisor.com/Search?q=Villa+Maria+Hotel+Spa+Francavilla+al+Mare',
-      bookingUrl: 'https://www.booking.com/hotel/it/sportinghotelvillamaria.html'
-    },
-    booking: {
-      // Replace with the booking engine's own address (the page with dates and rooms).
-      url: 'https://www.hvillamaria.it/'
+      rating: '',             // e.g. '4.6' — shown only together with count
+      count: '',              // e.g. '1,240'
+      source: 'Google'        // where the rating comes from
     }
   };
+
+  /* Where our own forms (booking requests, reviews, messages, sign-ups) are sent.
+     Any service that accepts a JSON POST works: your own server, Formspree, Basin,
+     a Google Apps Script web app… Leave empty and forms run in demo mode
+     (the guest sees a clear "not sent" note). */
+  var FORMS_ENDPOINT = '';
 
   var OFFERS = {
     familyDiscount: {
@@ -104,7 +103,7 @@
           '<a href="' + enHref + '" hreflang="en" lang="en"' + (lang === 'en' ? ' aria-current="true"' : '') + '>EN</a>' +
           '<a href="' + itHref + '" hreflang="it" lang="it"' + (lang === 'it' ? ' aria-current="true"' : '') + '>IT</a>' +
         '</nav>' +
-        '<a class="btn btn-slate header-book" data-book>' + t('Book Now', 'Prenota') + '</a>' +
+        '<a class="btn btn-slate header-book" href="booking.html">' + t('Book Now', 'Prenota') + '</a>' +
       '</div>' +
     '</div>';
 
@@ -117,7 +116,7 @@
   menu.setAttribute('aria-label', 'Menu');
   menu.innerHTML =
     '<div class="wrap menu-top"><button type="button" class="menu-close">' + t('Close ✕', 'Chiudi ✕') + '</button>' +
-      '<a class="btn btn-sky" data-book>' + t('Book Now', 'Prenota') + '</a></div>' +
+      '<a class="btn btn-sky" href="booking.html">' + t('Book Now', 'Prenota') + '</a></div>' +
     '<nav class="wrap menu-grid" aria-label="' + t('Main', 'Principale') + '">' +
       '<div><h3>' + t('For families', 'Per le famiglie') + '</h3><ul>' + links(PAGES.families) + '</ul></div>' +
       '<div><h3>' + t('For business', 'Per il business') + '</h3><ul>' + links(PAGES.business) + '</ul></div>' +
@@ -157,9 +156,10 @@
       '<p class="eb">' + t('Help', 'Aiuto') + '</p>' +
       '<h2 id="help-title">' + t('Talk to our team', 'Parla con il nostro team') + '</h2>' +
       contactList() +
+      '<button type="button" class="btn btn-sky btn-block" style="margin-top:18px" data-form="message">' + t('Send us a message', 'Scrivici un messaggio') + '</button>' +
       '<p class="eb" style="margin-top:22px">' + t('Quick answers', 'Risposte rapide') + '</p>' +
       '<ul class="help-links">' + links(PAGES.hotel.slice(1)) + '</ul>' +
-      '<a class="btn btn-slate btn-block" style="margin-top:18px" data-book>' + t('Book direct', 'Prenota diretto') + '</a>' +
+      '<a class="btn btn-slate btn-block" style="margin-top:18px" href="booking.html">' + t('Book your stay', 'Prenota il soggiorno') + '</a>' +
     '</div>';
 
   /* ---------- Phone booking bar ---------- */
@@ -167,7 +167,7 @@
   bar.className = 'book-bar';
   bar.innerHTML =
     '<button type="button" class="btn btn-line" data-help>' + t('Help', 'Aiuto') + '</button>' +
-    '<a class="btn btn-slate" data-book>' + t('Book Now', 'Prenota') + '</a>';
+    '<a class="btn btn-slate" href="booking.html">' + t('Book Now', 'Prenota') + '</a>';
 
   var fab = document.createElement('button');
   fab.type = 'button';
@@ -252,17 +252,125 @@
   // Choosing a package counts as "seen". Switching language does not, so the screen reopens in that language.
   welcome.querySelector('.w-pkgs').addEventListener('click', function (e) { if (e.target.closest('a')) markSeen(); });
 
+  /* ---------- Our own forms: review, community, referral, message ---------- */
+  // [name, type, EN label, IT label, required]
+  var FORMS = {
+    review: {
+      title: t('Write a review', 'Scrivi una recensione'),
+      intro: t('Tell other guests about your stay. We publish reviews after checking the booking.', 'Racconta il tuo soggiorno agli altri ospiti. Pubblichiamo le recensioni dopo aver verificato la prenotazione.'),
+      fields: [['rating', 'stars', 'Your rating', 'Il tuo voto', true], ['name', 'text', 'Name', 'Nome', true], ['email', 'email', 'Email (not published)', 'Email (non pubblicata)', true],
+               ['stay', 'month', 'When did you stay?', 'Quando hai soggiornato?', false], ['review', 'textarea', 'Your review', 'La tua recensione', true]],
+      thanks: t('Thank you. Your review will appear after we check your stay.', 'Grazie. La tua recensione apparirà dopo la verifica del soggiorno.')
+    },
+    join: {
+      title: t('Join the Villa Maria family', 'Entra nella famiglia Villa Maria'),
+      intro: t('Loyalty thank-yous, new seasons first and moments kept for returning guests.', 'Ringraziamenti fedeltà, nuove stagioni in anteprima e momenti riservati agli ospiti che tornano.'),
+      fields: [['name', 'text', 'Name', 'Nome', true], ['email', 'email', 'Email', 'Email', true]],
+      thanks: t('Welcome to the family. We will be in touch.', 'Benvenuto in famiglia. Ti scriveremo presto.')
+    },
+    refer: {
+      title: t('Refer a colleague', 'Consiglia un collega'),
+      intro: t('We will send your colleague a short welcome and look after them the way we look after you.', 'Invieremo al tuo collega un breve benvenuto e ci prenderemo cura di lui come facciamo con te.'),
+      fields: [['name', 'text', 'Your name', 'Il tuo nome', true], ['email', 'email', 'Your email', 'La tua email', true],
+               ['colleague', 'text', 'Colleague\'s name', 'Nome del collega', true], ['colleagueEmail', 'email', 'Colleague\'s email', 'Email del collega', true]],
+      thanks: t('Thank you. We will welcome your colleague.', 'Grazie. Daremo il benvenuto al tuo collega.')
+    },
+    message: {
+      title: t('Send us a message', 'Scrivici un messaggio'),
+      intro: t('Questions about rooms, the spa, meetings or company rates? Our team replies by email.', 'Domande su camere, spa, riunioni o tariffe aziendali? Il nostro team risponde via email.'),
+      fields: [['name', 'text', 'Name', 'Nome', true], ['email', 'email', 'Email', 'Email', true], ['message', 'textarea', 'Message', 'Messaggio', true]],
+      thanks: t('Thank you. We will reply by email.', 'Grazie. Ti risponderemo via email.')
+    }
+  };
+
+  /* Send a form to FORMS_ENDPOINT. Resolves {sent: true} when delivered, {sent: false} in demo mode. */
+  function send(formName, data) {
+    if (!FORMS_ENDPOINT) return new Promise(function (ok) { setTimeout(function () { ok({ sent: false }); }, 400); });
+    return fetch(FORMS_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ form: formName, lang: lang, page: page, sentAt: new Date().toISOString(), data: data })
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return { sent: true }; });
+  }
+  window.VM = { send: send };
+
+  function demoNote() {
+    return '<p class="demo-note">' + t('Demo mode: nothing was sent yet. The site owner connects forms in assets/js/site.js (FORMS_ENDPOINT).',
+      'Modalità demo: non è stato inviato nulla. Il gestore del sito collega i moduli in assets/js/site.js (FORMS_ENDPOINT).') + '</p>';
+  }
+
+  var formModal = document.createElement('div');
+  formModal.className = 'modal';
+  formModal.hidden = true;
+  formModal.setAttribute('role', 'dialog');
+  formModal.setAttribute('aria-modal', 'true');
+  formModal.setAttribute('aria-labelledby', 'form-title');
+
+  function fieldHtml(f) {
+    var id = 'f-' + f[0], req = f[4] ? ' required' : '', label = '<label for="' + id + '">' + t(f[2], f[3]) + (f[4] ? '' : ' <span class="opt">' + t('(optional)', '(facoltativo)') + '</span>') + '</label>';
+    if (f[1] === 'textarea') return '<div class="field">' + label + '<textarea id="' + id + '" name="' + f[0] + '" rows="4"' + req + '></textarea></div>';
+    if (f[1] === 'stars') {
+      var st = '';
+      for (var i = 5; i >= 1; i--) st += '<input type="radio" id="' + id + i + '" name="' + f[0] + '" value="' + i + '"' + (i === 5 ? req : '') + '><label for="' + id + i + '" title="' + i + '/5">★</label>';
+      return '<fieldset class="field stars-field"><legend>' + t(f[2], f[3]) + '</legend><div class="stars-in">' + st + '</div></fieldset>';
+    }
+    return '<div class="field">' + label + '<input id="' + id + '" name="' + f[0] + '" type="' + f[1] + '"' + (f[1] === 'email' ? ' autocomplete="email"' : f[0] === 'name' ? ' autocomplete="name"' : '') + req + '></div>';
+  }
+  function openForm(name) {
+    var def = FORMS[name];
+    if (!def) return;
+    formModal.innerHTML =
+      '<div class="modal-box">' +
+        '<button type="button" class="modal-x" aria-label="' + t('Close', 'Chiudi') + '">×</button>' +
+        '<h2 id="form-title">' + def.title + '</h2><p>' + def.intro + '</p>' +
+        '<form class="own-form" novalidate>' + def.fields.map(fieldHtml).join('') +
+          '<label class="check"><input type="checkbox" name="consent" required><span>' +
+            t('I agree that Villa Maria uses these details for this request, as described in the <a href="privacy.html">privacy notice</a>.',
+              'Accetto che Villa Maria usi questi dati per questa richiesta, come descritto nell\'<a href="privacy.html">informativa privacy</a>.') + '</span></label>' +
+          '<p class="err" hidden>' + t('Please complete the highlighted fields.', 'Completa i campi evidenziati.') + '</p>' +
+          '<button type="submit" class="btn btn-slate btn-block">' + t('Send', 'Invia') + '</button>' +
+        '</form>' +
+      '</div>';
+    formModal.querySelector('.modal-x').addEventListener('click', function () { closeModal(formModal); });
+    var f = formModal.querySelector('form');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = false;
+      f.querySelectorAll('[required]').forEach(function (el) {
+        var ok = el.type === 'radio' ? !!f.querySelector('[name="' + el.name + '"]:checked') : el.type === 'checkbox' ? el.checked : el.checkValidity() && el.value.trim();
+        (el.closest('.check') || el.closest('.field') || el).classList.toggle('is-bad', !ok);
+        if (!ok) bad = true;
+      });
+      f.querySelector('.err').hidden = !bad;
+      if (bad) return;
+      var data = {};
+      new FormData(f).forEach(function (v, k) { data[k] = v; });
+      var btn = f.querySelector('[type=submit]');
+      btn.disabled = true; btn.textContent = t('Sending…', 'Invio in corso…');
+      send(name, data).then(function (res) {
+        f.outerHTML = '<p class="thanks">' + def.thanks + '</p>' + (res.sent ? '' : demoNote());
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = t('Send', 'Invia');
+        f.querySelector('.err').hidden = false;
+        f.querySelector('.err').textContent = t('We could not send this. Please try again.', 'Invio non riuscito. Riprova.');
+      });
+    });
+    if (!help.hidden) help.hidden = true;
+    openModal(formModal);
+  }
+
   /* ---------- Mount ---------- */
   var body = document.body;
   body.insertBefore(header, body.firstChild);
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, bar, fab, welcome].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, formModal, bar, fab, welcome].forEach(function (el) { body.appendChild(el); });
 
-  /* Booking links go to the booking engine. */
+  /* Book buttons open our own booking page; data-book="family-discount" etc. preselects the package. */
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    if (a.tagName === 'A') { a.href = HOTEL.booking.url; a.rel = 'noopener'; }
+    var key = a.getAttribute('data-book');
+    if (a.tagName === 'A') a.href = 'booking.html' + (key ? '#' + key : '');
   });
 
   /* Offer terms: shown only for the fields that are filled in. */
@@ -279,13 +387,9 @@
   /* Review score: shown only when the real numbers are filled in. */
   document.querySelectorAll('[data-review-score]').forEach(function (el) {
     var r = HOTEL.reviews;
-    if (r.googleRating && r.googleCount) {
-      el.innerHTML = '<a href="' + r.googleUrl + '" rel="noopener">' + esc(r.googleRating) + '/5 ' + t('on Google from ', 'su Google da ') + esc(r.googleCount) + t(' reviews', ' recensioni') + ' →</a>';
+    if (r.rating && r.count) {
+      el.textContent = r.rating + '/5 ' + t('on ' + r.source + ' from ', 'su ' + r.source + ' da ') + r.count + t(' reviews', ' recensioni');
     } else el.hidden = true;
-  });
-  document.querySelectorAll('[data-review-link]').forEach(function (a) {
-    var u = HOTEL.reviews[a.getAttribute('data-review-link') + 'Url'];
-    if (u) { a.href = u; a.rel = 'noopener'; } else a.hidden = true;
   });
   document.querySelectorAll('[data-hotel]').forEach(function (el) {
     var k = el.getAttribute('data-hotel');
@@ -327,6 +431,7 @@
     body.classList.remove('no-scroll');
     if (lastFocus) lastFocus.focus();
   }
+  formModal.addEventListener('click', function (e) { if (e.target === formModal) closeModal(formModal); });
   [help].forEach(function (m) {
     m.querySelector('.modal-x').addEventListener('click', function () { closeModal(m); });
     m.addEventListener('click', function (e) { if (e.target === m) closeModal(m); });
@@ -334,11 +439,14 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    if (!help.hidden) closeModal(help);
+    if (!formModal.hidden) closeModal(formModal);
+    else if (!help.hidden) closeModal(help);
     else if (!welcome.hidden) closeWelcome();
     else if (menu.classList.contains('open')) closeMenu();
   });
   document.addEventListener('click', function (e) {
+    var fm = e.target.closest('[data-form]');
+    if (fm) { e.preventDefault(); openForm(fm.getAttribute('data-form')); return; }
     if (e.target.closest('[data-help]')) { e.preventDefault(); openModal(help); }
   });
 
