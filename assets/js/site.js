@@ -17,7 +17,7 @@
     business: [
       ['business-travel.html', 'Business, Minus the Stress', 'Business, senza stress'],
       ['executive-business-stay.html', 'Office With a Sea View', 'Ufficio vista mare'],
-      ['padel-experience.html', 'Padel & Prosecco', 'Padel & Prosecco']
+      ['padel-experience.html', 'Padel & Partners', 'Padel & Partner']
     ],
     hotel: [
       ['index.html', 'Home', 'Home'],
@@ -81,7 +81,7 @@
       '<div><h4 data-it="Famiglie">Families</h4><ul>' + links(PAGES.families) + '</ul></div>' +
       '<div><h4>Business</h4><ul>' + links(PAGES.business) + '</ul></div>' +
       '<div><h4 data-it="Contatti">Contact</h4><ul>' +
-        '<li><a href="#" data-chat data-it="Chatta con noi">Chat with us</a></li>' +
+        '<li><a href="#" data-chat data-it="Aiuto">Help</a></li>' +
         '<li><a data-book data-it="Prenota diretto">Book direct</a></li>' +
         '<li><a href="https://www.hvillamaria.it/" rel="noopener">hvillamaria.it</a></li>' +
       '</ul></div>' +
@@ -115,7 +115,7 @@
       '<small data-it="Valido per prenotazioni dirette. Un coupon per soggiorno.">Valid on direct bookings. One coupon per stay.</small>' +
     '</div>';
 
-  /* ---------- Welcome: who's travelling? (opens on the homepage, and from "Chat with us") ---------- */
+  /* ---------- Welcome: who's travelling? (opens on the homepage, and from "Help") ---------- */
   // [href, image, EN line, IT line] — names come from PAGES so they stay identical everywhere.
   var PKG = {
     'italian-memories.html': ['assets/img/people/family-pool.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
@@ -123,12 +123,11 @@
     'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'Welcome back. Your Italian story continues.', 'Bentornati. La tua storia italiana continua.'],
     'business-travel.html': ['assets/img/people/business-desk.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
     'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
-    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Play, recover, toast, dine. For returning guests.', 'Gioca, recupera, brinda, cena. Per chi torna.']
+    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Win the match, win the client. Courts for you and your guests.', 'Vinci la partita, conquista il cliente. Campi per te e i tuoi ospiti.']
   };
   var GROUPS = {
     family: { en: 'Packages for families', it: 'Pacchetti per le famiglie', list: PAGES.families },
-    business: { en: 'Packages for business', it: 'Pacchetti per il business', list: PAGES.business },
-    back: { en: 'Welcome back', it: 'Bentornati', list: [PAGES.families[2], PAGES.business[2]] }
+    business: { en: 'Packages for business', it: 'Pacchetti per il business', list: PAGES.business }
   };
 
   function choice(key, img, en, it, enS, itS) {
@@ -156,7 +155,6 @@
         '<div class="w-choices">' +
           choice('family', 'assets/img/people/family-pool.jpg', 'Family', 'Famiglia', 'Holidays together by the sea', 'Vacanze insieme sul mare') +
           choice('business', 'assets/img/people/business-desk.jpg', 'Business', 'Business', 'Work, meetings and recovery', 'Lavoro, riunioni e recupero') +
-          choice('back', 'assets/img/people/family-welcome-back.jpg', 'I\'ve stayed before', 'Ci sono già stato', 'Welcome back to Villa Maria', 'Bentornati a Villa Maria') +
         '</div>' +
       '</div>' +
       '<div class="w-step" data-step="list" hidden>' +
@@ -211,8 +209,8 @@
     fab.type = 'button';
     fab.className = 'btn btn-slate chat-fab';
     fab.setAttribute('data-chat', '');
-    fab.setAttribute('data-it', 'Chatta con noi');
-    fab.textContent = 'Chat with us';
+    fab.setAttribute('data-it', 'Aiuto');
+    fab.textContent = 'Help';
     body.appendChild(fab);
   }
 

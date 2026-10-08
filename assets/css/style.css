@@ -266,12 +266,14 @@ a.card:hover .ph img{transform:scale(1.04)}
 .modal .code{margin-top:18px;border:1px dashed var(--olive);background:#fff;padding:14px;text-align:center;font:700 22px/1 var(--f-body);letter-spacing:.24em;color:var(--olive)}
 .modal small{display:block;margin-top:12px;font-size:12px;color:var(--muted)}
 
-/* ---------- Floating chat ---------- */
-.chat-fab{position:fixed;right:16px;bottom:16px;z-index:30;min-height:48px;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+/* ---------- Floating Help button ---------- */
+.chat-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;padding:0 18px;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+/* keep the coupon strip's button clear of the Help button */
+@media (max-width:1400px){.ribbon .wrap{padding-right:calc(var(--gutter) + 92px)}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
-/* ---------- Welcome chooser (homepage + "Chat with us") ---------- */
+/* ---------- Welcome chooser (homepage + "Help") ---------- */
 .welcome{position:fixed;inset:0;z-index:70;background:var(--sand);overflow-y:auto;display:flex;flex-direction:column;
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 .welcome > .wrap{width:100%}
@@ -283,7 +285,7 @@ a.card:hover .ph img{transform:scale(1.04)}
 .w-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(28px,6vh,64px)}
 .w-step .h2{max-width:none}
 .w-lead{margin:12px 0 0;color:var(--muted);max-width:52ch}
-.w-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.w-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;max-width:860px}
 .w-choice{appearance:none;border:1px solid var(--line);background:#fff;border-radius:2px;padding:0 0 20px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,transform .2s}
 .w-choice:hover{border-color:var(--slate);transform:translateY(-2px)}
 .w-ph{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--sand-2)}
