@@ -1,0 +1,15 @@
+# Villa Maria Hotel & Spa — website
+
+Static site (HTML/CSS/JS, no build step). Open `index.html` or serve the folder (`python3 -m http.server`).
+
+## Structure
+- `index.html` — homepage: persona split (families / business), all six campaigns, the hotel, €30 coupon
+- Families: `italian-memories.html`, `family-reset-package.html`, `ciao-again.html`
+- Business: `business-travel.html`, `executive-business-stay.html`, `padel-experience.html`
+- `assets/js/site.js` — shared header (MENU top-left), menu overlay, footer, €30 coupon modal, chat, EN/IT toggle
+- `assets/css/style.css` — design tokens and components
+
+## Editing
+- Booking link and coupon code: `CONFIG` at the top of `assets/js/site.js`.
+- Italian copy lives next to the English in `data-it="…"` attributes.
+- The coupon form is front-end only: it shows the code and does not send the email anywhere.
