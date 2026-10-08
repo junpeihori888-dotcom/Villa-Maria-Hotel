@@ -24,8 +24,8 @@ PARKING = ('Is there parking?', "C'è il parcheggio?",
     'Yes. Private parking is free for guests and includes EV charging.',
     'Sì. Il parcheggio privato è gratuito per gli ospiti e ha la ricarica per auto elettriche.')
 SPA = ('What is in the Linfa wellness & spa?', "Cosa c'è nella spa Linfa?",
-    'Pools, a sauna, relaxation areas and treatments for one or two. For opening hours and treatment prices, ask our team.',
-    'Piscine, sauna, aree relax e trattamenti per uno o per due. Per orari e prezzi dei trattamenti, chiedi al nostro team.')
+    'A hydromassage pool, Turkish bath, sauna and sensory shower, plus relaxation, beauty and fitness areas. Every hotel guest has a free two-hour session; booking is required. Treatments for one or two can be added.',
+    'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, più aree relax, beauty e fitness. Ogni ospite ha una sessione gratuita di due ore; la prenotazione è obbligatoria. Si possono aggiungere trattamenti per uno o per due.')
 DIRECT = ('Why book directly with the hotel?', 'Perché prenotare direttamente con l’hotel?',
     'You get the package exactly as designed, a real person before and during your stay, and extras that are not on booking sites, such as the €20 in-house voucher on your first direct Family Discount booking.',
     'Hai il pacchetto esattamente come progettato, una persona vera prima e durante il soggiorno ed extra che non trovi sui portali, come il voucher da 20 € alla prima prenotazione diretta con lo Sconto Famiglia.')
@@ -47,8 +47,8 @@ FAM_VOUCHER = ('How does the €20 voucher work?', 'Come funziona il voucher da 
     'È per chi prenota direttamente con l’hotel per la prima volta. Usalo per food and beverage o nella spa durante il soggiorno. Vale per il primo soggiorno e la prima prenotazione diretta e scade al check-out.')
 
 BIZ_MEET = ('Does the hotel have meeting rooms?', "L'hotel ha sale riunioni?",
-    'Yes, from private meeting rooms to an auditorium, with video-conferencing and fast Wi-Fi. Ask us about capacity for your group.',
-    'Sì, dalle sale riservate all’auditorium, con videoconferenza e Wi-Fi veloce. Chiedici la capienza per il tuo gruppo.')
+    'Yes, five conference rooms, from small meeting rooms to an auditorium, with video-conferencing and fast Wi-Fi. Ask us about capacity for your group.',
+    'Sì, cinque sale congressi, dalle sale riservate all’auditorium, con videoconferenza e Wi-Fi veloce. Chiedici la capienza per il tuo gruppo.')
 BIZ_INVOICE = ('Can I get an invoice for my company?', 'Posso avere la fattura per la mia azienda?',
     'Yes. We bill your company directly and welcome corporate cards. If you have a company code, add it when you book.',
     'Sì. Fatturiamo direttamente alla tua azienda e accettiamo carte aziendali. Se hai un codice aziendale, inseriscilo al momento della prenotazione.')
@@ -59,6 +59,21 @@ BIZ_PADEL = ('Can I play padel with clients or colleagues?', 'Posso giocare a pa
     'Yes. Our courts are in the gardens above the Adriatic. Pair the match with the spa, an aperitivo at the bar and dinner at the chef’s table.',
     'Sì. I campi sono nei giardini sopra l’Adriatico. Abbina la partita alla spa, a un aperitivo al bar e alla cena alla tavola dello chef.')
 
+PETS = ('Are pets allowed?', 'Sono ammessi animali?',
+    'Yes, pets are welcome for a supplement. Tell us when you book so we can prepare the right room.',
+    'Sì, gli animali sono benvenuti con un supplemento. Diccelo quando prenoti, così prepariamo la camera giusta.')
+POOLS = ('What pools does the hotel have?', "Che piscine ha l'hotel?",
+    'Two outdoor pools in the park, the Blue Pool (up to 2.5 m deep) and the Riviera Pool, plus a shallow children’s pool with water games. The outdoor pools are open in the summer season; the Linfa spa has an indoor hydromassage pool all year.',
+    'Due piscine all’aperto nel parco, la Blue Pool (fino a 2,5 m di profondità) e la Riviera Pool, più una piscina bassa per bambini con giochi d’acqua. Le piscine esterne sono aperte in estate; la spa Linfa ha una piscina idromassaggio interna tutto l’anno.')
+BEACH = ('Is there a beach?', "C'è una spiaggia?",
+    'Yes. A free shuttle takes you to a white-sand beach in Francavilla al Mare, a few kilometres away, at a private lido with a bar and restaurant that has an agreement with the hotel.',
+    'Sì. Una navetta gratuita ti porta su una spiaggia di sabbia bianca a Francavilla al Mare, a pochi chilometri, in un lido privato convenzionato con bar e ristorante.')
+KIDS = ('What is there for children?', 'Cosa c’è per i bambini?',
+    'A play room with games, books, colouring and puzzles, a shallow pool with water games, the park, padel and the beach by shuttle. Nearby, families love the Guardiagrele adventure park and the zoo in Lanciano.',
+    'Una sala giochi con giochi, libri, colori e puzzle, una piscina bassa con giochi d’acqua, il parco, il padel e la spiaggia con la navetta. Nei dintorni le famiglie amano il parco avventura di Guardiagrele e lo zoo di Lanciano.')
+NEARBY = ('What can we do nearby?', 'Cosa possiamo fare nei dintorni?',
+    'Walk in the Pineta Dannunziana nature reserve in Pescara, cycle along the coast towards the Costa dei Trabocchi, go snorkelling or diving, horse riding or hiking in the hills, or visit Chieti and Pescara.',
+    'Passeggiare nella riserva Pineta Dannunziana a Pescara, pedalare lungo la costa verso la Costa dei Trabocchi, fare snorkeling o immersioni, equitazione o escursioni in collina, o visitare Chieti e Pescara.')
 ROOMS_Q = ('Which room is right for me?', 'Quale camera fa per me?',
     'The Superior Room, with a garden or partial sea view and a desk, suits short stays of 1 to 2 nights. The Deluxe Room and the Suites have more space and Adriatic views, for 3 nights or more.',
     'La Camera Superior, con vista giardino o parziale vista mare e scrivania, è ideale per 1–2 notti. Le Camere Deluxe e le Suite hanno più spazio e vista Adriatico, per 3 notti o più.')
@@ -66,15 +81,16 @@ REST_Q = ('Is breakfast included?', 'La colazione è inclusa?',
     'Breakfast is included in our packages and served as a local buffet. Executive guests can have it early, before the first call.',
     'La colazione è inclusa nei pacchetti ed è servita a buffet con prodotti locali. Gli ospiti Executive possono averla presto, prima della prima call.')
 
-GENERAL = [LOCATION, CHECKIN, PARKING, SPA, DIRECT, CANCEL]
+GENERAL = [LOCATION, CHECKIN, PARKING, SPA, POOLS, PETS, DIRECT, CANCEL]
 FAQS = {
     'index.html': GENERAL,
-    'rooms.html': [ROOMS_Q, CHECKIN, PARKING, CANCEL, PAYMENT],
+    'rooms.html': [ROOMS_Q, CHECKIN, PETS, PARKING, CANCEL, PAYMENT],
     'spa.html': [SPA, CHECKIN, PARKING, DIRECT],
     'restaurant.html': [REST_Q, LOCATION, PARKING, DIRECT],
     'contact.html': [LOCATION, PARKING, CHECKIN, CANCEL],
-    'booking.html': [PAYMENT, CANCEL, CHECKIN, PARKING],
-    'italian-memories.html': [FAM_GOOD, FAM_INCL, PARKING, CHECKIN, CANCEL],
+    'booking.html': [PAYMENT, CANCEL, CHECKIN, PARKING, PETS],
+    'activities.html': [POOLS, BEACH, SPA, KIDS, NEARBY, PETS],
+    'italian-memories.html': [FAM_GOOD, KIDS, POOLS, BEACH, FAM_INCL, CHECKIN],
     'family-reset-package.html': [FAM_INCL, FAM_VOUCHER, CANCEL, FAM_GOOD, CHECKIN],
     'ciao-again.html': [CANCEL, FAM_GOOD, CHECKIN, PARKING],
     'business-travel.html': [LOCATION, BIZ_MEET, BIZ_INVOICE, BIZ_PKG, PARKING],

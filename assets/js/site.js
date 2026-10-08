@@ -12,16 +12,16 @@
     legalName: '',            // company name as registered, e.g. 'Villa Maria S.r.l.'
     vat: '',                  // P.IVA, e.g. '01234567890'
     cin: '',                  // Codice Identificativo Nazionale, e.g. 'IT069035A1XXXXXXXX'
-    phone: '',                // e.g. '+39 085 000 0000'
+    phone: '+39 085 45 00 51',   // from the hotel's official contact page
     whatsapp: '',             // digits only with country code, e.g. '39333000000'
-    email: '',                // e.g. 'info@yourhotel.it'
+    email: 'info@hvillamaria.it', // from the hotel's official contact page
     conciergeHours: { en: '', it: '' },   // e.g. { en: 'Concierge desk: 7:00–23:00, every day', it: 'Concierge: 7:00–23:00, tutti i giorni' }
     checkIn: '',              // e.g. '14:00'
     checkOut: '',             // e.g. '11:00'
     // Shown next to the message button. Keep it true to how fast the team really answers.
     replyTime: { en: 'We typically reply within 30 minutes', it: 'Di solito rispondiamo entro 30 minuti' },
     // Address as shown on booking sites. Confirm before going live.
-    address: 'Contrada Pretaro, Via San Paolo, 66023 Francavilla al Mare (CH), Italy',
+    address: 'Contrada Pretaro, 66023 Francavilla al Mare (CH), Italy',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Villa+Maria+Hotel+%26+Spa+Francavilla+al+Mare',
     reviews: {
       rating: '',             // e.g. '4.6' — shown only together with count
@@ -81,6 +81,7 @@
       ['rooms.html', 'Rooms & Suites', 'Camere e Suite', 'deluxe-room.jpg'],
       ['spa.html', 'Linfa Wellness & Spa', 'Linfa Wellness & Spa', 'spa.jpg'],
       ['restaurant.html', 'Restaurant', 'Ristorante', 'restaurant-hall.jpg'],
+      ['activities.html', 'Activities & experiences', 'Attività ed esperienze', 'pool-park.jpg'],
       ['contact.html', 'Getting here & contact', 'Come arrivare e contatti', 'gardens.jpg']
     ]
   };
@@ -157,6 +158,7 @@
       '<div><h4>Business</h4><ul>' + links(PAGES.business) + '</ul></div>' +
       '<div><h4>' + t('The hotel', "L'hotel") + '</h4><ul>' + links(PAGES.hotel.slice(1)) + '</ul></div>' +
       '<div class="legal"><span>© 2026 ' + esc(HOTEL.name) + (legal.length ? ' · ' + legal.join(' · ') : '') + '</span>' +
+        '<span class="concept-note">' + t('Concept website: some descriptions are illustrative and not confirmed by the hotel.', 'Sito concept: alcune descrizioni sono illustrative e non confermate dall’hotel.') + '</span>' +
         '<a href="privacy.html">' + t('Privacy & cookies', 'Privacy e cookie') + '</a></div>' +
     '</div>';
 
@@ -235,17 +237,17 @@
     [/park|car\b|ev\b|charg|shuttle|beach|transfer|parchegg|navetta|spiaggia|ricarica/i, QUICK[1][1], QUICK[1][1]],
     [/cancel|refund|change.*date|cancell|rimbors|modific/i, QUICK[2][1], QUICK[2][1]],
     [/spa|sauna|pool|wellness|massage|treatment|linfa|piscin|benessere|massagg|trattament/i,
-      'The Linfa wellness & spa has pools, a sauna, relaxation areas and treatments for one or two. The hotel also has two outdoor pools in a private park. For spa hours and treatment prices, send us a message.',
-      'La spa Linfa ha piscine, sauna, aree relax e trattamenti per uno o per due. L’hotel ha anche due piscine all’aperto in un parco privato. Per orari e prezzi dei trattamenti, scrivici un messaggio.'],
+      'The Linfa wellness centre has a hydromassage pool, Turkish bath, sauna and sensory shower, plus relaxation, beauty and fitness areas. Every hotel guest gets a free two-hour spa session; booking is required. Treatments can be added. Outdoors there are two pools in the park: the Blue Pool (up to 2.5 m deep) and the Riviera Pool, plus a shallow children’s pool, open in summer.',
+      'Il centro benessere Linfa ha piscina idromassaggio, bagno turco, sauna e doccia emozionale, più aree relax, beauty e fitness. Ogni ospite ha una sessione spa gratuita di due ore; la prenotazione è obbligatoria. Si possono aggiungere trattamenti. All’aperto ci sono due piscine nel parco, la Blue Pool (fino a 2,5 m) e la Riviera Pool, più una piscina bassa per bambini, aperte in estate.'],
     [/kid|child|family|teen|famil|bambin|ragazz/i,
-      'Families have two outdoor pools in a private park, a Kids Club, padel, a free shuttle to our partner beach and family dinners with Abruzzo recipes. The Family Discount includes room, breakfast and spa.',
-      'Le famiglie hanno due piscine all’aperto in un parco privato, un Kids Club, il padel, una navetta gratuita per la spiaggia convenzionata e cene con ricette abruzzesi. Lo Sconto Famiglia include camera, colazione e spa.'],
+      'Children have a play room with games, books, colouring and puzzles, a shallow pool with water games, the park and padel, and a free shuttle to a white-sand beach with a partner lido. Nearby: the Guardiagrele adventure park and the zoo in Lanciano. The Family Discount includes room, breakfast and spa.',
+      'I bambini hanno una sala giochi con giochi, libri, colori e puzzle, una piscina bassa con giochi d’acqua, il parco e il padel, e una navetta gratuita per una spiaggia di sabbia bianca con lido convenzionato. Nei dintorni: il parco avventura di Guardiagrele e lo zoo di Lanciano. Lo Sconto Famiglia include camera, colazione e spa.'],
     [/discount|voucher|€\s?20|20\s?€|offer|sconto|offerta/i,
       'With the Family Discount, first-time guests who book directly get a €20 in-house voucher for food and drink or the spa (valid during that stay). Book your next stay during your visit and get 10% off the room rate.',
       'Con lo Sconto Famiglia, chi prenota direttamente per la prima volta riceve un voucher da 20 € per food and beverage o spa (valido durante il soggiorno). Prenota il prossimo soggiorno durante la visita e hai il 10% sulla camera.'],
     [/meeting|conference|auditorium|room for.*people|video|riunion|conferenz|sala/i,
-      'We have private meeting rooms and an auditorium, with video-conferencing and fast Wi-Fi. Send us a message with your group size and we will confirm the right room.',
-      'Abbiamo sale riunioni riservate e un auditorium, con videoconferenza e Wi-Fi veloce. Scrivici il numero di partecipanti e ti confermiamo la sala giusta.'],
+      'We have five conference rooms, from small meeting rooms to an auditorium, with video-conferencing and fast Wi-Fi. Send us a message with your group size and we will confirm the right room.',
+      'Abbiamo cinque sale congressi, dalle sale riservate all’auditorium, con videoconferenza e Wi-Fi veloce. Scrivici il numero di partecipanti e ti confermiamo la sala giusta.'],
     [/invoice|company|corporate|business|fattur|aziend|lavoro/i,
       'Yes, we invoice your company directly and accept corporate cards. If you have a company code, add it when you book. The Executive Business Stay Package includes early breakfast, fast Wi-Fi, spa and a meeting room on request.',
       'Sì, fatturiamo direttamente alla tua azienda e accettiamo carte aziendali. Se hai un codice aziendale, inseriscilo quando prenoti. Il Pacchetto Executive Business Stay include colazione presto, Wi-Fi veloce, spa e sala riunioni su richiesta.'],
@@ -256,8 +258,14 @@
       'Breakfast is a local buffet and is included in our packages. The hotel restaurant serves Abruzzo recipes, and the bar serves aperitivo in the evening.',
       'La colazione è a buffet con prodotti locali ed è inclusa nei pacchetti. Il ristorante dell’hotel propone ricette abruzzesi e il bar serve l’aperitivo la sera.'],
     [/room|suite|superior|deluxe|view|camer|vista/i,
-      'The Superior Room has a garden or partial sea view and a desk, good for 1–2 nights. The Deluxe Room and Suites have more space and Adriatic views; the Suite has a private terrace with a hot tub.',
-      'La Camera Superior ha vista giardino o parziale vista mare e scrivania, ideale per 1–2 notti. Le Camere Deluxe e le Suite hanno più spazio e vista Adriatico; la Suite ha una terrazza privata con vasca idromassaggio.'],
+      'There are six room types, from Standard and Superior rooms to Deluxe rooms, Junior Suites and the Master SPA Suite, facing the park or the sea. The Superior Room suits 1–2 nights; Deluxe rooms and suites have more space and Adriatic views.',
+      'Ci sono sei tipologie di camere, dalle Standard e Superior alle Deluxe, alle Junior Suite e alla Master SPA Suite, con vista parco o mare. La Superior è ideale per 1–2 notti; Deluxe e suite hanno più spazio e vista Adriatico.'],
+    [/pet|dog|cat|animal|animal|cane|gatto/i,
+      'Pets are welcome for a supplement. Tell us when you book so we can prepare the right room.',
+      'Gli animali sono benvenuti con un supplemento. Diccelo quando prenoti, così prepariamo la camera giusta.'],
+    [/nearby|excursion|day out|visit|hike|bike|cycl|horse|snorkel|div|gita|escursion|bici|cavall|visitare|dintorni/i,
+      'Nearby you can walk in the Pineta Dannunziana nature reserve in Pescara, cycle the coast towards the Costa dei Trabocchi, go snorkelling or diving, horse riding or hiking, and families love the Guardiagrele adventure park and Lanciano zoo.',
+      'Nei dintorni puoi passeggiare nella riserva Pineta Dannunziana a Pescara, pedalare verso la Costa dei Trabocchi, fare snorkeling o immersioni, equitazione o escursioni, e le famiglie amano il parco avventura di Guardiagrele e lo zoo di Lanciano.'],
     [/price|cost|rate|how much|cheap|prezz|costo|tariff|quanto/i,
       'Prices depend on your dates and room. Choose them on our booking page and we confirm the price by email. Nothing is charged when you send the request.',
       'I prezzi dipendono da date e camera. Sceglile nella pagina di prenotazione e ti confermiamo il prezzo via email. Inviare la richiesta non comporta alcun pagamento.'],

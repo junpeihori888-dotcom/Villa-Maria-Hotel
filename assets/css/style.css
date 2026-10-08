@@ -544,3 +544,4 @@ a.card:hover .ph img{transform:scale(1.04)}
 .menu li a.with-photo img{width:76px;height:54px;object-fit:cover;border-radius:2px;flex:none;opacity:.9;transition:opacity .2s,transform .2s}
 .menu li a.with-photo:hover img,.menu li a.with-photo[aria-current="page"] img{opacity:1;transform:scale(1.04)}
 @media (max-width:760px){.menu li a.with-photo img{width:60px;height:44px}}
+.site-footer .concept-note{flex-basis:100%;opacity:.7;font-size:11px}

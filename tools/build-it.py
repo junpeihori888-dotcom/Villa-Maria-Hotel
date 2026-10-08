@@ -43,6 +43,8 @@ IT_META = {
                         'Il ristorante di Villa Maria Hotel & Spa: ricette abruzzesi, colazione e cene con vista.'),
     'contact.html': ('Come arrivare e contatti · Villa Maria Hotel & Spa',
                      'Come raggiungere Villa Maria Hotel & Spa a Francavilla al Mare: indirizzo, mappa e indicazioni in aereo, treno o auto.'),
+    'activities.html': ('Attività ed esperienze · Villa Maria Hotel & Spa',
+                        'Cosa fare a Villa Maria Hotel & Spa: due piscine in un parco privato, navetta per la spiaggia, spa Linfa, padel, sala giochi per bambini e gite in Abruzzo.'),
     'booking.html': ('Prenota il tuo soggiorno · Villa Maria Hotel & Spa',
                      'Prenota il tuo soggiorno a Villa Maria Hotel & Spa a Francavilla al Mare: scegli date, pacchetto e camera e invia la richiesta.'),
     'privacy.html': ('Privacy e cookie · Villa Maria Hotel & Spa',

@@ -8,7 +8,7 @@ Static site (HTML/CSS/JS, no build server). Serve the folder (`python3 -m http.s
 - Business: `business-travel.html` (Take the pressure out of business travel), `executive-business-stay.html` (Executive Business Stay Package), `padel-experience.html` (The Padel Experience)
 - Package names and copy follow the Leisure and Business campaign emails (EN/IT PDFs).
 - Booking: `booking.html` + `assets/js/booking.js` — our own booking-request page with a date-range calendar (nights counted automatically; no payment). Set nightly `RATES` in booking.js to show estimates.
-- Hotel: `rooms.html`, `spa.html`, `restaurant.html`, `contact.html` (getting here & contact), `privacy.html`
+- Hotel: `activities.html`, `rooms.html`, `spa.html`, `restaurant.html`, `contact.html` (getting here & contact), `privacy.html`
 - Italian: the same pages in `it/`, generated — do not edit them by hand
 
 ## Hotel facts — edit in one place
@@ -30,7 +30,10 @@ This writes `it/*.html` with the Italian text baked in (so Google indexes it), I
 descriptions, and (once `SITE_URL` is set to your own domain) hreflang links.
 
 ## Hotel descriptions and galleries
-Home, Rooms, Spa, Restaurant and Getting here each have a longer description (a short intro plus
+Every page has a longer description; Home, Rooms, Spa, Restaurant, Activities and Getting here
+also have a gallery. Facts come from the campaign emails, the official site's pages (pools & beach,
+kids, rooms, Linfa spa, meetings) and booking listings. Topics marked `# illustrative` in
+`tools/about.py` are example copy for this concept site; the footer says so. Each page has (a short intro plus
 topics that open on click) and a photo gallery with a full-screen viewer. The text (EN/IT) and the
 photos live in `tools/about.py`. Galleries look best with 5 or 9 photos. After editing:
 
