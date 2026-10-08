@@ -1,5 +1,5 @@
 /* Villa Maria Hotel & Spa — shared header, MENU overlay, footer, Help (contact) panel,
-   €30 coupon panel, phone booking bar and EN/IT switch. */
+   €30 coupon panel, welcome chooser (Family / Business), phone booking bar and EN/IT switch. */
 (function () {
   'use strict';
 
@@ -210,13 +210,90 @@
   fab.setAttribute('data-help', '');
   fab.textContent = t('Help', 'Aiuto');
 
+  /* ---------- Welcome: who's travelling? (homepage, once per visit, with Skip) ---------- */
+  // [image, EN line, IT line] for each package; names come from PAGES.
+  var PKG = {
+    'italian-memories.html': ['assets/img/people/moment-pool.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
+    'family-reset-package.html': ['assets/img/suite-terrace.jpg', 'Room, breakfast and spa in one booking.', 'Camera, colazione e spa in una prenotazione.'],
+    'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'For families coming back.', 'Per le famiglie che tornano.'],
+    'business-travel.html': ['assets/img/villa-adriatic.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
+    'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
+    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Win the match. Win the client.', 'Vinci la partita, conquista il cliente.']
+  };
+  var GROUPS = {
+    family: { title: t('Packages for families', 'Pacchetti per le famiglie'), list: PAGES.families },
+    business: { title: t('Packages for business', 'Pacchetti per il business'), list: PAGES.business }
+  };
+  function choice(key, img, name, line) {
+    return '<button type="button" class="w-choice" data-group="' + key + '">' +
+      '<span class="w-ph"><img src="' + BASE + img + '" alt=""></span>' +
+      '<span class="w-t">' + name + '</span><span class="w-s">' + line + '</span></button>';
+  }
+  var welcome = document.createElement('div');
+  welcome.className = 'welcome';
+  welcome.hidden = true;
+  welcome.setAttribute('role', 'dialog');
+  welcome.setAttribute('aria-modal', 'true');
+  welcome.setAttribute('aria-labelledby', 'welcome-title');
+  welcome.innerHTML =
+    '<div class="wrap w-top"><img src="' + BASE + 'assets/img/logo.png" alt="Villa Maria Hotel &amp; Spa" class="w-logo">' +
+      '<div class="w-right">' + header.querySelector('.lang').outerHTML +
+      '<button type="button" class="w-skip">' + t('Skip →', 'Salta →') + '</button></div></div>' +
+    '<div class="wrap w-body">' +
+      '<div class="w-step" data-step="ask">' +
+        '<p class="eb">' + t('Welcome to Villa Maria', 'Benvenuti a Villa Maria') + '</p>' +
+        '<h2 class="h2" id="welcome-title">' + t('Who\'s travelling <i>today?</i>', 'Chi viaggia <i>oggi?</i>') + '</h2>' +
+        '<p class="w-lead">' + t('Choose one and we\'ll show you the packages made for you.', 'Scegli e ti mostriamo i pacchetti giusti per te.') + '</p>' +
+        '<div class="w-choices">' +
+          choice('family', 'assets/img/people/moment-pool.jpg', t('Family', 'Famiglia'), t('Holidays together by the sea', 'Vacanze insieme sul mare')) +
+          choice('business', 'assets/img/people/business-meeting.jpg', 'Business', t('Work, meetings and recovery', 'Lavoro, riunioni e recupero')) +
+        '</div>' +
+      '</div>' +
+      '<div class="w-step" data-step="list" hidden>' +
+        '<button type="button" class="w-back">' + t('← Back', '← Indietro') + '</button>' +
+        '<h2 class="h2 w-group-title"></h2>' +
+        '<div class="w-pkgs"></div>' +
+      '</div>' +
+      '<button type="button" class="w-skip-low">' + t('Skip and go to the website', 'Salta e vai al sito') + '</button>' +
+    '</div>';
+
+  function renderGroup(key) {
+    var g = GROUPS[key];
+    welcome.querySelector('.w-group-title').textContent = g.title;
+    welcome.querySelector('.w-pkgs').innerHTML = g.list.map(function (p) {
+      var d = PKG[p[0]];
+      return '<a class="card" href="' + p[0] + '"><span class="ph"><img src="' + BASE + d[0] + '" alt=""></span>' +
+        '<span class="t">' + esc(t(p[1], p[2])) + '</span><span class="s">' + esc(t(d[1], d[2])) + '</span>' +
+        '<span class="more">' + t('Discover →', 'Scopri →') + '</span></a>';
+    }).join('');
+  }
+  function showStep(step) {
+    welcome.querySelector('[data-step="ask"]').hidden = step !== 'ask';
+    welcome.querySelector('[data-step="list"]').hidden = step !== 'list';
+    var f = welcome.querySelector(step === 'ask' ? '.w-choice' : '.w-pkgs a');
+    if (f && !welcome.hidden) f.focus();
+  }
+  function markSeen() { try { sessionStorage.setItem('vm-welcomed', '1'); } catch (e) {} }
+  function closeWelcome() {
+    welcome.hidden = true;
+    body.classList.remove('no-scroll');
+    markSeen();
+  }
+  welcome.querySelectorAll('.w-choice').forEach(function (b) {
+    b.addEventListener('click', function () { renderGroup(b.dataset.group); showStep('list'); });
+  });
+  welcome.querySelector('.w-back').addEventListener('click', function () { showStep('ask'); });
+  welcome.querySelectorAll('.w-skip,.w-skip-low').forEach(function (b) { b.addEventListener('click', closeWelcome); });
+  // Choosing a package counts as "seen". Switching language does not, so the screen reopens in that language.
+  welcome.querySelector('.w-pkgs').addEventListener('click', function (e) { if (e.target.closest('a')) markSeen(); });
+
   /* ---------- Mount ---------- */
   var body = document.body;
   body.insertBefore(header, body.firstChild);
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, coupon, bar, fab].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, coupon, bar, fab, welcome].forEach(function (el) { body.appendChild(el); });
 
   /* Booking links: data-book (plain) or data-book="familyReset" (promo applied when the engine supports it). */
   document.querySelectorAll('[data-book]').forEach(function (a) {
@@ -296,10 +373,20 @@
     if (e.key !== 'Escape') return;
     if (!coupon.hidden) closeModal(coupon);
     else if (!help.hidden) closeModal(help);
+    else if (!welcome.hidden) closeWelcome();
     else if (menu.classList.contains('open')) closeMenu();
   });
   document.addEventListener('click', function (e) {
     if (e.target.closest('[data-coupon]')) { e.preventDefault(); openModal(coupon); return; }
     if (e.target.closest('[data-help]')) { e.preventDefault(); openModal(help); }
   });
+
+  /* Open the welcome screen on the homepage, once per visit. */
+  var seen = false;
+  try { seen = !!sessionStorage.getItem('vm-welcomed'); } catch (e) {}
+  if (page === 'index.html' && document.querySelector('[data-welcome]') && !seen) {
+    welcome.hidden = false;
+    body.classList.add('no-scroll');
+    showStep('ask');
+  }
 })();

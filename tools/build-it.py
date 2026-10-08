@@ -64,7 +64,8 @@ def build(page):
     src = ROOT / page
     en = BeautifulSoup(src.read_text(encoding='utf-8'), 'html.parser')
     set_alternates(en, page)
-    src.write_text(str(en), encoding='utf-8')
+    # Removing old alternate links leaves their line breaks behind; collapse them.
+    src.write_text(re.sub(r'\n\s*\n+', '\n', str(en)), encoding='utf-8')
 
     soup = BeautifulSoup(src.read_text(encoding='utf-8'), 'html.parser')
     soup.html['lang'] = 'it'
