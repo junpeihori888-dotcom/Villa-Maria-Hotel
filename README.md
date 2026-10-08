@@ -6,7 +6,7 @@ Static site (HTML/CSS/JS, no build step). Open `index.html` or serve the folder 
 - `index.html` — homepage: persona split (families / business), all six campaigns, the hotel, €30 coupon
 - Families: `italian-memories.html`, `family-reset-package.html`, `ciao-again.html`
 - Business: `business-travel.html`, `executive-business-stay.html`, `padel-experience.html`
-- `assets/js/site.js` — shared header (MENU top-left), menu overlay, footer, €30 coupon modal, chat, EN/IT toggle
+- `assets/js/site.js` — shared header (MENU top-left), menu overlay, footer, €30 coupon modal, EN/IT toggle, and the welcome chooser (Family / Business / Stayed before, with Skip). It opens once per visit on the homepage (`<body data-welcome>`) and from every "Chat with us" button
 - `assets/css/style.css` — design tokens and components
 
 ## Editing

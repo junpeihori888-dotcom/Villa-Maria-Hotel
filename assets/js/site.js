@@ -1,4 +1,4 @@
-/* Villa Maria Hotel & Spa — shared header, MENU overlay, footer, €30 coupon, chat and EN/IT toggle. */
+/* Villa Maria Hotel & Spa — shared header, MENU overlay, footer, €30 coupon, welcome chooser and EN/IT toggle. */
 (function () {
   'use strict';
 
@@ -115,31 +115,86 @@
       '<small data-it="Valido per prenotazioni dirette. Un coupon per soggiorno.">Valid on direct bookings. One coupon per stay.</small>' +
     '</div>';
 
-  /* ---------- Chat (quick answers) ---------- */
-  var chat = document.createElement('div');
-  chat.className = 'modal';
-  chat.hidden = true;
-  chat.setAttribute('role', 'dialog');
-  chat.setAttribute('aria-modal', 'true');
-  chat.setAttribute('aria-labelledby', 'chat-title');
-  chat.innerHTML =
-    '<div class="modal-box">' +
-      '<button type="button" class="modal-x" aria-label="Close">×</button>' +
-      '<p class="eb" data-it="Chatta con noi">Chat with us</p>' +
-      '<h2 id="chat-title" data-it="Come possiamo aiutarti?">How can we help?</h2>' +
-      '<div class="steps" style="flex-direction:column;gap:8px">' +
-        '<button type="button" class="btn btn-line btn-block" data-q="fam" data-it="Viaggio con la famiglia">I\'m travelling with family</button>' +
-        '<button type="button" class="btn btn-line btn-block" data-q="biz" data-it="Viaggio per lavoro">I\'m travelling for work</button>' +
-        '<button type="button" class="btn btn-line btn-block" data-q="back" data-it="Ci sono già stato">I\'ve stayed before</button>' +
+  /* ---------- Welcome: who's travelling? (opens on the homepage, and from "Chat with us") ---------- */
+  // [href, image, EN line, IT line] — names come from PAGES so they stay identical everywhere.
+  var PKG = {
+    'italian-memories.html': ['assets/img/pool-fountain.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
+    'family-reset-package.html': ['assets/img/suite-terrace.jpg', 'Room, breakfast and spa in one booking. €30 coupon.', 'Camera, colazione e spa in una prenotazione. Coupon da 30 €.'],
+    'ciao-again.html': ['assets/img/garden-gazebo.jpg', 'Welcome back. Your Italian story continues.', 'Bentornati. La tua storia italiana continua.'],
+    'business-travel.html': ['assets/img/villa-adriatic.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
+    'executive-business-stay.html': ['assets/img/suite-seaview.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
+    'padel-experience.html': ['assets/img/gardens.jpg', 'Play, recover, toast, dine. For returning guests.', 'Gioca, recupera, brinda, cena. Per chi torna.']
+  };
+  var GROUPS = {
+    family: { en: 'Packages for families', it: 'Pacchetti per le famiglie', list: PAGES.families },
+    business: { en: 'Packages for business', it: 'Pacchetti per il business', list: PAGES.business },
+    back: { en: 'Welcome back', it: 'Bentornati', list: [PAGES.families[2], PAGES.business[2]] }
+  };
+
+  function choice(key, img, en, it, enS, itS) {
+    return '<button type="button" class="w-choice" data-group="' + key + '">' +
+      '<span class="w-ph"><img src="' + img + '" alt=""></span>' +
+      '<span class="w-t" data-it="' + esc(it) + '">' + en + '</span>' +
+      '<span class="w-s" data-it="' + esc(itS) + '">' + enS + '</span></button>';
+  }
+
+  var welcome = document.createElement('div');
+  welcome.className = 'welcome';
+  welcome.hidden = true;
+  welcome.setAttribute('role', 'dialog');
+  welcome.setAttribute('aria-modal', 'true');
+  welcome.setAttribute('aria-labelledby', 'welcome-title');
+  welcome.innerHTML =
+    '<div class="wrap w-top"><img src="assets/img/logo.png" alt="Villa Maria Hotel &amp; Spa" class="w-logo">' +
+      '<div class="w-right"><div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="it" aria-pressed="false">IT</button></div>' +
+      '<button type="button" class="w-skip" data-it="Salta →">Skip →</button></div></div>' +
+    '<div class="wrap w-body">' +
+      '<div class="w-step" data-step="ask">' +
+        '<p class="eb" data-it="Benvenuti a Villa Maria">Welcome to Villa Maria</p>' +
+        '<h2 class="h2" id="welcome-title" data-it="Chi viaggia <i>oggi?</i>">Who\'s travelling <i>today?</i></h2>' +
+        '<p class="w-lead" data-it="Scegli e ti mostriamo i pacchetti giusti per te.">Choose one and we\'ll show you the packages made for you.</p>' +
+        '<div class="w-choices">' +
+          choice('family', 'assets/img/pool-park.jpg', 'Family', 'Famiglia', 'Holidays together by the sea', 'Vacanze insieme sul mare') +
+          choice('business', 'assets/img/meeting-room.jpg', 'Business', 'Business', 'Work, meetings and recovery', 'Lavoro, riunioni e recupero') +
+          choice('back', 'assets/img/garden-gazebo.jpg', 'I\'ve stayed before', 'Ci sono già stato', 'Welcome back to Villa Maria', 'Bentornati a Villa Maria') +
+        '</div>' +
       '</div>' +
-      '<p class="chat-a" aria-live="polite"></p>' +
+      '<div class="w-step" data-step="list" hidden>' +
+        '<button type="button" class="w-back" data-it="← Indietro">← Back</button>' +
+        '<h2 class="h2 w-group-title"></h2>' +
+        '<div class="w-pkgs"></div>' +
+      '</div>' +
+      '<button type="button" class="w-skip-low" data-it="Salta e vai al sito">Skip and go to the website</button>' +
     '</div>';
 
-  var ANSWERS = {
-    fam: ['The Family Reset Package: room, breakfast and spa in one booking — plus a €30 coupon.', 'Il Family Reset Package: camera, colazione e spa in un\'unica prenotazione — più un coupon da 30 €.', 'family-reset-package.html'],
-    biz: ['The Executive Business Stay Package: room, early breakfast, Wi-Fi, spa and a meeting room.', 'L\'Executive Business Stay Package: camera, colazione presto, Wi-Fi, spa e sala riunioni.', 'executive-business-stay.html'],
-    back: ['Welcome back! Ciao Again has what\'s new — and The Padel Experience awaits business guests.', 'Bentornati! Ciao Again racconta le novità — e The Padel Experience aspetta gli ospiti business.', 'ciao-again.html']
-  };
+  var wGroup = null;
+  function renderGroup() {
+    var g = GROUPS[wGroup];
+    welcome.querySelector('.w-group-title').textContent = lang === 'it' ? g.it : g.en;
+    var pk = welcome.querySelector('.w-pkgs');
+    pk.style.setProperty('--n', g.list.length);
+    pk.innerHTML = g.list.map(function (p) {
+      var d = PKG[p[0]];
+      return '<a class="card" href="' + p[0] + '"><span class="ph"><img src="' + d[0] + '" alt=""></span>' +
+        '<span class="t">' + esc(p[1]) + '</span><span class="s">' + esc(lang === 'it' ? d[2] : d[1]) + '</span>' +
+        '<span class="more">' + (lang === 'it' ? 'Scopri →' : 'Discover →') + '</span></a>';
+    }).join('');
+  }
+  function showStep(step) {
+    welcome.querySelector('[data-step="ask"]').hidden = step !== 'ask';
+    welcome.querySelector('[data-step="list"]').hidden = step !== 'list';
+    var f = welcome.querySelector(step === 'ask' ? '.w-choice' : '.w-pkgs a');
+    if (f && !welcome.hidden) f.focus();
+  }
+  welcome.querySelectorAll('.w-choice').forEach(function (b) {
+    b.addEventListener('click', function () {
+      wGroup = b.dataset.group;
+      try { sessionStorage.setItem('vm-guest', wGroup); } catch (e) {}
+      renderGroup();
+      showStep('list');
+    });
+  });
+  welcome.querySelector('.w-back').addEventListener('click', function () { showStep('ask'); });
 
   /* ---------- Mount ---------- */
   var body = document.body;
@@ -150,7 +205,7 @@
   body.appendChild(menu);
   body.appendChild(footer);
   body.appendChild(coupon);
-  body.appendChild(chat);
+  body.appendChild(welcome);
   if (!body.hasAttribute('data-no-chat')) {
     var fab = document.createElement('button');
     fab.type = 'button';
@@ -183,8 +238,7 @@
     document.querySelectorAll('.lang button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
     });
-    var a = chat.querySelector('.chat-a');
-    if (a.dataset.q) answer(a.dataset.q);
+    if (wGroup) renderGroup();
     try { localStorage.setItem('vm-lang', lang); } catch (e) {}
   }
   document.querySelectorAll('.lang button').forEach(function (b) {
@@ -225,14 +279,14 @@
     body.classList.remove('no-scroll');
     if (lastFocus) lastFocus.focus();
   }
-  [coupon, chat].forEach(function (m) {
+  [coupon].forEach(function (m) {
     m.querySelector('.modal-x').addEventListener('click', function () { closeModal(m); });
     m.addEventListener('click', function (e) { if (e.target === m) closeModal(m); });
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (!coupon.hidden) closeModal(coupon);
-    else if (!chat.hidden) closeModal(chat);
+    else if (!welcome.hidden) closeWelcome();
     else if (menu.classList.contains('open')) closeMenu();
   });
 
@@ -240,7 +294,7 @@
     var c = e.target.closest('[data-coupon]');
     if (c) { e.preventDefault(); openModal(coupon); return; }
     var h = e.target.closest('[data-chat]');
-    if (h) { e.preventDefault(); openModal(chat); }
+    if (h) { e.preventDefault(); openWelcome(); }
   });
 
   var form = coupon.querySelector('form');
@@ -257,19 +311,31 @@
     showCode();
   });
 
-  function answer(q) {
-    var a = chat.querySelector('.chat-a');
-    var r = ANSWERS[q];
-    a.dataset.q = q;
-    a.innerHTML = esc(lang === 'it' ? r[1] : r[0]) +
-      ' <a href="' + r[2] + '" style="color:var(--olive);font-weight:700">' + (lang === 'it' ? 'Scopri →' : 'Take a look →') + '</a>';
+  function openWelcome() {
+    if (menu.classList.contains('open')) closeMenu();
+    lastFocus = document.activeElement;
+    welcome.hidden = false;
+    body.classList.add('no-scroll');
+    showStep('ask');
   }
-  chat.querySelectorAll('[data-q]').forEach(function (b) {
-    b.addEventListener('click', function () { answer(b.dataset.q); });
+  function closeWelcome() {
+    welcome.hidden = true;
+    body.classList.remove('no-scroll');
+    try { sessionStorage.setItem('vm-welcomed', '1'); } catch (e) {}
+    if (lastFocus && lastFocus !== body) lastFocus.focus();
+  }
+  welcome.querySelectorAll('.w-skip,.w-skip-low').forEach(function (b) { b.addEventListener('click', closeWelcome); });
+  welcome.querySelector('.w-pkgs').addEventListener('click', function (e) {
+    if (e.target.closest('a')) { try { sessionStorage.setItem('vm-welcomed', '1'); } catch (err) {} }
   });
 
   var exec = document.getElementById('exec-form');
   if (exec) exec.addEventListener('submit', function (e) { e.preventDefault(); });
 
   setLang(lang);
+
+  // Ask once per visit, on the homepage only; campaign landing pages stay focused on their offer.
+  var seen = false;
+  try { seen = !!sessionStorage.getItem('vm-welcomed'); } catch (e) {}
+  if (body.hasAttribute('data-welcome') && !seen) openWelcome();
 })();
