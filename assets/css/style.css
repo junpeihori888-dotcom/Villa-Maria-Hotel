@@ -313,48 +313,28 @@ a.card:hover .ph img{transform:scale(1.04)}
 .prose p{color:var(--muted);margin:12px 0 0}
 .h3{font-family:var(--f-display);font-weight:500;font-size:26px;line-height:1.15;margin:32px 0 0}
 .section.dark p{color:rgba(244,241,234,.85);margin:0}
-/* ---------- Welcome chooser (homepage, once per visit) ---------- */
-.welcome{position:fixed;inset:0;z-index:70;background:var(--sand);overflow-y:auto;display:flex;flex-direction:column;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-.welcome > .wrap{width:100%}
-.w-top{min-height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
-.w-logo{height:48px;width:auto}
-.w-right{display:flex;align-items:center;gap:16px}
-.w-skip,.w-back,.w-skip-low{appearance:none;background:none;border:0;cursor:pointer;color:var(--slate);font:700 12px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;padding:12px 0;min-height:44px}
-.w-skip:hover,.w-back:hover,.w-skip-low:hover{color:var(--ink)}
-.w-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(28px,6vh,64px)}
-.w-step .h2{max-width:none}
-.w-lead{margin:12px 0 0;color:var(--muted);max-width:52ch}
-.w-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;max-width:860px}
-.w-choice{appearance:none;border:1px solid var(--line);background:#fff;border-radius:2px;padding:0 0 20px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,transform .2s}
-.w-choice:hover{border-color:var(--slate);transform:translateY(-2px)}
-.w-ph{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--sand-2)}
-.w-ph img{width:100%;height:100%;object-fit:cover}
-.w-t{font-family:var(--f-display);font-size:30px;line-height:1.1;padding:16px 20px 0}
-.w-s{font-size:14px;color:var(--muted);padding:4px 20px 0}
-.w-back{align-self:flex-start}
-.w-pkgs{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:24px;margin-top:28px;max-width:calc(var(--n,3) * 380px)}
-.w-pkgs .card{display:flex;flex-direction:column;min-width:0}
-.w-pkgs .card .ph,.w-pkgs .card .t,.w-pkgs .card .s,.w-pkgs .card .more{display:block}
-.w-pkgs .card .t{margin-top:14px}
-.w-step{min-width:0}
-.w-skip-low{align-self:center;margin-top:32px;text-decoration:underline;text-underline-offset:4px;letter-spacing:.12em}
-@media (max-width:760px){
-  .w-choices{grid-template-columns:1fr;gap:10px;margin-top:20px}
-  .w-choice{flex-direction:row;align-items:center;padding:0}
-  .w-ph{width:96px;flex:none;aspect-ratio:1}
-  .w-t{font-size:24px;padding:0 16px}
-  .w-choice > .w-t + .w-s{display:none}
-  .w-pkgs{grid-template-columns:1fr;gap:10px;margin-top:20px}
-  .w-pkgs .card{display:grid;grid-template-columns:96px 1fr;column-gap:14px;align-items:center;background:#fff;border:1px solid var(--line)}
-  .w-pkgs .card .ph{grid-row:1/4;width:96px;height:100%;min-height:96px;aspect-ratio:auto}
-  .w-pkgs .card .t{margin-top:12px;font-size:21px}
-  .w-pkgs .card .s{font-size:13px;margin-top:2px;padding-right:12px}
-  .w-pkgs .card .more{margin:6px 0 12px;font-size:11px}
-  .w-logo{height:38px}
-  .w-right{gap:10px}
-}
+/* ---------- Homepage: choose your stay (families / business) ---------- */
+.stay{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.stay-col{min-width:0}
+.stay-ph{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;border-radius:2px;background:var(--sand-2)}
+.stay-ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.stay-ph:hover img{transform:scale(1.04)}
+.stay-ph .eb{position:absolute;left:16px;bottom:14px;background:var(--white);color:var(--olive);padding:8px 12px;border-radius:2px}
+.stay-list{list-style:none;margin:8px 0 0;padding:0}
+.stay-list a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.stay-list b{display:block;font-family:var(--f-display);font-weight:500;font-size:26px;line-height:1.15}
+.stay-list span{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.stay-list a:hover b{color:var(--olive)}
+.stay-list b::after{content:" →";font-family:var(--f-body);font-size:16px;color:var(--olive)}
+@media (max-width:760px){.stay{grid-template-columns:1fr;gap:40px}}
+.section.white .contact-list{margin-top:0}
 
+/* ---------- Basic pages ---------- */
+.hero.hero-short{min-height:min(60vh,520px)}
+.prose{max-width:720px}
+.prose p{color:var(--muted);margin:12px 0 0}
+.h3{font-family:var(--f-display);font-weight:500;font-size:26px;line-height:1.15;margin:32px 0 0}
+.section.dark p{color:rgba(244,241,234,.85);margin:0}
 /* ---------- Direct-booking benefits (Family Discount) ---------- */
 .perks{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .perk{background:var(--sand);border:1px solid var(--line);border-radius:2px;padding:clamp(24px,3vw,36px)}
@@ -440,3 +420,33 @@ a.card:hover .ph img{transform:scale(1.04)}
 .stars-in input:focus-visible + label{outline:2px solid var(--sky)}
 .modal .thanks{font-size:16px;color:var(--ink);margin-top:16px}
 .modal-box{max-height:calc(100vh - 32px);overflow-y:auto}
+
+/* ---------- Help panel ---------- */
+.help-box h2{margin-bottom:4px}
+.channels{display:grid;gap:6px;margin-top:16px}
+.channel{display:flex;gap:12px;align-items:center;padding:10px 14px;border:1px solid var(--line);background:#fff;border-radius:2px;text-decoration:none;min-width:0}
+.channel:hover{border-color:var(--slate)}
+.channel svg{width:22px;height:22px;flex:none;fill:none;stroke:var(--olive);stroke-width:1.6;stroke-linejoin:round}
+.channel b{display:inline;font-size:14px;margin-right:8px}
+.channel small{display:inline;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.channel span{min-width:0}
+.hours{font-size:13px;color:var(--muted);margin:10px 0 0}
+.help-msg{margin-top:16px}
+.reply-time{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--muted);margin:8px 0 0}
+.reply-time .dot{width:8px;height:8px;border-radius:50%;background:#4E8A4E;box-shadow:0 0 0 3px rgba(78,138,78,.18)}
+.quick{margin-top:8px;border-top:1px solid var(--line)}
+.quick details{border-bottom:1px solid var(--line)}
+.quick summary,.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;font-weight:600;font-size:15px}
+.quick summary::-webkit-details-marker,.faq summary::-webkit-details-marker{display:none}
+.quick summary::after,.faq summary::after{content:"+";font-size:20px;font-weight:400;color:var(--olive);flex:none;transition:transform .2s}
+.quick details[open] summary::after,.faq details[open] summary::after{transform:rotate(45deg)}
+.quick details p{margin:0 0 14px;font-size:14px;color:var(--muted)}
+
+/* ---------- FAQ accordion before the footer ---------- */
+.faq{background:var(--white);border-top:1px solid var(--line)}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq summary{padding:18px 0;font-family:var(--f-display);font-weight:500;font-size:clamp(19px,2vw,22px);line-height:1.25}
+.faq summary:hover{color:var(--olive)}
+.faq summary:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.faq-a p{margin:0 0 20px;max-width:62ch;color:var(--muted)}

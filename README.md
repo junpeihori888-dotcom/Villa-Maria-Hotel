@@ -15,7 +15,8 @@ Static site (HTML/CSS/JS, no build server). Serve the folder (`python3 -m http.s
 All contact details, legal numbers, review score, booking-engine address and offer terms live in
 the `HOTEL` and `OFFERS` blocks at the top of `assets/js/site.js`. Any field left empty is hidden on
 the site, so nothing invented is ever shown. Fill in before going live:
-`phone`, `email`, `whatsapp`, `legalName`, `vat` (P.IVA), `cin`, `receptionHours`,
+`phone`, `email`, `whatsapp` (these become the Call / WhatsApp / Email buttons in Help), `conciergeHours`,
+`checkIn`, `checkOut`, `replyTime`, `legalName`, `vat` (P.IVA), `cin`,
 `reviews.rating` + `count`, `FORMS_ENDPOINT` (where booking requests and other forms are sent — until set, forms run in demo mode and say so),
 and `OFFERS.familyDiscount` (`fromPrice`, `validFrom`, `validTo`, `minNights`). Confirm `address`.
 
@@ -27,3 +28,11 @@ After editing any page, rebuild the Italian site:
 
 This writes `it/*.html` with the Italian text baked in (so Google indexes it), Italian titles and
 descriptions, and (once `SITE_URL` is set to your own domain) hreflang links.
+
+## FAQ ("Good to know") sections
+Every page has a question-and-answer accordion just before the footer. Questions and answers
+(English and Italian) live in `tools/faq.py`. After editing them:
+
+    python3 tools/faq.py && python3 tools/build-it.py
+
+The build also adds Google's FAQPage data, generated from the visible questions.

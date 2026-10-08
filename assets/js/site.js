@@ -1,5 +1,5 @@
 /* Villa Maria Hotel & Spa — shared header, MENU overlay, footer, Help (contact) panel,
-   welcome chooser (Family / Business), phone booking bar and EN/IT switch. */
+   phone booking bar and EN/IT switch. */
 (function () {
   'use strict';
 
@@ -15,7 +15,11 @@
     phone: '',                // e.g. '+39 085 000 0000'
     whatsapp: '',             // digits only with country code, e.g. '39333000000'
     email: '',                // e.g. 'info@yourhotel.it'
-    receptionHours: { en: '', it: '' },   // e.g. { en: 'Reception open 24 hours', it: 'Reception aperta 24 ore su 24' }
+    conciergeHours: { en: '', it: '' },   // e.g. { en: 'Concierge desk: 7:00–23:00, every day', it: 'Concierge: 7:00–23:00, tutti i giorni' }
+    checkIn: '',              // e.g. '14:00'
+    checkOut: '',             // e.g. '11:00'
+    // Shown next to the message button. Keep it true to how fast the team really answers.
+    replyTime: { en: 'We typically reply within 30 minutes', it: 'Di solito rispondiamo entro 30 minuti' },
     // Address as shown on booking sites. Confirm before going live.
     address: 'Contrada Pretaro, Via San Paolo, 66023 Francavilla al Mare (CH), Italy',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Villa+Maria+Hotel+%26+Spa+Francavilla+al+Mare',
@@ -85,7 +89,7 @@
     if (HOTEL.whatsapp) out.push('<li><span class="k">WhatsApp</span><a href="https://wa.me/' + esc(HOTEL.whatsapp) + '" rel="noopener">' + t('Message us', 'Scrivici') + '</a></li>');
     if (HOTEL.email) out.push('<li><span class="k">Email</span><a href="mailto:' + esc(HOTEL.email) + '">' + esc(HOTEL.email) + '</a></li>');
     out.push('<li><span class="k">' + t('Address', 'Indirizzo') + '</span><span>' + esc(HOTEL.address) + '<br><a href="' + HOTEL.mapsUrl + '" rel="noopener">' + t('Open in Google Maps', 'Apri in Google Maps') + ' →</a></span></li>');
-    if (HOTEL.receptionHours[lang]) out.push('<li><span class="k">Reception</span><span>' + esc(HOTEL.receptionHours[lang]) + '</span></li>');
+    if (HOTEL.conciergeHours[lang]) out.push('<li><span class="k">Concierge</span><span>' + esc(HOTEL.conciergeHours[lang]) + '</span></li>');
     return '<ul class="contact-list">' + out.join('') + '</ul>';
   }
 
@@ -143,7 +147,35 @@
         '<a href="privacy.html">' + t('Privacy & cookies', 'Privacy e cookie') + '</a></div>' +
     '</div>';
 
-  /* ---------- Help panel: real contact details + quick answers ---------- */
+  /* ---------- Help panel: direct channels, quick answers, message ---------- */
+  var ICONS = {
+    phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+    whatsapp: '<path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 7.8 19.5z"/><path d="M9 9.5c.3 2 2.2 4.3 5 5l1.2-1.4-2-1-1 .8c-1-.4-1.9-1.3-2.3-2.3l.8-1-1-2z"/>',
+    email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'
+  };
+  function channel(kind, href, label, sub) {
+    return '<a class="channel" href="' + href + '"' + (kind === 'whatsapp' ? ' rel="noopener"' : '') + '>' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[kind] + '</svg><span><b>' + label + '</b><small>' + esc(sub) + '</small></span></a>';
+  }
+  var channels = [];
+  if (HOTEL.phone) channels.push(channel('phone', telHref(HOTEL.phone), t('Call us', 'Chiamaci'), HOTEL.phone));
+  if (HOTEL.whatsapp) channels.push(channel('whatsapp', 'https://wa.me/' + HOTEL.whatsapp, 'WhatsApp', t('Chat now', 'Scrivici ora')));
+  if (HOTEL.email) channels.push(channel('email', 'mailto:' + HOTEL.email, 'Email', HOTEL.email));
+
+  var QUICK = [
+    [t('Check-in & check-out times', 'Orari di check-in e check-out'),
+      (HOTEL.checkIn && HOTEL.checkOut
+        ? t('Check-in from ' + HOTEL.checkIn + ', check-out by ' + HOTEL.checkOut + '. ', 'Check-in dalle ' + HOTEL.checkIn + ', check-out entro le ' + HOTEL.checkOut + '. ')
+        : t('Your check-in and check-out times are in your booking confirmation. ', 'Gli orari di check-in e check-out sono nella conferma di prenotazione. ')) +
+      t('Need an early check-in or a late check-out? Ask us and we will do our best.', 'Ti serve un check-in anticipato o un check-out posticipato? Chiedicelo e faremo il possibile.')],
+    [t('Parking & shuttle services', 'Parcheggio e navetta'),
+      t('Free private parking on site, with EV charging. Family Discount guests get a free shuttle to our partner beach. Ask us about transfers from Pescara Airport or station.',
+        'Parcheggio privato gratuito in hotel, con ricarica per auto elettriche. Con lo Sconto Famiglia la navetta per la spiaggia convenzionata è gratuita. Chiedici dei transfer dall\'aeroporto o dalla stazione di Pescara.')],
+    [t('Cancellation policy', 'Politica di cancellazione'),
+      t('Book your next stay during your visit (10% off) and you can cancel for free up to 6 months before arrival, and change dates up to 6 weeks before. For other bookings, the terms are in your booking confirmation.',
+        'Prenota il prossimo soggiorno durante la tua visita (10% di sconto): cancellazione gratuita fino a 6 mesi prima dell\'arrivo e cambio date fino a 6 settimane prima. Per le altre prenotazioni, le condizioni sono nella conferma.')]
+  ];
+
   var help = document.createElement('div');
   help.className = 'modal';
   help.hidden = true;
@@ -151,14 +183,18 @@
   help.setAttribute('aria-modal', 'true');
   help.setAttribute('aria-labelledby', 'help-title');
   help.innerHTML =
-    '<div class="modal-box">' +
+    '<div class="modal-box help-box">' +
       '<button type="button" class="modal-x" aria-label="' + t('Close', 'Chiudi') + '">×</button>' +
       '<p class="eb">' + t('Help', 'Aiuto') + '</p>' +
-      '<h2 id="help-title">' + t('Talk to our team', 'Parla con il nostro team') + '</h2>' +
-      contactList() +
-      '<button type="button" class="btn btn-sky btn-block" style="margin-top:18px" data-form="message">' + t('Send us a message', 'Scrivici un messaggio') + '</button>' +
+      '<h2 id="help-title">' + t('How can we help?', 'Come possiamo aiutarti?') + '</h2>' +
+      (channels.length ? '<div class="channels">' + channels.join('') + '</div>' : '') +
+      (HOTEL.conciergeHours[lang] ? '<p class="hours">' + t('Concierge desk', 'Concierge') + ': ' + esc(HOTEL.conciergeHours[lang]) + '</p>' : '') +
+      '<button type="button" class="btn btn-sky btn-block help-msg" data-form="message">' + t('Send us a message', 'Scrivici un messaggio') + '</button>' +
+      (HOTEL.replyTime[lang] ? '<p class="reply-time"><span class="dot" aria-hidden="true"></span>' + esc(HOTEL.replyTime[lang]) + '</p>' : '') +
       '<p class="eb" style="margin-top:22px">' + t('Quick answers', 'Risposte rapide') + '</p>' +
-      '<ul class="help-links">' + links(PAGES.hotel.slice(1)) + '</ul>' +
+      '<div class="quick">' + QUICK.map(function (q) {
+        return '<details><summary>' + q[0] + '</summary><p>' + q[1] + '</p></details>';
+      }).join('') + '</div>' +
       '<a class="btn btn-slate btn-block" style="margin-top:18px" href="booking.html">' + t('Book your stay', 'Prenota il soggiorno') + '</a>' +
     '</div>';
 
@@ -174,83 +210,6 @@
   fab.className = 'btn btn-slate help-fab';
   fab.setAttribute('data-help', '');
   fab.textContent = t('Help', 'Aiuto');
-
-  /* ---------- Welcome: who's travelling? (homepage, once per visit, with Skip) ---------- */
-  // [image, EN line, IT line] for each package; names come from PAGES.
-  var PKG = {
-    'italian-memories.html': ['assets/img/people/moment-pool.jpg', 'Rest and time together by the sea.', 'Relax e tempo insieme, sul mare.'],
-    'family-reset-package.html': ['assets/img/suite-terrace.jpg', 'Room, breakfast and spa included when you book direct.', 'Camera, colazione e spa inclusi prenotando direttamente.'],
-    'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'Your Italian story continues.', 'La tua storia italiana continua.'],
-    'business-travel.html': ['assets/img/auditorium.jpg', 'Meetings, recovery and a proper dinner, already arranged.', 'Riunioni, relax e una buona cena, già organizzati.'],
-    'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Your business stay, already arranged.', 'Il tuo soggiorno di lavoro, già organizzato.'],
-    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Relationships that continue beyond the meeting room.', 'Relazioni che continuano oltre la sala riunioni.']
-  };
-  var GROUPS = {
-    family: { title: t('Packages for families', 'Pacchetti per le famiglie'), list: PAGES.families },
-    business: { title: t('Packages for business', 'Pacchetti per il business'), list: PAGES.business }
-  };
-  function choice(key, img, name, line) {
-    return '<button type="button" class="w-choice" data-group="' + key + '">' +
-      '<span class="w-ph"><img src="' + BASE + img + '" alt=""></span>' +
-      '<span class="w-t">' + name + '</span><span class="w-s">' + line + '</span></button>';
-  }
-  var welcome = document.createElement('div');
-  welcome.className = 'welcome';
-  welcome.hidden = true;
-  welcome.setAttribute('role', 'dialog');
-  welcome.setAttribute('aria-modal', 'true');
-  welcome.setAttribute('aria-labelledby', 'welcome-title');
-  welcome.innerHTML =
-    '<div class="wrap w-top"><img src="' + BASE + 'assets/img/logo.png" alt="Villa Maria Hotel &amp; Spa" class="w-logo">' +
-      '<div class="w-right">' + header.querySelector('.lang').outerHTML +
-      '<button type="button" class="w-skip">' + t('Skip →', 'Salta →') + '</button></div></div>' +
-    '<div class="wrap w-body">' +
-      '<div class="w-step" data-step="ask">' +
-        '<p class="eb">' + t('Welcome to Villa Maria', 'Benvenuti a Villa Maria') + '</p>' +
-        '<h2 class="h2" id="welcome-title">' + t('Who\'s travelling <i>today?</i>', 'Chi viaggia <i>oggi?</i>') + '</h2>' +
-        '<p class="w-lead">' + t('Choose one and we\'ll show you the packages made for you.', 'Scegli e ti mostriamo i pacchetti giusti per te.') + '</p>' +
-        '<div class="w-choices">' +
-          choice('family', 'assets/img/people/moment-pool.jpg', t('Family', 'Famiglia'), t('Holidays together by the sea', 'Vacanze insieme sul mare')) +
-          choice('business', 'assets/img/people/business-meeting.jpg', 'Business', t('Work, meetings and recovery', 'Lavoro, riunioni e recupero')) +
-        '</div>' +
-      '</div>' +
-      '<div class="w-step" data-step="list" hidden>' +
-        '<button type="button" class="w-back">' + t('← Back', '← Indietro') + '</button>' +
-        '<h2 class="h2 w-group-title"></h2>' +
-        '<div class="w-pkgs"></div>' +
-      '</div>' +
-      '<button type="button" class="w-skip-low">' + t('Skip and go to the website', 'Salta e vai al sito') + '</button>' +
-    '</div>';
-
-  function renderGroup(key) {
-    var g = GROUPS[key];
-    welcome.querySelector('.w-group-title').textContent = g.title;
-    welcome.querySelector('.w-pkgs').innerHTML = g.list.map(function (p) {
-      var d = PKG[p[0]];
-      return '<a class="card" href="' + p[0] + '"><span class="ph"><img src="' + BASE + d[0] + '" alt=""></span>' +
-        '<span class="t">' + esc(t(p[1], p[2])) + '</span><span class="s">' + esc(t(d[1], d[2])) + '</span>' +
-        '<span class="more">' + t('Discover →', 'Scopri →') + '</span></a>';
-    }).join('');
-  }
-  function showStep(step) {
-    welcome.querySelector('[data-step="ask"]').hidden = step !== 'ask';
-    welcome.querySelector('[data-step="list"]').hidden = step !== 'list';
-    var f = welcome.querySelector(step === 'ask' ? '.w-choice' : '.w-pkgs a');
-    if (f && !welcome.hidden) f.focus();
-  }
-  function markSeen() { try { sessionStorage.setItem('vm-welcomed', '1'); } catch (e) {} }
-  function closeWelcome() {
-    welcome.hidden = true;
-    body.classList.remove('no-scroll');
-    markSeen();
-  }
-  welcome.querySelectorAll('.w-choice').forEach(function (b) {
-    b.addEventListener('click', function () { renderGroup(b.dataset.group); showStep('list'); });
-  });
-  welcome.querySelector('.w-back').addEventListener('click', function () { showStep('ask'); });
-  welcome.querySelectorAll('.w-skip,.w-skip-low').forEach(function (b) { b.addEventListener('click', closeWelcome); });
-  // Choosing a package counts as "seen". Switching language does not, so the screen reopens in that language.
-  welcome.querySelector('.w-pkgs').addEventListener('click', function (e) { if (e.target.closest('a')) markSeen(); });
 
   /* ---------- Our own forms: review, community, referral, message ---------- */
   // [name, type, EN label, IT label, required]
@@ -365,7 +324,7 @@
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, formModal, bar, fab, welcome].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, formModal, bar, fab].forEach(function (el) { body.appendChild(el); });
 
   /* Book buttons open our own booking page; data-book="family-discount" etc. preselects the package. */
   document.querySelectorAll('[data-book]').forEach(function (a) {
@@ -441,7 +400,6 @@
     if (e.key !== 'Escape') return;
     if (!formModal.hidden) closeModal(formModal);
     else if (!help.hidden) closeModal(help);
-    else if (!welcome.hidden) closeWelcome();
     else if (menu.classList.contains('open')) closeMenu();
   });
   document.addEventListener('click', function (e) {
@@ -450,12 +408,4 @@
     if (e.target.closest('[data-help]')) { e.preventDefault(); openModal(help); }
   });
 
-  /* Open the welcome screen on the homepage, once per visit. */
-  var seen = false;
-  try { seen = !!sessionStorage.getItem('vm-welcomed'); } catch (e) {}
-  if (page === 'index.html' && document.querySelector('[data-welcome]') && !seen) {
-    welcome.hidden = false;
-    body.classList.add('no-scroll');
-    showStep('ask');
-  }
 })();

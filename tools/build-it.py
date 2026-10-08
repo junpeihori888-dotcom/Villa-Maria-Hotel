@@ -7,6 +7,7 @@ JavaScript. Run after editing any page:
 
     python3 tools/build-it.py
 """
+import json
 import pathlib
 import re
 
@@ -66,10 +67,28 @@ def set_alternates(soup, page):
         head.append('\n')
 
 
+def set_faq_schema(soup):
+    """Google FAQPage data built from the visible FAQ accordion, so they always match."""
+    old = soup.find('script', id='faq-schema')
+    if old:
+        old.decompose()
+    items = soup.select('details.faq-item')
+    if not items:
+        return
+    data = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+        {'@type': 'Question', 'name': d.summary.get_text(' ', strip=True),
+         'acceptedAnswer': {'@type': 'Answer', 'text': d.select_one('.faq-a').get_text(' ', strip=True)}}
+        for d in items]}
+    tag = soup.new_tag('script', type='application/ld+json', id='faq-schema')
+    tag.string = json.dumps(data, ensure_ascii=False)
+    soup.head.append(tag)
+
+
 def build(page):
     src = ROOT / page
     en = BeautifulSoup(src.read_text(encoding='utf-8'), 'html.parser')
     set_alternates(en, page)
+    set_faq_schema(en)
     # Removing old alternate links leaves their line breaks behind; collapse them.
     src.write_text(re.sub(r'\n\s*\n+', '\n', str(en)), encoding='utf-8')
 
@@ -91,6 +110,7 @@ def build(page):
         el['alt'] = el['data-it-alt']
         del el['data-it-alt']
 
+    set_faq_schema(soup)
     html = str(soup)
     html = re.sub(r'(\s(?:src|href|poster))="assets/', r'\1="../assets/', html)
     (OUT / page).write_text(html, encoding='utf-8')
