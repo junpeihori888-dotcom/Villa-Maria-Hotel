@@ -35,7 +35,9 @@ also have a gallery. Facts come from the campaign emails, the official site's pa
 kids, rooms, Linfa spa, meetings) and booking listings. Topics marked `# illustrative` in
 `tools/about.py` are example copy for this concept site; the footer says so. Each page has (a short intro plus
 topics that open on click) and a photo gallery with a full-screen viewer. The text (EN/IT) and the
-photos live in `tools/about.py`. Galleries look best with 5 or 9 photos. After editing:
+photos live in `tools/about.py`. Home, Rooms, Spa, Restaurant, Activities and Getting here use
+showcase carousels (`CARDS`): each card has its own photo slider with ‹ › arrows, and ← → moves
+between cards. Add photos to a card's list to show more. After editing:
 
     python3 tools/about.py && python3 tools/build-it.py
 

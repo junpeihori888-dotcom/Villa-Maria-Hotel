@@ -545,3 +545,33 @@ a.card:hover .ph img{transform:scale(1.04)}
 .menu li a.with-photo:hover img,.menu li a.with-photo[aria-current="page"] img{opacity:1;transform:scale(1.04)}
 @media (max-width:760px){.menu li a.with-photo img{width:60px;height:44px}}
 .site-footer .concept-note{flex-basis:100%;opacity:.7;font-size:11px}
+
+/* ---------- Showcase carousels (hotel pages) ---------- */
+.sc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.sc-nav{display:flex;gap:8px}
+.sc-nav button{appearance:none;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--slate);font-size:18px;cursor:pointer}
+.sc-nav button:hover:not(:disabled){border-color:var(--slate)}
+.sc-nav button:disabled{opacity:.35;cursor:default}
+.sc-track{--sc-pad:max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
+  display:flex;gap:clamp(20px,3vw,40px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--sc-pad);
+  padding:32px var(--sc-pad) 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sc-track::-webkit-scrollbar{display:none}
+.sc-track:focus-visible{outline:2px solid var(--sky);outline-offset:-2px}
+.sc-card{flex:0 0 min(62vw,780px);scroll-snap-align:start;min-width:0}
+.sc-media{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--sand-2)}
+.sc-slide{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+.sc-slide.is-active{opacity:1;pointer-events:auto}
+.sc-slide img{width:100%;height:100%;object-fit:cover}
+.sc-slide:focus-visible{outline:2px solid var(--sky);outline-offset:-4px}
+.sc-ctrl{display:flex;justify-content:flex-end;align-items:center;gap:4px;margin-top:10px}
+.sc-count{font-size:12px;color:var(--muted);margin-right:8px;font-variant-numeric:tabular-nums}
+.sc-ctrl button{appearance:none;border:0;background:none;width:40px;height:40px;font-size:26px;line-height:1;color:var(--ink);cursor:pointer;border-radius:50%}
+.sc-ctrl button:hover{background:var(--sand-2)}
+.sc-card > .eb{margin-top:8px}
+.sc-card:not(:has(.sc-ctrl)) > .eb{margin-top:24px}
+.sc-title{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.1;margin:8px 0 0}
+.sc-text{margin:10px 0 0;color:var(--muted);max-width:56ch}
+.sc-more{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-decoration:none}
+.sc-more:hover{color:var(--olive)}
+@media (max-width:760px){.sc-card{flex-basis:86vw}.sc-nav button{width:40px;height:40px}}
+@media (prefers-reduced-motion:reduce){.sc-slide{transition:none}}

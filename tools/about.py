@@ -428,12 +428,163 @@ def gallery_section(p):
             f'<div class="gallery">\n{items}\n</div>\n</div>\n</section>\n')
 
 
+# ---------------------------------------------------------------------------------
+# Showcase carousels (replace the grid gallery on these pages): each card has its own
+# photo slider with ‹ › arrows. Card = (eyebrow, title, text, [(photo, caption)]).
+# ---------------------------------------------------------------------------------
+P = lambda f, en, it: (f, (en, it))
+CARDS = {
+ 'index.html': [
+  (T('Accommodation', 'Camere'), T('Rooms &amp; suites', 'Camere e suite'),
+   T('Six room types, from Standard rooms to the Master SPA Suite, facing the park or the Adriatic.', 'Sei tipologie, dalla Standard alla Master SPA Suite, con vista sul parco o sull’Adriatico.'),
+   [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('superior-room.jpg', 'Superior Room', 'Camera Superior'),
+    P('suite-terrace.jpg', 'Suite terrace with hot tub', 'Terrazza della suite con idromassaggio'), P('suite-seaview.jpg', 'Sea view from a suite', 'Vista mare da una suite')], 'rooms.html'),
+  (T('Wellness', 'Benessere'), T('Linfa wellness &amp; spa', 'Benessere e spa Linfa'),
+   T('Hydromassage pool, Turkish bath, sauna and sensory shower, with a free two-hour session for every guest.', 'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, con due ore gratuite per ogni ospite.'),
+   [P('spa-whirlpool.jpg', 'Hydromassage pool', 'Piscina idromassaggio'), P('spa.jpg', 'Indoor pool', 'Piscina interna'),
+    P('sauna.jpg', 'Sauna', 'Sauna'), P('wellness.jpg', 'Indoor pool with a sea view', 'Piscina interna con vista mare')], 'spa.html'),
+  (T('Dining', 'Ristorante'), T('Restaurant &amp; bar', 'Ristorante e bar'),
+   T('Italian cuisine and Abruzzo specialities, on the terrace over the pool or at the chef’s table.', 'Cucina italiana e specialità abruzzesi, in terrazza sulla piscina o alla tavola dello chef.'),
+   [P('restaurant-hall.jpg', 'The dining room', 'La sala'), P('restaurant-dinner.jpg', 'Dinner with a view', 'Cena con vista'),
+    P('chef-dinner.jpg', 'The chef’s dishes', 'I piatti dello chef'), P('breakfast.jpg', 'Breakfast buffet', 'Colazione a buffet'), P('bar.jpg', 'The bar', 'Il bar')], 'restaurant.html'),
+  (T('Outdoors', 'All’aperto'), T('Pools &amp; park', 'Piscine e parco'),
+   T('The Blue Pool and the Riviera Pool in a private park, with a shallow pool for children.', 'La Blue Pool e la Riviera Pool in un parco privato, con una piscina bassa per i bambini.'),
+   [P('pool-park.jpg', 'The Blue Pool', 'La Blue Pool'), P('pool-fountain.jpg', 'Fountain and pool area', 'Fontana e area piscina'),
+    P('people/moment-pool.jpg', 'Pool days with the family', 'Giornate in piscina in famiglia'), P('garden-gazebo.jpg', 'The gazebo', 'Il gazebo')], 'activities.html'),
+  (T('Business', 'Business'), T('Meetings &amp; events', 'Meeting ed eventi'),
+   T('Five conference rooms, from small meetings to an auditorium, with video-conferencing.', 'Cinque sale congressi, dalle riunioni ristrette all’auditorium, con videoconferenza.'),
+   [P('meeting-hall.jpg', 'Meeting room', 'Sala riunioni'), P('auditorium.jpg', 'Auditorium', 'Auditorium'),
+    P('meeting-room.jpg', 'Private meeting room', 'Sala riservata'), P('people/business-meeting.jpg', 'A working session', 'Una sessione di lavoro')], 'business-travel.html'),
+  (T('Sport', 'Sport'), T('Padel &amp; gardens', 'Padel e giardini'),
+   T('A padel court in the garden, shady lawns and terraces with a view of the sea.', 'Un campo da padel in giardino, prati all’ombra e terrazze con vista mare.'),
+   [P('people/business-padel.jpg', 'Padel in the garden', 'Padel in giardino'), P('gardens.jpg', 'The gardens', 'I giardini'),
+    P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare')], 'padel-experience.html'),
+ ],
+ 'rooms.html': [
+  (T('For short stays', 'Per soggiorni brevi'), T('Standard &amp; Superior', 'Standard e Superior'),
+   T('Garden or partial sea view and a writing desk. Ideal for one or two nights.', 'Vista giardino o parziale vista mare e scrivania. Ideali per una o due notti.'),
+   [P('superior-room.jpg', 'Superior Room', 'Camera Superior'), P('villa-adriatic.jpg', 'Rooms above the park', 'Camere sopra il parco'),
+    P('concierge.jpg', 'Concierge desk', 'Concierge')], 'booking.html#superior'),
+  (T('More space', 'Più spazio'), T('Deluxe Room', 'Camera Deluxe'),
+   T('Adriatic views, a desk and a lounge area. Our choice for three nights or more.', 'Vista Adriatico, scrivania e zona lounge. La nostra scelta per tre notti o più.'),
+   [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('suite-seaview.jpg', 'The view from the terrace', 'La vista dalla terrazza')], 'booking.html#deluxe'),
+  (T('Suites', 'Suite'), T('Junior Suites', 'Junior Suite'),
+   T('A separate sitting area and room to spread out, for families and longer stays.', 'Una zona giorno separata e spazio in più, per famiglie e soggiorni lunghi.'),
+   [P('suite-seaview.jpg', 'Suite with sea view', 'Suite con vista mare'), P('deluxe-room.jpg', 'Bedroom', 'Camera da letto')], 'booking.html#suite'),
+  (T('Signature suite', 'Suite esclusiva'), T('Master SPA Suite', 'Master SPA Suite'),
+   T('A private terrace with a hot tub and the Adriatic in front of you.', 'Una terrazza privata con vasca idromassaggio e l’Adriatico davanti.'),
+   [P('suite-terrace.jpg', 'Terrace with hot tub', 'Terrazza con idromassaggio'), P('walk.jpg', 'Terrace and plunge pool', 'Terrazza e piscinetta'),
+    P('spa-whirlpool.jpg', 'Spa access included', 'Accesso alla spa incluso')], 'booking.html#suite'),
+  (T('Families', 'Famiglie'), T('Family rooms', 'Camere per famiglie'),
+   T('Rooms and suites for 2 adults and 2 teens, with breakfast and spa in the Family Discount.', 'Camere e suite per 2 adulti e 2 ragazzi, con colazione e spa nello Sconto Famiglia.'),
+   [P('people/family-welcome-back.jpg', 'Arriving as a family', 'L’arrivo in famiglia'), P('pool-park.jpg', 'Pools a few steps away', 'Le piscine a pochi passi'),
+    P('breakfast.jpg', 'Breakfast included', 'Colazione inclusa')], 'family-reset-package.html'),
+ ],
+ 'spa.html': [
+  (T('Relaxation area', 'Area relax'), T('Water &amp; warmth', 'Acqua e calore'),
+   T('Hydromassage pool and indoor pool, with tall windows over the park and towards the sea.', 'Piscina idromassaggio e piscina interna, con grandi vetrate sul parco e verso il mare.'),
+   [P('spa-whirlpool.jpg', 'Hydromassage pool', 'Piscina idromassaggio'), P('spa.jpg', 'Indoor pool', 'Piscina interna'),
+    P('wellness.jpg', 'Indoor pool with a sea view', 'Piscina interna con vista mare')], ''),
+  (T('Heat', 'Calore'), T('Sauna &amp; Turkish bath', 'Sauna e bagno turco'),
+   T('A wooden sauna, the Turkish bath and the sensory shower: the classic Linfa circuit.', 'Sauna in legno, bagno turco e doccia emozionale: il classico percorso Linfa.'),
+   [P('sauna.jpg', 'Sauna', 'Sauna'), P('spa.jpg', 'Rest between rounds', 'Riposo tra un giro e l’altro')], ''),
+  (T('Beauty area', 'Area beauty'), T('Treatments for one or two', 'Trattamenti per uno o per due'),
+   T('Massages and beauty treatments, alone or as a couple. Ask our team for the current list.', 'Massaggi e trattamenti beauty, da soli o in coppia. Chiedi al team l’elenco aggiornato.'),
+   [P('people/moment-spa.jpg', 'Time for two', 'Tempo per due'), P('wellness.jpg', 'Quiet after a treatment', 'Silenzio dopo il trattamento')], ''),
+  (T('Fitness area', 'Area fitness'), T('Move, then recover', 'Muoviti, poi recupera'),
+   T('The fitness area, and the padel court in the garden for a match before the spa.', 'L’area fitness e il campo da padel in giardino per una partita prima della spa.'),
+   [P('people/business-padel.jpg', 'Padel before the spa', 'Padel prima della spa'), P('gardens.jpg', 'The gardens', 'I giardini')], 'padel-experience.html'),
+  (T('Outside', 'Fuori'), T('Terrace &amp; plunge pool', 'Terrazza e piscinetta'),
+   T('Step outside for fresh air and a view of the Adriatic.', 'Esci per un po’ d’aria e la vista sull’Adriatico.'),
+   [P('walk.jpg', 'Terrace with a plunge pool', 'Terrazza con piscinetta'), P('villa-adriatic.jpg', 'The hotel above the sea', 'L’hotel sopra il mare')], ''),
+ ],
+ 'restaurant.html': [
+  (T('Dining room', 'Sala'), T('The restaurant', 'Il ristorante'),
+   T('À la carte Italian cuisine and Abruzzo specialities, overlooking the pool and the park.', 'Cucina italiana à la carte e specialità abruzzesi, con vista su piscina e parco.'),
+   [P('restaurant-hall.jpg', 'The dining room', 'La sala'), P('dining.jpg', 'Tables by the windows', 'Tavoli alle vetrate'),
+    P('restaurant-dinner.jpg', 'Dinner with a view', 'Cena con vista')], ''),
+  (T('Morning', 'Mattina'), T('Breakfast', 'Colazione'),
+   T('A local buffet with fruit, cakes and savoury dishes, served early for business guests.', 'Buffet locale con frutta, dolci e salato, servito presto per chi lavora.'),
+   [P('breakfast.jpg', 'Breakfast buffet', 'Colazione a buffet'), P('restaurant-hall.jpg', 'Morning light', 'Luce del mattino')], ''),
+  (T('Evening', 'Sera'), T('The chef’s table', 'La tavola dello chef'),
+   T('Abruzzo on the plate, for special evenings and dinners that close the deal.', 'L’Abruzzo nel piatto, per serate speciali e cene che chiudono l’accordo.'),
+   [P('chef-dinner.jpg', 'The chef’s dishes', 'I piatti dello chef'), P('people/moment-dinner.jpg', 'A toast at dinner', 'Un brindisi a cena')], ''),
+  (T('Bar', 'Bar'), T('Aperitivo', 'Aperitivo'),
+   T('A drink before dinner: the toast after the match, or the start of a family evening.', 'Un drink prima di cena: il brindisi dopo la partita o l’inizio di una serata in famiglia.'),
+   [P('bar.jpg', 'The bar', 'Il bar'), P('aperitivo.jpg', 'Aperitivo', 'Aperitivo')], ''),
+  (T('Outdoors', 'All’aperto'), T('Terrace &amp; garden', 'Terrazza e giardino'),
+   T('Lunch in the shade and dinners with the sea breeze.', 'Pranzi all’ombra e cene con la brezza del mare.'),
+   [P('garden-gazebo.jpg', 'Lunch in the garden', 'Pranzo in giardino'), P('gardens.jpg', 'Tables under the trees', 'Tavoli sotto gli alberi')], ''),
+ ],
+ 'contact.html': [
+  (T('Arrival', 'Arrivo'), T('Reception &amp; concierge', 'Reception e concierge'),
+   T('A warm welcome and a team that helps before you arrive and during your stay.', 'Un’accoglienza calorosa e un team che ti aiuta prima dell’arrivo e durante il soggiorno.'),
+   [P('reception.jpg', 'Reception', 'Reception'), P('concierge.jpg', 'Concierge desk', 'Concierge'),
+    P('people/family-welcome-back.jpg', 'Welcome back', 'Bentornati')], ''),
+  (T('The place', 'Il luogo'), T('On the hill above the sea', 'Sulla collina sopra il mare'),
+   T('Contrada Pretaro, above Francavilla al Mare: minutes from Pescara, outside the traffic.', 'Contrada Pretaro, sopra Francavilla al Mare: a pochi minuti da Pescara, fuori dal traffico.'),
+   [P('villa-adriatic.jpg', 'The hotel and the sea', 'L’hotel e il mare'), P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare')], ''),
+  (T('The park', 'Il parco'), T('Gardens &amp; pools', 'Giardini e piscine'),
+   T('A large private park with two pools, a fountain and shady lawns.', 'Un grande parco privato con due piscine, una fontana e prati all’ombra.'),
+   [P('gardens.jpg', 'The gardens', 'I giardini'), P('garden-gazebo.jpg', 'The gazebo', 'Il gazebo'),
+    P('pool-fountain.jpg', 'Fountain and pool area', 'Fontana e area piscina')], 'activities.html'),
+ ],
+ 'activities.html': [
+  (T('Water', 'Acqua'), T('Swimming pools', 'Piscine'),
+   T('The Blue Pool, the Riviera Pool and a shallow pool for children, in summer.', 'La Blue Pool, la Riviera Pool e una piscina bassa per bambini, in estate.'),
+   [P('pool-park.jpg', 'The Blue Pool', 'La Blue Pool'), P('pool-fountain.jpg', 'Fountain and pool area', 'Fontana e area piscina'),
+    P('people/moment-pool.jpg', 'Pool days with the family', 'Giornate in piscina in famiglia')], ''),
+  (T('Wellness', 'Benessere'), T('Linfa spa', 'Spa Linfa'),
+   T('A free two-hour session for every guest: hydromassage, Turkish bath, sauna.', 'Due ore gratuite per ogni ospite: idromassaggio, bagno turco, sauna.'),
+   [P('spa-whirlpool.jpg', 'Hydromassage pool', 'Piscina idromassaggio'), P('sauna.jpg', 'Sauna', 'Sauna'),
+    P('people/moment-spa.jpg', 'Time for two', 'Tempo per due')], 'spa.html'),
+  (T('Sport', 'Sport'), T('Padel', 'Padel'),
+   T('A court in the garden for family matches or a game with clients.', 'Un campo in giardino per partite in famiglia o con i clienti.'),
+   [P('people/business-padel.jpg', 'Padel in the garden', 'Padel in giardino'), P('gardens.jpg', 'The gardens', 'I giardini')], 'padel-experience.html'),
+  (T('Outdoors', 'All’aperto'), T('The park', 'Il parco'),
+   T('Shady lawns, a gazebo and terraces with a view of the sea.', 'Prati all’ombra, un gazebo e terrazze con vista mare.'),
+   [P('garden-gazebo.jpg', 'The gazebo', 'Il gazebo'), P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare'),
+    P('gardens.jpg', 'Garden lounge', 'Salotto in giardino')], ''),
+  (T('Food', 'Cucina'), T('Tastes of Abruzzo', 'Sapori d’Abruzzo'),
+   T('Abruzzo specialities, an aperitivo at the bar and lunch at the beach lido.', 'Specialità abruzzesi, aperitivo al bar e pranzo al lido.'),
+   [P('chef-dinner.jpg', 'The chef’s dishes', 'I piatti dello chef'), P('bar.jpg', 'The bar', 'Il bar'),
+    P('restaurant-dinner.jpg', 'Dinner with a view', 'Cena con vista')], 'restaurant.html'),
+ ],
+}
+
+
+def showcase_section(cards):
+    out = []
+    for i, (eb, title, text, photos, link) in enumerate(cards):
+        slides = ''.join(
+            f'<a class="g-item sc-slide{" is-active" if j == 0 else ""}" href="assets/img/{f}" data-caption="{a(cap[0])}" data-it-caption="{a(cap[1])}">'
+            f'<img src="assets/img/{f}" alt="{a(cap[0])}" data-it-alt="{a(cap[1])}" loading="lazy"></a>'
+            for j, (f, cap) in enumerate(photos))
+        ctrl = ('' if len(photos) < 2 else
+                '<div class="sc-ctrl"><span class="sc-count" aria-live="polite">1 / ' + str(len(photos)) + '</span>'
+                '<button type="button" class="sc-prev" aria-label="Previous photo" data-it-aria="Foto precedente">‹</button>'
+                '<button type="button" class="sc-next" aria-label="Next photo" data-it-aria="Foto successiva">›</button></div>')
+        more = (f'<a class="sc-more" href="{link}" data-it="Scopri di più →">Discover more →</a>' if link else '')
+        out.append(
+            f'<article class="sc-card"><div class="sc-media">{slides}</div>{ctrl}'
+            f'<p class="eb" data-it="{a(eb[1])}">{eb[0]}</p>'
+            f'<h3 class="sc-title" data-it="{a(title[1])}">{title[0]}</h3>'
+            f'<p class="sc-text" data-it="{a(text[1])}">{text[0]}</p>{more}</article>')
+    return ('<section class="section white showcase" id="gallery">\n<div class="wrap sc-head">\n'
+            '<div><p class="eb" data-it="Galleria">Gallery</p>\n'
+            '<h2 class="h2" data-it="Guarda <i>prima di arrivare.</i>">See it <i>before you arrive.</i></h2></div>\n'
+            '<div class="sc-nav"><button type="button" class="sc-back" aria-label="Previous" data-it-aria="Precedente">←</button>'
+            '<button type="button" class="sc-fwd" aria-label="Next" data-it-aria="Successivo">→</button></div>\n</div>\n'
+            '<div class="sc-track" tabindex="0" aria-label="Photo showcase" data-it-aria="Vetrina fotografica">\n'
+            + '\n'.join(out) + '\n</div>\n</section>\n')
+
+
 for page, p in PAGES.items():
     path = ROOT / page
     s = path.read_text(encoding='utf-8')
     s = re.sub(r'<section class="section about" id="about">.*?</section>\n?', '', s, flags=re.S)
-    s = re.sub(r'<section class="section white gallery-sec" id="gallery">.*?</section>\n?', '', s, flags=re.S)
-    block = about_section(p) + gallery_section(p)
+    s = re.sub(r'<section class="section white (?:gallery-sec|showcase)" id="gallery">.*?</section>\n?', '', s, flags=re.S)
+    block = about_section(p) + (showcase_section(CARDS[page]) if page in CARDS else gallery_section(p))
     anchor = '<section class="section faq" id="faq">'
     assert anchor in s, page
     s = s.replace(anchor, block + anchor, 1)

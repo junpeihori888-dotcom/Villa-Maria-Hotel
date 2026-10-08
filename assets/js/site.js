@@ -512,6 +512,39 @@
   }
 
 
+
+  /* ---------- Showcase carousels: ‹ › flips photos inside a card, ← → moves between cards ---------- */
+  document.querySelectorAll('.sc-card').forEach(function (card) {
+    var slides = card.querySelectorAll('.sc-slide'), count = card.querySelector('.sc-count'), i = 0;
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); s.tabIndex = k === i ? 0 : -1; });
+      if (count) count.textContent = (i + 1) + ' / ' + slides.length;
+    }
+    var prev = card.querySelector('.sc-prev'), next = card.querySelector('.sc-next');
+    if (prev) prev.addEventListener('click', function () { show(i - 1); });
+    if (next) next.addEventListener('click', function () { show(i + 1); });
+    show(0);
+  });
+  document.querySelectorAll('.showcase').forEach(function (sec) {
+    var track = sec.querySelector('.sc-track');
+    function step(dir) {
+      var card = track.querySelector('.sc-card');
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({ left: dir * (card.getBoundingClientRect().width + gap), behavior: 'smooth' });
+    }
+    var back = sec.querySelector('.sc-back'), fwd = sec.querySelector('.sc-fwd');
+    function edges() {
+      back.disabled = track.scrollLeft < 8;
+      fwd.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8;
+    }
+    back.addEventListener('click', function () { step(-1); });
+    fwd.addEventListener('click', function () { step(1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(edges); }, { passive: true });
+    window.addEventListener('resize', edges);
+    edges();
+  });
+
   /* ---------- Photo galleries: full-screen viewer ---------- */
   var lb = document.createElement('div');
   lb.className = 'lightbox';
@@ -536,7 +569,7 @@
     lb.querySelector('.lb-count').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
   }
   function lbOpen(a) {
-    lbItems = Array.prototype.slice.call(a.closest('.gallery').querySelectorAll('.g-item'));
+    lbItems = Array.prototype.slice.call(a.closest('.gallery, .sc-media').querySelectorAll('.g-item'));
     lbFocus = a;
     lbShow(lbItems.indexOf(a));
     lb.hidden = false;
