@@ -26,15 +26,19 @@
 <form class="book-form" id="booking-form" novalidate="">
 <fieldset class="step">
 <legend><span class="n">1</span><span>Il tuo soggiorno</span></legend>
+<div class="grid-2 dates-row">
+<button aria-controls="cal" aria-expanded="true" class="field date-btn" id="ci-btn" type="button"><span class="lbl">Arrivo</span><span class="v" id="ci-v">Scegli una data</span></button>
+<button aria-controls="cal" aria-expanded="true" class="field date-btn" id="co-btn" type="button"><span class="lbl">Partenza</span><span class="v" id="co-v">Scegli una data</span></button>
+</div>
+<input id="checkin" name="checkin" type="hidden"/><input id="checkout" name="checkout" type="hidden"/>
+<div aria-label="Scegli le date" class="cal" id="cal" role="group"></div>
 <div class="grid-2">
-<div class="field"><label for="checkin">Arrivo</label><input id="checkin" name="checkin" required="" type="date"/></div>
-<div class="field"><label for="checkout">Partenza</label><input id="checkout" name="checkout" required="" type="date"/></div>
 <div class="field"><label for="adults">Adulti</label>
 <select id="adults" name="adults"><option>1</option><option selected="">2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
 <div class="field"><label for="children">Bambini e ragazzi (0–17)</label>
 <select id="children" name="children"><option selected="">0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
 </div>
-<p class="err" hidden="" id="err-dates">Scegli una data di partenza successiva all'arrivo.</p>
+<p class="err" hidden="" id="err-dates">Scegli le date di arrivo e di partenza nel calendario.</p>
 </fieldset>
 <fieldset class="step">
 <legend><span class="n">2</span><span>Pacchetto</span></legend>

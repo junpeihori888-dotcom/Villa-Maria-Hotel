@@ -36,6 +36,18 @@
      (the guest sees a clear "not sent" note). */
   var FORMS_ENDPOINT = '';
 
+  /* Reviews are only for guests who have stayed. This server receives
+     {reference, email} and answers {verified: true|false, name?} after checking
+     that the booking exists and its check-out date has passed. Leave empty and the
+     review form runs in demo mode (it says so and nothing is checked). */
+  var REVIEW_VERIFY_ENDPOINT = '';
+
+  /* AI chat in Help. Your own server receives {messages: [{role, content}], lang, facts}
+     and answers {reply}. It should call an AI model with the facts as its only source.
+     Leave empty: inside the claude.ai preview the chat uses Claude itself; elsewhere it
+     gives instant answers from the FAQ and says so. */
+  var CHAT_ENDPOINT = '';
+
   var OFFERS = {
     familyDiscount: {
       fromPrice: '',          // e.g. '€189' (per night, room for the family)
@@ -195,8 +207,134 @@
       '<div class="quick">' + QUICK.map(function (q) {
         return '<details><summary>' + q[0] + '</summary><p>' + q[1] + '</p></details>';
       }).join('') + '</div>' +
+      '<section class="ai-chat" aria-label="' + t('Ask our assistant', 'Chiedi al nostro assistente') + '">' +
+        '<div class="chat-head"><p class="eb">' + t('Ask our assistant', 'Chiedi al nostro assistente') + '</p><span class="chat-mode">' + t('Instant answers', 'Risposte immediate') + '</span></div>' +
+        '<div class="chat-log" aria-live="polite"></div>' +
+        '<div class="chat-chips">' +
+          [t('Is there a Kids Club?', 'C’è un Kids Club?'), t('Can I get a company invoice?', 'Posso avere la fattura aziendale?'), t('How far is Pescara airport?', 'Quanto dista l’aeroporto di Pescara?')]
+            .map(function (q) { return '<button type="button" class="chip">' + q + '</button>'; }).join('') +
+        '</div>' +
+        '<form class="chat-form"><label class="sr-only" for="chat-in">' + t('Your question', 'La tua domanda') + '</label>' +
+          '<input id="chat-in" autocomplete="off" maxlength="500" placeholder="' + t('Ask about rooms, spa, parking…', 'Chiedi di camere, spa, parcheggio…') + '">' +
+          '<button type="submit" class="btn btn-slate chat-send">' + t('Ask', 'Chiedi') + '</button></form>' +
+        '<p class="chat-note">' + t('Answers come from our hotel information and can be wrong. Our team confirms bookings and anything important by email.',
+          'Le risposte si basano sulle informazioni dell’hotel e possono contenere errori. Il nostro team conferma prenotazioni e dettagli importanti via email.') + '</p>' +
+      '</section>' +
       '<a class="btn btn-slate btn-block" style="margin-top:18px" href="booking.html">' + t('Book your stay', 'Prenota il soggiorno') + '</a>' +
     '</div>';
+
+
+  /* ---------- AI chat (Help) ---------- */
+  // Hotel facts the assistant may use — the same facts as the FAQ. [match, EN, IT]
+  var KB = [
+    [/where|locat|address|airport|train|station|motorway|a14|get there|reach|dove|indirizz|aeroporto|stazione|autostrada|arrivare|pescara/i,
+      'Villa Maria is on the hill above Francavilla al Mare, just south of Pescara in Abruzzo. Abruzzo Airport (Pescara) is a short drive away, Pescara Centrale station has easy rail connections, and the A14 Pescara Sud exit is close by.',
+      'Villa Maria è sulla collina sopra Francavilla al Mare, appena a sud di Pescara, in Abruzzo. L’aeroporto d’Abruzzo (Pescara) è a pochi minuti d’auto, la stazione di Pescara Centrale ha comodi collegamenti e l’uscita A14 Pescara Sud è vicina.'],
+    [/check.?in|check.?out|arriv|depart|time|orari|partenza/i, QUICK[0][1], QUICK[0][1]],
+    [/park|car\b|ev\b|charg|shuttle|beach|transfer|parchegg|navetta|spiaggia|ricarica/i, QUICK[1][1], QUICK[1][1]],
+    [/cancel|refund|change.*date|cancell|rimbors|modific/i, QUICK[2][1], QUICK[2][1]],
+    [/spa|sauna|pool|wellness|massage|treatment|linfa|piscin|benessere|massagg|trattament/i,
+      'The Linfa wellness & spa has pools, a sauna, relaxation areas and treatments for one or two. The hotel also has two outdoor pools in a private park. For spa hours and treatment prices, send us a message.',
+      'La spa Linfa ha piscine, sauna, aree relax e trattamenti per uno o per due. L’hotel ha anche due piscine all’aperto in un parco privato. Per orari e prezzi dei trattamenti, scrivici un messaggio.'],
+    [/kid|child|family|teen|famil|bambin|ragazz/i,
+      'Families have two outdoor pools in a private park, a Kids Club, padel, a free shuttle to our partner beach and family dinners with Abruzzo recipes. The Family Discount includes room, breakfast and spa.',
+      'Le famiglie hanno due piscine all’aperto in un parco privato, un Kids Club, il padel, una navetta gratuita per la spiaggia convenzionata e cene con ricette abruzzesi. Lo Sconto Famiglia include camera, colazione e spa.'],
+    [/discount|voucher|€\s?20|20\s?€|offer|sconto|offerta/i,
+      'With the Family Discount, first-time guests who book directly get a €20 in-house voucher for food and drink or the spa (valid during that stay). Book your next stay during your visit and get 10% off the room rate.',
+      'Con lo Sconto Famiglia, chi prenota direttamente per la prima volta riceve un voucher da 20 € per food and beverage o spa (valido durante il soggiorno). Prenota il prossimo soggiorno durante la visita e hai il 10% sulla camera.'],
+    [/meeting|conference|auditorium|room for.*people|video|riunion|conferenz|sala/i,
+      'We have private meeting rooms and an auditorium, with video-conferencing and fast Wi-Fi. Send us a message with your group size and we will confirm the right room.',
+      'Abbiamo sale riunioni riservate e un auditorium, con videoconferenza e Wi-Fi veloce. Scrivici il numero di partecipanti e ti confermiamo la sala giusta.'],
+    [/invoice|company|corporate|business|fattur|aziend|lavoro/i,
+      'Yes, we invoice your company directly and accept corporate cards. If you have a company code, add it when you book. The Executive Business Stay Package includes early breakfast, fast Wi-Fi, spa and a meeting room on request.',
+      'Sì, fatturiamo direttamente alla tua azienda e accettiamo carte aziendali. Se hai un codice aziendale, inseriscilo quando prenoti. Il Pacchetto Executive Business Stay include colazione presto, Wi-Fi veloce, spa e sala riunioni su richiesta.'],
+    [/padel/i,
+      'Our padel courts are in the gardens above the Adriatic. The Padel Experience pairs a match with the spa, an aperitivo at the bar and dinner at the chef’s table.',
+      'I campi da padel sono nei giardini sopra l’Adriatico. La Padel Experience abbina la partita a spa, aperitivo al bar e cena alla tavola dello chef.'],
+    [/breakfast|restaurant|dinner|lunch|food|eat|colazion|ristorant|cena|pranzo|mangiare/i,
+      'Breakfast is a local buffet and is included in our packages. The hotel restaurant serves Abruzzo recipes, and the bar serves aperitivo in the evening.',
+      'La colazione è a buffet con prodotti locali ed è inclusa nei pacchetti. Il ristorante dell’hotel propone ricette abruzzesi e il bar serve l’aperitivo la sera.'],
+    [/room|suite|superior|deluxe|view|camer|vista/i,
+      'The Superior Room has a garden or partial sea view and a desk, good for 1–2 nights. The Deluxe Room and Suites have more space and Adriatic views; the Suite has a private terrace with a hot tub.',
+      'La Camera Superior ha vista giardino o parziale vista mare e scrivania, ideale per 1–2 notti. Le Camere Deluxe e le Suite hanno più spazio e vista Adriatico; la Suite ha una terrazza privata con vasca idromassaggio.'],
+    [/price|cost|rate|how much|cheap|prezz|costo|tariff|quanto/i,
+      'Prices depend on your dates and room. Choose them on our booking page and we confirm the price by email. Nothing is charged when you send the request.',
+      'I prezzi dipendono da date e camera. Sceglile nella pagina di prenotazione e ti confermiamo il prezzo via email. Inviare la richiesta non comporta alcun pagamento.'],
+    [/book|reserv|availab|prenot|disponib/i,
+      'You can book on our booking page: pick your dates in the calendar, choose a package and room, and send the request. We reply by email with the price and confirmation.',
+      'Puoi prenotare nella nostra pagina di prenotazione: scegli le date nel calendario, il pacchetto e la camera, e invia la richiesta. Ti rispondiamo via email con prezzo e conferma.']
+  ];
+  var FACTS = KB.map(function (k) { return '- ' + k[1]; }).join('\n') +
+    (HOTEL.phone ? '\n- Phone: ' + HOTEL.phone : '') + (HOTEL.email ? '\n- Email: ' + HOTEL.email : '') +
+    (HOTEL.whatsapp ? '\n- WhatsApp: +' + HOTEL.whatsapp : '') + (HOTEL.conciergeHours.en ? '\n- Concierge desk: ' + HOTEL.conciergeHours.en : '');
+  var RULES = 'You are the online assistant of Villa Maria Hotel & Spa, a four-star seaside hotel in Francavilla al Mare, Abruzzo, Italy. ' +
+    'Answer guest questions using ONLY the HOTEL FACTS below. If the answer is not in the facts, say you are not sure and suggest the "Send us a message" button above the chat, or the booking page for dates and prices. ' +
+    'Never invent prices, availability, opening hours, phone numbers or policies. Reply in the guest\'s language (Italian or English; default ' + (lang === 'it' ? 'Italian' : 'English') + '). ' +
+    'Keep replies to 1-3 short sentences, warm and plain, with no markdown, lists or headings.\n\nHOTEL FACTS:\n' + FACTS;
+
+  var chatBox = help.querySelector('.ai-chat'), log = chatBox.querySelector('.chat-log'),
+      chatForm = chatBox.querySelector('.chat-form'), chatIn = chatBox.querySelector('#chat-in'),
+      sendBtn = chatBox.querySelector('.chat-send'), modeEl = chatBox.querySelector('.chat-mode');
+  var turns = [], engine = CHAT_ENDPOINT ? 'server' : 'faq', sampleFn = null, ctl = null;
+  function setMode() { modeEl.textContent = engine === 'faq' ? t('Instant answers', 'Risposte immediate') : t('AI assistant', 'Assistente AI'); }
+  setMode();
+  if (!CHAT_ENDPOINT && window.claude && typeof window.claude.use === 'function') {
+    window.claude.use('sample').then(function (fn) { if (fn) { sampleFn = fn; engine = 'claude'; setMode(); } }).catch(function () {});
+  }
+  function bubble(role, text) {
+    var b = document.createElement('div');
+    b.className = 'msg msg-' + role;
+    b.textContent = text;
+    log.appendChild(b);
+    log.scrollTop = log.scrollHeight;
+    return b;
+  }
+  function faqAnswer(q) {
+    for (var i = 0; i < KB.length; i++) if (KB[i][0].test(q)) return t(KB[i][1], KB[i][2]);
+    return t('I am not sure about that one. Use "Send us a message" above and our team will reply.', 'Su questo non sono sicuro. Usa "Scrivici un messaggio" qui sopra e il nostro team ti risponderà.');
+  }
+  function busy(on) {
+    sendBtn.textContent = on ? t('Stop', 'Stop') : t('Ask', 'Chiedi');
+    sendBtn.classList.toggle('is-stop', on);
+    chatIn.disabled = on;
+  }
+  function ask(q) {
+    q = String(q || '').trim();
+    if (!q) return;
+    chatBox.querySelector('.chat-chips').hidden = true;
+    bubble('user', q);
+    turns.push({ role: 'user', content: q });
+    turns = turns.slice(-10);
+    var out = bubble('bot', t('Thinking…', 'Sto pensando…'));
+    out.classList.add('is-pending');
+    function done(text) { out.classList.remove('is-pending'); out.textContent = text; turns.push({ role: 'assistant', content: text }); busy(false); chatIn.focus(); }
+    if (engine === 'faq') { setTimeout(function () { done(faqAnswer(q)); }, 250); return; }
+    busy(true);
+    ctl = new AbortController();
+    var history = turns[0].role === 'user' ? turns : turns.slice(1);
+    var call = engine === 'server'
+      ? fetch(CHAT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, signal: ctl.signal,
+          body: JSON.stringify({ messages: history, lang: lang, facts: FACTS }) })
+          .then(function (r) { if (!r.ok) throw { code: 'upstream_error' }; return r.json(); }).then(function (j) { return { text: String(j.reply || '') }; })
+      : sampleFn([{ role: 'user', content: RULES }].concat(history), {
+          modelTier: 'quick', cache: false, signal: ctl.signal,
+          onText: function (u) { out.classList.remove('is-pending'); out.textContent = u.text; log.scrollTop = log.scrollHeight; } });
+    call.then(function (r) { done(r.text || faqAnswer(q)); }).catch(function (e) {
+      var code = e && e.code;
+      if (code === 'cancelled' || (e && e.name === 'AbortError')) { done(e.text || t('Stopped.', 'Interrotto.')); return; }
+      if (['not_granted', 'sampling_disabled', 'not_declared', 'capability_disabled', 'capability_removed'].indexOf(code) >= 0) {
+        engine = 'faq'; setMode(); done(faqAnswer(q)); return;          // AI not allowed here: answer from the FAQ instead
+      }
+      if (code === 'rate_limited') { done(t('Lots of questions right now. Please try again in a minute, or send us a message.', 'Troppe domande in questo momento. Riprova tra un minuto o scrivici un messaggio.')); return; }
+      done(faqAnswer(q));
+    });
+  }
+  chatForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sendBtn.classList.contains('is-stop')) { if (ctl) ctl.abort(); return; }
+    var q = chatIn.value; chatIn.value = ''; ask(q);
+  });
+  chatBox.querySelectorAll('.chip').forEach(function (c) { c.addEventListener('click', function () { ask(c.textContent); }); });
 
   /* ---------- Phone booking bar ---------- */
   var bar = document.createElement('div');
@@ -216,10 +354,18 @@
   var FORMS = {
     review: {
       title: t('Write a review', 'Scrivi una recensione'),
-      intro: t('Tell other guests about your stay. We publish reviews after checking the booking.', 'Racconta il tuo soggiorno agli altri ospiti. Pubblichiamo le recensioni dopo aver verificato la prenotazione.'),
-      fields: [['rating', 'stars', 'Your rating', 'Il tuo voto', true], ['name', 'text', 'Name', 'Nome', true], ['email', 'email', 'Email (not published)', 'Email (non pubblicata)', true],
-               ['stay', 'month', 'When did you stay?', 'Quando hai soggiornato?', false], ['review', 'textarea', 'Your review', 'La tua recensione', true]],
+      intro: t('Your stay is verified. Tell other guests what it was like.', 'Il tuo soggiorno è verificato. Racconta agli altri ospiti com’è stato.'),
+      fields: [['rating', 'stars', 'Your rating', 'Il tuo voto', true], ['name', 'text', 'Name (as shown with your review)', 'Nome (visibile con la recensione)', true],
+               ['review', 'textarea', 'Your review', 'La tua recensione', true]],
       thanks: t('Thank you. Your review will appear after we check your stay.', 'Grazie. La tua recensione apparirà dopo la verifica del soggiorno.')
+    },
+    verify: {
+      title: t('Reviews from our guests', 'Recensioni dei nostri ospiti'),
+      intro: t('Only guests who have stayed with us can write a review. Enter the booking reference from your confirmation email and the email you booked with. After check-out we also email you a personal review link.',
+               'Solo gli ospiti che hanno soggiornato da noi possono scrivere una recensione. Inserisci il codice della conferma di prenotazione e l’email usata per prenotare. Dopo il check-out ti inviamo anche un link personale per la recensione.'),
+      fields: [['reference', 'text', 'Booking reference (e.g. VM-AB12CD)', 'Codice di prenotazione (es. VM-AB12CD)', true], ['email', 'email', 'Email used for the booking', 'Email usata per la prenotazione', true]],
+      submit: t('Check my stay', 'Verifica il soggiorno'),
+      noConsent: true
     },
     join: {
       title: t('Join the Villa Maria family', 'Entra nella famiglia Villa Maria'),
@@ -253,9 +399,9 @@
   }
   window.VM = { send: send };
 
-  function demoNote() {
-    return '<p class="demo-note">' + t('Demo mode: nothing was sent yet. The site owner connects forms in assets/js/site.js (FORMS_ENDPOINT).',
-      'Modalità demo: non è stato inviato nulla. Il gestore del sito collega i moduli in assets/js/site.js (FORMS_ENDPOINT).') + '</p>';
+  function demoNote(text) {
+    return '<p class="demo-note">' + (text || t('Demo mode: nothing was sent yet. The site owner connects forms in assets/js/site.js (FORMS_ENDPOINT).',
+      'Modalità demo: non è stato inviato nulla. Il gestore del sito collega i moduli in assets/js/site.js (FORMS_ENDPOINT).')) + '</p>';
   }
 
   var formModal = document.createElement('div');
@@ -275,23 +421,41 @@
     }
     return '<div class="field">' + label + '<input id="' + id + '" name="' + f[0] + '" type="' + f[1] + '"' + (f[1] === 'email' ? ' autocomplete="email"' : f[0] === 'name' ? ' autocomplete="name"' : '') + req + '></div>';
   }
-  function openForm(name) {
+  /* Check that a booking exists and the stay is over before the review form opens. */
+  function verifyStay(reference, email) {
+    if (!REVIEW_VERIFY_ENDPOINT) {
+      return new Promise(function (ok) { setTimeout(function () { ok({ verified: /^VM-[A-Z0-9]{6}$/i.test(reference), demo: true }); }, 400); });
+    }
+    return fetch(REVIEW_VERIFY_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ reference: reference, email: email })
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+  }
+
+  function openForm(name, ctx) {
+    if (name === 'review' && !(ctx && ctx.verified)) { name = 'verify'; }
+    ctx = ctx || {};
     var def = FORMS[name];
     if (!def) return;
     formModal.innerHTML =
       '<div class="modal-box">' +
         '<button type="button" class="modal-x" aria-label="' + t('Close', 'Chiudi') + '">×</button>' +
-        '<h2 id="form-title">' + def.title + '</h2><p>' + def.intro + '</p>' +
+        '<h2 id="form-title">' + def.title + '</h2><p>' + (name === 'review' && ctx.demo ? t('Tell other guests what your stay was like.', 'Racconta agli altri ospiti com’è stato il tuo soggiorno.') : def.intro) + '</p>' +
+        (ctx.demo ? demoNote(t('Demo mode: stays are not checked yet. The site owner connects REVIEW_VERIFY_ENDPOINT in assets/js/site.js.',
+            'Modalità demo: i soggiorni non vengono ancora verificati. Il gestore del sito collega REVIEW_VERIFY_ENDPOINT in assets/js/site.js.')) : '') +
         '<form class="own-form" novalidate>' + def.fields.map(fieldHtml).join('') +
-          '<label class="check"><input type="checkbox" name="consent" required><span>' +
+          (def.noConsent ? '' : '<label class="check"><input type="checkbox" name="consent" required><span>' +
             t('I agree that Villa Maria uses these details for this request, as described in the <a href="privacy.html">privacy notice</a>.',
-              'Accetto che Villa Maria usi questi dati per questa richiesta, come descritto nell\'<a href="privacy.html">informativa privacy</a>.') + '</span></label>' +
+              'Accetto che Villa Maria usi questi dati per questa richiesta, come descritto nell\'<a href="privacy.html">informativa privacy</a>.') + '</span></label>') +
           '<p class="err" hidden>' + t('Please complete the highlighted fields.', 'Completa i campi evidenziati.') + '</p>' +
-          '<button type="submit" class="btn btn-slate btn-block">' + t('Send', 'Invia') + '</button>' +
+          '<button type="submit" class="btn btn-slate btn-block">' + (def.submit || t('Send', 'Invia')) + '</button>' +
         '</form>' +
       '</div>';
     formModal.querySelector('.modal-x').addEventListener('click', function () { closeModal(formModal); });
     var f = formModal.querySelector('form');
+    var fRef = f.elements.namedItem('reference'), fName = f.elements.namedItem('name');
+    if (ctx.reference && fRef) fRef.value = ctx.reference;
+    if (ctx.name && fName) fName.value = ctx.name;
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       var bad = false;
@@ -305,6 +469,26 @@
       var data = {};
       new FormData(f).forEach(function (v, k) { data[k] = v; });
       var btn = f.querySelector('[type=submit]');
+      if (name === 'verify') {
+        btn.disabled = true; btn.textContent = t('Checking…', 'Verifica in corso…');
+        var ref = String(data.reference).trim().toUpperCase();
+        verifyStay(ref, String(data.email).trim()).then(function (res) {
+          if (res && res.verified) {
+            openForm('review', { verified: true, demo: !!res.demo, reference: ref, email: String(data.email).trim(), name: res.name || '' });
+          } else {
+            btn.disabled = false; btn.textContent = def.submit;
+            f.querySelector('.err').hidden = false;
+            f.querySelector('.err').textContent = t('We could not find a completed stay with this reference and email. Check your confirmation email, or contact us.',
+              'Non troviamo un soggiorno concluso con questo codice e questa email. Controlla la conferma di prenotazione o contattaci.');
+          }
+        }).catch(function () {
+          btn.disabled = false; btn.textContent = def.submit;
+          f.querySelector('.err').hidden = false;
+          f.querySelector('.err').textContent = t('We could not check your stay right now. Please try again.', 'Non riusciamo a verificare il soggiorno ora. Riprova.');
+        });
+        return;
+      }
+      if (name === 'review') { data.reference = ctx.reference; data.email = ctx.email; data.verified = !ctx.demo; }
       btn.disabled = true; btn.textContent = t('Sending…', 'Invio in corso…');
       send(name, data).then(function (res) {
         f.outerHTML = '<p class="thanks">' + def.thanks + '</p>' + (res.sent ? '' : demoNote());
@@ -402,6 +586,14 @@
     else if (!help.hidden) closeModal(help);
     else if (menu.classList.contains('open')) closeMenu();
   });
+  /* Personal review link sent after check-out: page.html#review-VM-AB12CD */
+  function reviewLink() {
+    var rv = /^#review-(VM-[A-Za-z0-9]{6})$/.exec(location.hash);
+    if (rv) openForm('verify', { reference: rv[1].toUpperCase() });
+  }
+  setTimeout(reviewLink, 0);
+  window.addEventListener('hashchange', reviewLink);
+
   document.addEventListener('click', function (e) {
     var fm = e.target.closest('[data-form]');
     if (fm) { e.preventDefault(); openForm(fm.getAttribute('data-form')); return; }

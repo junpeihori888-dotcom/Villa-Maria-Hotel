@@ -450,3 +450,55 @@ a.card:hover .ph img{transform:scale(1.04)}
 .faq summary:hover{color:var(--olive)}
 .faq summary:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .faq-a p{margin:0 0 20px;max-width:62ch;color:var(--muted)}
+
+/* ---------- Booking calendar ---------- */
+.dates-row{margin-bottom:0}
+.date-btn{appearance:none;text-align:left;cursor:pointer;font:inherit;color:inherit;display:block;width:100%}
+.date-btn .lbl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.date-btn .v{display:block;font-size:16px;margin-top:4px;color:var(--muted)}
+.date-btn.has-value .v{color:var(--ink);font-weight:600}
+.date-btn[aria-expanded="true"]{border-color:var(--slate)}
+.cal{position:relative;margin:10px 0 12px;border:1px solid var(--line);border-radius:2px;background:#fff;padding:16px}
+.cal-nav{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;pointer-events:none}
+.cal-nav button{pointer-events:auto;appearance:none;border:1px solid var(--line);background:#fff;width:36px;height:36px;border-radius:50%;font-size:20px;line-height:1;color:var(--slate);cursor:pointer}
+.cal-nav button:disabled{opacity:.35;cursor:default}
+.cal-months{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.cal-title{margin:6px 0 12px;text-align:center;font-family:var(--f-display);font-size:20px;text-transform:capitalize}
+.cal-week,.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px 0}
+.cal-week span{text-align:center;font-size:11px;font-weight:700;color:var(--muted);padding:4px 0}
+.cal-day{appearance:none;border:0;background:none;height:40px;font:500 14px/1 var(--f-body);color:var(--ink);cursor:pointer;border-radius:0;font-variant-numeric:tabular-nums}
+.cal-day:hover:not(:disabled){background:var(--sand-2)}
+.cal-day:disabled{color:#B9B4AA;cursor:default;text-decoration:line-through}
+.cal-day.is-today{font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.cal-day.in-range{background:#E3ECF2}
+.cal-day.is-start,.cal-day.is-end,.cal-day.is-start:hover:not(:disabled),.cal-day.is-end:hover:not(:disabled){background:var(--slate);color:#fff;font-weight:700}
+.cal-day.in-range:hover:not(:disabled){background:#D3E1EA}
+.cal-day.is-start{border-radius:20px 0 0 20px}
+.cal-day.is-end{border-radius:0 20px 20px 0}
+.cal-day.is-start.is-end{border-radius:20px}
+.cal-day:focus-visible{outline:2px solid var(--sky);outline-offset:-2px}
+.cal-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.cal-hint{flex:1;min-width:180px;font-weight:600;font-size:14px}
+.cal-done{min-height:40px;padding:0 20px}
+.date-btn.is-bad{border-color:#B4532A}
+
+/* ---------- AI chat in Help ---------- */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ai-chat{margin-top:22px;border:1px solid var(--line);background:#fff;border-radius:2px;padding:14px}
+.chat-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chat-mode{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--slate);background:#E3ECF2;padding:4px 8px;border-radius:999px}
+.chat-log{display:grid;gap:8px;max-height:260px;overflow-y:auto;margin-top:10px}
+.chat-log:empty{display:none}
+.msg{padding:9px 12px;border-radius:12px;font-size:14px;line-height:1.45;max-width:88%;white-space:pre-wrap}
+.msg-user{justify-self:end;background:var(--slate);color:#fff;border-bottom-right-radius:3px}
+.msg-bot{justify-self:start;background:var(--sand);color:var(--ink);border-bottom-left-radius:3px}
+.msg.is-pending{color:var(--muted);font-style:italic}
+.chat-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{appearance:none;border:1px solid var(--line);background:var(--sand);border-radius:999px;padding:7px 12px;font:500 13px/1.2 var(--f-body);color:var(--ink);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--slate)}
+.chat-form,.modal .chat-form{display:flex;gap:6px;margin-top:10px}
+.chat-form input{flex:1;min-width:0;border:1px solid var(--line);border-radius:2px;padding:0 12px;min-height:44px;font:400 15px var(--f-body);color:var(--ink);background:#fff}
+.chat-form input:focus{outline:2px solid var(--sky);outline-offset:0;border-color:var(--slate)}
+.chat-send{min-height:44px;padding:0 16px;white-space:nowrap}
+.chat-send.is-stop{background:#B4532A}
+.chat-note{font-size:11px;color:var(--muted);margin:8px 0 0}

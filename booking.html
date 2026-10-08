@@ -25,15 +25,19 @@
 <form class="book-form" id="booking-form" novalidate="">
 <fieldset class="step">
 <legend><span class="n">1</span><span data-it="Il tuo soggiorno">Your stay</span></legend>
+<div class="grid-2 dates-row">
+<button aria-controls="cal" aria-expanded="true" class="field date-btn" id="ci-btn" type="button"><span class="lbl" data-it="Arrivo">Check-in</span><span class="v" data-it="Scegli una data" id="ci-v">Select a date</span></button>
+<button aria-controls="cal" aria-expanded="true" class="field date-btn" id="co-btn" type="button"><span class="lbl" data-it="Partenza">Check-out</span><span class="v" data-it="Scegli una data" id="co-v">Select a date</span></button>
+</div>
+<input id="checkin" name="checkin" type="hidden"/><input id="checkout" name="checkout" type="hidden"/>
+<div aria-label="Choose your dates" class="cal" data-it-aria="Scegli le date" id="cal" role="group"></div>
 <div class="grid-2">
-<div class="field"><label data-it="Arrivo" for="checkin">Check-in</label><input id="checkin" name="checkin" required="" type="date"/></div>
-<div class="field"><label data-it="Partenza" for="checkout">Check-out</label><input id="checkout" name="checkout" required="" type="date"/></div>
 <div class="field"><label data-it="Adulti" for="adults">Adults</label>
 <select id="adults" name="adults"><option>1</option><option selected="">2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
 <div class="field"><label data-it="Bambini e ragazzi (0–17)" for="children">Children &amp; teens (0–17)</label>
 <select id="children" name="children"><option selected="">0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
 </div>
-<p class="err" data-it="Scegli una data di partenza successiva all'arrivo." hidden="" id="err-dates">Choose a check-out date after your check-in date.</p>
+<p class="err" data-it="Scegli le date di arrivo e di partenza nel calendario." hidden="" id="err-dates">Choose your check-in and check-out dates in the calendar.</p>
 </fieldset>
 <fieldset class="step">
 <legend><span class="n">2</span><span data-it="Pacchetto">Package</span></legend>

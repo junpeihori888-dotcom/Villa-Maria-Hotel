@@ -7,7 +7,7 @@ Static site (HTML/CSS/JS, no build server). Serve the folder (`python3 -m http.s
 - Families: `italian-memories.html` (Italian Memories), `family-reset-package.html` (Family Discount), `ciao-again.html` (Ciao Again)
 - Business: `business-travel.html` (Take the pressure out of business travel), `executive-business-stay.html` (Executive Business Stay Package), `padel-experience.html` (The Padel Experience)
 - Package names and copy follow the Leisure and Business campaign emails (EN/IT PDFs).
-- Booking: `booking.html` + `assets/js/booking.js` — our own booking-request page (no payment). Set nightly `RATES` in booking.js to show estimates.
+- Booking: `booking.html` + `assets/js/booking.js` — our own booking-request page with a date-range calendar (nights counted automatically; no payment). Set nightly `RATES` in booking.js to show estimates.
 - Hotel: `rooms.html`, `spa.html`, `restaurant.html`, `contact.html` (getting here & contact), `privacy.html`
 - Italian: the same pages in `it/`, generated — do not edit them by hand
 
@@ -36,3 +36,9 @@ Every page has a question-and-answer accordion just before the footer. Questions
     python3 tools/faq.py && python3 tools/build-it.py
 
 The build also adds Google's FAQPage data, generated from the visible questions.
+
+## Servers to connect (all optional; the site says "demo mode" until they are set)
+In `assets/js/site.js`:
+- `FORMS_ENDPOINT` — receives booking requests, messages, reviews, sign-ups and referrals as JSON `{form, lang, page, sentAt, data}`.
+- `REVIEW_VERIFY_ENDPOINT` — receives `{reference, email}` and answers `{verified: true|false, name?}`. Only answer `true` when the booking exists and its check-out date has passed, so only real guests can review. After check-out, email each guest a personal link such as `index.html#review-VM-AB12CD`; it opens the review check with the reference filled in.
+- `CHAT_ENDPOINT` — the Help chat sends `{messages, lang, facts}` and expects `{reply}`. Your server should call an AI model with `facts` as its only source. Without it, the chat uses Claude inside the claude.ai preview, and instant FAQ answers everywhere else (labelled "Instant answers").
