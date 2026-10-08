@@ -77,19 +77,20 @@
       ['padel-experience.html', 'The Padel Experience', 'La Padel Experience']
     ],
     hotel: [
-      ['index.html', 'Home', 'Home'],
-      ['rooms.html', 'Rooms & Suites', 'Camere e Suite'],
-      ['spa.html', 'Linfa Wellness & Spa', 'Linfa Wellness & Spa'],
-      ['restaurant.html', 'Restaurant', 'Ristorante'],
-      ['contact.html', 'Getting here & contact', 'Come arrivare e contatti']
+      ['index.html', 'Home', 'Home', 'villa-adriatic.jpg'],
+      ['rooms.html', 'Rooms & Suites', 'Camere e Suite', 'deluxe-room.jpg'],
+      ['spa.html', 'Linfa Wellness & Spa', 'Linfa Wellness & Spa', 'spa.jpg'],
+      ['restaurant.html', 'Restaurant', 'Ristorante', 'restaurant-hall.jpg'],
+      ['contact.html', 'Getting here & contact', 'Come arrivare e contatti', 'gardens.jpg']
     ]
   };
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
-  function links(list) {
+  function links(list, withPhotos) {
     return list.map(function (p) {
       var cur = p[0] === page ? ' aria-current="page"' : '';
-      return '<li><a href="' + p[0] + '"' + cur + '>' + esc(t(p[1], p[2])) + '</a></li>';
+      var img = withPhotos && p[3] ? '<img src="' + BASE + 'assets/img/' + p[3] + '" alt="" loading="lazy">' : '';
+      return '<li><a href="' + p[0] + '"' + cur + (img ? ' class="with-photo"' : '') + '>' + img + '<span>' + esc(t(p[1], p[2])) + '</span></a></li>';
     }).join('');
   }
   function telHref(n) { return 'tel:' + n.replace(/[^\d+]/g, ''); }
@@ -136,7 +137,7 @@
     '<nav class="wrap menu-grid" aria-label="' + t('Main', 'Principale') + '">' +
       '<div><h3>' + t('For families', 'Per le famiglie') + '</h3><ul>' + links(PAGES.families) + '</ul></div>' +
       '<div><h3>' + t('For business', 'Per il business') + '</h3><ul>' + links(PAGES.business) + '</ul></div>' +
-      '<div><h3>' + t('The hotel', "L'hotel") + '</h3><ul>' + links(PAGES.hotel) + '</ul></div>' +
+      '<div><h3>' + t('The hotel', "L'hotel") + '</h3><ul class="menu-photos">' + links(PAGES.hotel, true) + '</ul></div>' +
     '</nav>' +
     '<div class="wrap menu-foot"><span>' + esc(HOTEL.address) + '</span>' +
       (HOTEL.phone ? '<a href="' + telHref(HOTEL.phone) + '">' + esc(HOTEL.phone) + '</a>' : '') + '</div>';
@@ -502,13 +503,68 @@
     openModal(formModal);
   }
 
+
+  /* ---------- Photo galleries: full-screen viewer ---------- */
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.hidden = true;
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.setAttribute('aria-label', t('Photo viewer', 'Visualizzatore foto'));
+  lb.innerHTML =
+    '<button type="button" class="lb-close" aria-label="' + t('Close', 'Chiudi') + '">×</button>' +
+    '<button type="button" class="lb-prev" aria-label="' + t('Previous photo', 'Foto precedente') + '">‹</button>' +
+    '<figure><figcaption><span class="lb-cap"></span><span class="lb-count"></span></figcaption></figure>' +
+    '<button type="button" class="lb-next" aria-label="' + t('Next photo', 'Foto successiva') + '">›</button>';
+  var lbItems = [], lbIdx = 0, lbFocus = null;
+  function lbShow(i) {
+    lbIdx = (i + lbItems.length) % lbItems.length;
+    var a = lbItems[lbIdx];
+    var img = lb.querySelector('img');
+    if (!img) { img = document.createElement('img'); lb.querySelector('figure').insertBefore(img, lb.querySelector('figcaption')); }
+    img.src = a.getAttribute('href');
+    img.alt = a.getAttribute('data-caption') || '';
+    lb.querySelector('.lb-cap').textContent = a.getAttribute('data-caption') || '';
+    lb.querySelector('.lb-count').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
+  }
+  function lbOpen(a) {
+    lbItems = Array.prototype.slice.call(a.closest('.gallery').querySelectorAll('.g-item'));
+    lbFocus = a;
+    lbShow(lbItems.indexOf(a));
+    lb.hidden = false;
+    body.classList.add('no-scroll');
+    lb.querySelector('.lb-close').focus();
+  }
+  function lbClose() { lb.hidden = true; body.classList.remove('no-scroll'); if (lbFocus) lbFocus.focus(); }
+  lb.querySelector('.lb-close').addEventListener('click', lbClose);
+  lb.querySelector('.lb-prev').addEventListener('click', function () { lbShow(lbIdx - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { lbShow(lbIdx + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lbClose(); });
+  var touchX = null;
+  lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX; touchX = null;
+    if (Math.abs(dx) > 40) lbShow(lbIdx + (dx < 0 ? 1 : -1));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+    else if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+    else if (e.key === 'Escape') { e.stopImmediatePropagation(); lbClose(); }
+  }, true);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('.g-item');
+    if (a) { e.preventDefault(); lbOpen(a); }
+  });
+
   /* ---------- Mount ---------- */
   var body = document.body;
   body.insertBefore(header, body.firstChild);
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, formModal, bar, fab].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, formModal, bar, fab, lb].forEach(function (el) { body.appendChild(el); });
 
   /* Book buttons open our own booking page; data-book="family-discount" etc. preselects the package. */
   document.querySelectorAll('[data-book]').forEach(function (a) {

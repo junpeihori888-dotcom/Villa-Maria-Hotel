@@ -29,6 +29,13 @@ After editing any page, rebuild the Italian site:
 This writes `it/*.html` with the Italian text baked in (so Google indexes it), Italian titles and
 descriptions, and (once `SITE_URL` is set to your own domain) hreflang links.
 
+## Hotel descriptions and galleries
+Home, Rooms, Spa, Restaurant and Getting here each have a longer description (a short intro plus
+topics that open on click) and a photo gallery with a full-screen viewer. The text (EN/IT) and the
+photos live in `tools/about.py`. Galleries look best with 5 or 9 photos. After editing:
+
+    python3 tools/about.py && python3 tools/build-it.py
+
 ## FAQ ("Good to know") sections
 Every page has a question-and-answer accordion just before the footer. Questions and answers
 (English and Italian) live in `tools/faq.py`. After editing them:

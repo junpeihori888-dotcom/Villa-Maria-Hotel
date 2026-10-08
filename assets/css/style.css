@@ -502,3 +502,45 @@ a.card:hover .ph img{transform:scale(1.04)}
 .chat-send{min-height:44px;padding:0 16px;white-space:nowrap}
 .chat-send.is-stop{background:#B4532A}
 .chat-note{font-size:11px;color:var(--muted);margin:8px 0 0}
+
+/* ---------- About (longer descriptions) ---------- */
+.about-intro{font-size:clamp(17px,1.6vw,19px);line-height:1.6;margin:0 0 18px;max-width:62ch}
+.about-list{border-top:1px solid var(--line)}
+.about-item{border-bottom:1px solid var(--line)}
+.about-item summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;font-weight:700;font-size:16px}
+.about-item summary::-webkit-details-marker{display:none}
+.about-item summary::after{content:"+";font-size:22px;font-weight:400;color:var(--olive);transition:transform .2s}
+.about-item[open] summary::after{transform:rotate(45deg)}
+.about-item summary:hover{color:var(--olive)}
+.about-item summary:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.about-item p{margin:0 0 18px;max-width:62ch;color:var(--muted)}
+
+/* ---------- Gallery + viewer ---------- */
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.gallery figure{margin:0;min-width:0}
+.gallery figure:first-child{grid-column:span 2;grid-row:span 2}
+.g-item{display:block;overflow:hidden;border-radius:2px;aspect-ratio:4/3;background:var(--sand-2)}
+.gallery figure:first-child .g-item{aspect-ratio:auto;height:calc(100% - 28px)}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.g-item:hover img{transform:scale(1.04)}
+.g-item:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.gallery figcaption{font-size:12px;color:var(--muted);padding-top:6px;height:28px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+@media (max-width:900px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery figure:first-child{grid-column:span 2;grid-row:auto}.gallery figure:first-child .g-item{aspect-ratio:16/10;height:auto}}
+.lightbox{position:fixed;inset:0;z-index:90;background:rgba(20,24,27,.94);display:flex;align-items:center;justify-content:center;padding:56px 64px}
+.lightbox figure{margin:0;max-width:min(1200px,100%);max-height:100%;display:flex;flex-direction:column;align-items:center}
+.lightbox img{max-width:100%;max-height:calc(100vh - 150px);object-fit:contain;border-radius:2px}
+.lightbox figcaption{display:flex;gap:16px;justify-content:space-between;width:100%;color:#E9E6DF;font-size:14px;padding-top:12px}
+.lb-count{color:#A9B0B5;font-variant-numeric:tabular-nums}
+.lb-close,.lb-prev,.lb-next{position:absolute;appearance:none;border:0;background:rgba(255,255,255,.12);color:#fff;width:48px;height:48px;border-radius:50%;font-size:26px;line-height:1;cursor:pointer}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.24)}
+.lb-close{top:14px;right:14px}
+.lb-prev{left:10px;top:50%;transform:translateY(-50%)}
+.lb-next{right:10px;top:50%;transform:translateY(-50%)}
+@media (max-width:600px){.lightbox{padding:60px 8px}.lb-prev,.lb-next{top:auto;bottom:14px;transform:none}}
+
+/* ---------- Photos in the menu (The hotel) ---------- */
+.menu-photos{display:grid;gap:8px}
+.menu li a.with-photo{display:flex;align-items:center;gap:14px;padding:4px 0}
+.menu li a.with-photo img{width:76px;height:54px;object-fit:cover;border-radius:2px;flex:none;opacity:.9;transition:opacity .2s,transform .2s}
+.menu li a.with-photo:hover img,.menu li a.with-photo[aria-current="page"] img{opacity:1;transform:scale(1.04)}
+@media (max-width:760px){.menu li a.with-photo img{width:60px;height:44px}}

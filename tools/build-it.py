@@ -106,6 +106,9 @@ def build(page):
     for el in soup.select('[data-it-placeholder]'):
         el['placeholder'] = el['data-it-placeholder']
         del el['data-it-placeholder']
+    for el in soup.select('[data-it-caption]'):
+        el['data-caption'] = el['data-it-caption']
+        del el['data-it-caption']
     for el in soup.select('[data-it-aria]'):
         el['aria-label'] = el['data-it-aria']
         del el['data-it-aria']
