@@ -1,5 +1,5 @@
 /* Villa Maria Hotel & Spa — shared header, MENU overlay, footer, Help (contact) panel,
-   €30 coupon panel, welcome chooser (Family / Business), phone booking bar and EN/IT switch. */
+   welcome chooser (Family / Business), phone booking bar and EN/IT switch. */
 (function () {
   'use strict';
 
@@ -29,17 +29,12 @@
     },
     booking: {
       // Replace with the booking engine's own address (the page with dates and rooms).
-      url: 'https://www.hvillamaria.it/',
-      // Name of the engine's promo-code parameter, e.g. 'promo' or 'coupon'.
-      // When set, family "Book" buttons open the engine with the code already applied.
-      promoParam: ''
+      url: 'https://www.hvillamaria.it/'
     }
   };
 
   var OFFERS = {
-    familyReset: {
-      code: 'RESET30',
-      amount: '€30',
+    familyDiscount: {
       fromPrice: '',          // e.g. '€189' (per night, room for the family)
       validFrom: '',          // e.g. '1 June 2027'
       validTo: '',            // e.g. '30 September 2027'
@@ -57,14 +52,14 @@
   // [href, EN name, IT name]
   var PAGES = {
     families: [
-      ['italian-memories.html', 'La Dolce Family', 'La Dolce Family'],
-      ['family-reset-package.html', 'Family Reset: €30 Off', 'Family Reset: 30 € di sconto'],
+      ['italian-memories.html', 'Italian Memories', 'Italian Memories'],
+      ['family-reset-package.html', 'Family Discount', 'Sconto Famiglia'],
       ['ciao-again.html', 'Ciao Again', 'Ciao Again']
     ],
     business: [
-      ['business-travel.html', 'Business, Minus the Stress', 'Business, senza stress'],
-      ['executive-business-stay.html', 'Office With a Sea View', 'Ufficio vista mare'],
-      ['padel-experience.html', 'Padel & Partners', 'Padel & Partner']
+      ['business-travel.html', 'Take the pressure out of business travel', 'Viaggiare per lavoro, senza pressione'],
+      ['executive-business-stay.html', 'Executive Business Stay Package', 'Pacchetto Executive Business Stay'],
+      ['padel-experience.html', 'The Padel Experience', 'La Padel Experience']
     ],
     hotel: [
       ['index.html', 'Home', 'Home'],
@@ -81,13 +76,6 @@
       var cur = p[0] === page ? ' aria-current="page"' : '';
       return '<li><a href="' + p[0] + '"' + cur + '>' + esc(t(p[1], p[2])) + '</a></li>';
     }).join('');
-  }
-  function bookingHref(promo) {
-    var u = HOTEL.booking.url;
-    if (promo && HOTEL.booking.promoParam) {
-      u += (u.indexOf('?') < 0 ? '?' : '&') + encodeURIComponent(HOTEL.booking.promoParam) + '=' + encodeURIComponent(promo);
-    }
-    return u;
   }
   function telHref(n) { return 'tel:' + n.replace(/[^\d+]/g, ''); }
 
@@ -174,35 +162,12 @@
       '<a class="btn btn-slate btn-block" style="margin-top:18px" data-book>' + t('Book direct', 'Prenota diretto') + '</a>' +
     '</div>';
 
-  /* ---------- Coupon panel (no email needed; the code is a public promo code) ---------- */
-  var o = OFFERS.familyReset;
-  var coupon = document.createElement('div');
-  coupon.className = 'modal';
-  coupon.hidden = true;
-  coupon.setAttribute('role', 'dialog');
-  coupon.setAttribute('aria-modal', 'true');
-  coupon.setAttribute('aria-labelledby', 'coupon-title');
-  coupon.innerHTML =
-    '<div class="modal-box">' +
-      '<button type="button" class="modal-x" aria-label="' + t('Close', 'Chiudi') + '">×</button>' +
-      '<p class="eb">Family Reset</p>' +
-      '<div class="amount">' + esc(o.amount) + '</div>' +
-      '<h2 id="coupon-title">' + t('Your family coupon', 'Il tuo coupon per la famiglia') + '</h2>' +
-      '<p>' + (HOTEL.booking.promoParam
-          ? t('Applied automatically when you book with the button below.', 'Applicato automaticamente quando prenoti con il pulsante qui sotto.')
-          : t('Enter this code when you book on our website.', 'Inserisci questo codice quando prenoti sul nostro sito.')) + '</p>' +
-      '<div class="code">' + esc(o.code) + '</div>' +
-      '<p class="terms" data-terms="familyReset"></p>' +
-      '<a class="btn btn-coupon btn-block" style="margin-top:16px" data-book="familyReset">' + t('Book the Family Reset', 'Prenota il Family Reset') + '</a>' +
-      '<small>' + t('Valid on direct bookings only. One coupon per stay.', 'Valido solo per prenotazioni dirette. Un coupon per soggiorno.') + '</small>' +
-    '</div>';
-
   /* ---------- Phone booking bar ---------- */
   var bar = document.createElement('div');
   bar.className = 'book-bar';
   bar.innerHTML =
     '<button type="button" class="btn btn-line" data-help>' + t('Help', 'Aiuto') + '</button>' +
-    '<a class="btn btn-slate" data-book' + (page === 'family-reset-package.html' ? '="familyReset"' : '') + '>' + t('Book Now', 'Prenota') + '</a>';
+    '<a class="btn btn-slate" data-book>' + t('Book Now', 'Prenota') + '</a>';
 
   var fab = document.createElement('button');
   fab.type = 'button';
@@ -213,12 +178,12 @@
   /* ---------- Welcome: who's travelling? (homepage, once per visit, with Skip) ---------- */
   // [image, EN line, IT line] for each package; names come from PAGES.
   var PKG = {
-    'italian-memories.html': ['assets/img/people/moment-pool.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
-    'family-reset-package.html': ['assets/img/suite-terrace.jpg', 'Room, breakfast and spa in one booking.', 'Camera, colazione e spa in una prenotazione.'],
-    'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'For families coming back.', 'Per le famiglie che tornano.'],
-    'business-travel.html': ['assets/img/villa-adriatic.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
-    'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
-    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Win the match. Win the client.', 'Vinci la partita, conquista il cliente.']
+    'italian-memories.html': ['assets/img/people/moment-pool.jpg', 'Rest and time together by the sea.', 'Relax e tempo insieme, sul mare.'],
+    'family-reset-package.html': ['assets/img/suite-terrace.jpg', 'Room, breakfast and spa included when you book direct.', 'Camera, colazione e spa inclusi prenotando direttamente.'],
+    'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'Your Italian story continues.', 'La tua storia italiana continua.'],
+    'business-travel.html': ['assets/img/auditorium.jpg', 'Meetings, recovery and a proper dinner, already arranged.', 'Riunioni, relax e una buona cena, già organizzati.'],
+    'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Your business stay, already arranged.', 'Il tuo soggiorno di lavoro, già organizzato.'],
+    'padel-experience.html': ['assets/img/people/business-padel.jpg', 'Relationships that continue beyond the meeting room.', 'Relazioni che continuano oltre la sala riunioni.']
   };
   var GROUPS = {
     family: { title: t('Packages for families', 'Pacchetti per le famiglie'), list: PAGES.families },
@@ -293,13 +258,11 @@
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, coupon, bar, fab, welcome].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, bar, fab, welcome].forEach(function (el) { body.appendChild(el); });
 
-  /* Booking links: data-book (plain) or data-book="familyReset" (promo applied when the engine supports it). */
+  /* Booking links go to the booking engine. */
   document.querySelectorAll('[data-book]').forEach(function (a) {
-    var key = a.getAttribute('data-book');
-    var promo = key && OFFERS[key] ? OFFERS[key].code : '';
-    if (a.tagName === 'A') { a.href = bookingHref(promo); a.rel = 'noopener'; }
+    if (a.tagName === 'A') { a.href = HOTEL.booking.url; a.rel = 'noopener'; }
   });
 
   /* Offer terms: shown only for the fields that are filled in. */
@@ -364,20 +327,18 @@
     body.classList.remove('no-scroll');
     if (lastFocus) lastFocus.focus();
   }
-  [help, coupon].forEach(function (m) {
+  [help].forEach(function (m) {
     m.querySelector('.modal-x').addEventListener('click', function () { closeModal(m); });
     m.addEventListener('click', function (e) { if (e.target === m) closeModal(m); });
     m.querySelectorAll('.help-links a').forEach(function (a) { a.addEventListener('click', function () { closeModal(m); }); });
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    if (!coupon.hidden) closeModal(coupon);
-    else if (!help.hidden) closeModal(help);
+    if (!help.hidden) closeModal(help);
     else if (!welcome.hidden) closeWelcome();
     else if (menu.classList.contains('open')) closeMenu();
   });
   document.addEventListener('click', function (e) {
-    if (e.target.closest('[data-coupon]')) { e.preventDefault(); openModal(coupon); return; }
     if (e.target.closest('[data-help]')) { e.preventDefault(); openModal(help); }
   });
 
