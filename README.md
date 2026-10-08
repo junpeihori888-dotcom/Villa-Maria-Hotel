@@ -4,8 +4,8 @@ Static site (HTML/CSS/JS, no build step). Open `index.html` or serve the folder 
 
 ## Structure
 - `index.html` — homepage: persona split (families / business), all six campaigns, the hotel, €30 coupon
-- Families: `italian-memories.html`, `family-reset-package.html`, `ciao-again.html`
-- Business: `business-travel.html`, `executive-business-stay.html`, `padel-experience.html`
+- Families: `italian-memories.html` (La Dolce Family), `family-reset-package.html` (Family Reset: €30 Off), `ciao-again.html` (Ciao Again)
+- Business: `business-travel.html` (Business, Minus the Stress), `executive-business-stay.html` (Office With a Sea View), `padel-experience.html` (Padel & Prosecco)
 - `assets/js/site.js` — shared header (MENU top-left), menu overlay, footer, €30 coupon modal, EN/IT toggle, and the welcome chooser (Family / Business / Stayed before, with Skip). It opens once per visit on the homepage (`<body data-welcome>`) and from every "Chat with us" button
 - `assets/css/style.css` — design tokens and components
 

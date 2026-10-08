@@ -10,14 +10,14 @@
   // Campaign names are used verbatim everywhere (menu, cards, pages).
   var PAGES = {
     families: [
-      ['italian-memories.html', 'Italian Memories', 'Italian Memories'],
-      ['family-reset-package.html', 'Family Reset Package', 'Family Reset Package'],
+      ['italian-memories.html', 'La Dolce Family', 'La Dolce Family'],
+      ['family-reset-package.html', 'Family Reset: €30 Off', 'Family Reset: 30 € di sconto'],
       ['ciao-again.html', 'Ciao Again', 'Ciao Again']
     ],
     business: [
-      ['business-travel.html', 'Take the pressure out of business travel', 'Take the pressure out of business travel'],
-      ['executive-business-stay.html', 'Executive Business Stay Package', 'Executive Business Stay Package'],
-      ['padel-experience.html', 'The Padel Experience', 'The Padel Experience']
+      ['business-travel.html', 'Business, Minus the Stress', 'Business, senza stress'],
+      ['executive-business-stay.html', 'Office With a Sea View', 'Ufficio vista mare'],
+      ['padel-experience.html', 'Padel & Prosecco', 'Padel & Prosecco']
     ],
     hotel: [
       ['index.html', 'Home', 'Home'],
@@ -98,10 +98,10 @@
   coupon.innerHTML =
     '<div class="modal-box">' +
       '<button type="button" class="modal-x" aria-label="Close">×</button>' +
-      '<p class="eb">Family Reset Package</p>' +
+      '<p class="eb">Family Reset</p>' +
       '<div class="amount">€30</div>' +
       '<h2 id="coupon-title" data-it="Il tuo coupon per la famiglia">Your family coupon</h2>' +
-      '<p data-it="30 € di sconto sul Family Reset Package prenotando direttamente.">€30 off the Family Reset Package when you book direct.</p>' +
+      '<p data-it="30 € di sconto sul Family Reset prenotando direttamente.">€30 off the Family Reset when you book direct.</p>' +
       '<form novalidate>' +
         '<label for="coupon-email" class="eb" style="color:var(--muted)">Email</label>' +
         '<input id="coupon-email" type="email" required autocomplete="email" placeholder="name@example.com">' +
@@ -110,7 +110,7 @@
       '<div class="coupon-done" hidden>' +
         '<div class="code">' + CONFIG.couponCode + '</div>' +
         '<p data-it="Inserisci il codice al momento della prenotazione.">Enter this code when you book.</p>' +
-        '<a class="btn btn-slate btn-block" style="margin-top:16px" data-book data-it="Prenota il Family Reset Package">Book the Family Reset Package</a>' +
+        '<a class="btn btn-slate btn-block" style="margin-top:16px" data-book data-it="Prenota il Family Reset">Book the Family Reset</a>' +
       '</div>' +
       '<small data-it="Valido per prenotazioni dirette. Un coupon per soggiorno.">Valid on direct bookings. One coupon per stay.</small>' +
     '</div>';
@@ -119,7 +119,7 @@
   // [href, image, EN line, IT line] — names come from PAGES so they stay identical everywhere.
   var PKG = {
     'italian-memories.html': ['assets/img/people/family-pool.jpg', 'Time together by the sea.', 'Tempo insieme, sul mare.'],
-    'family-reset-package.html': ['assets/img/people/family-terrace.jpg', 'Room, breakfast and spa in one booking. €30 coupon.', 'Camera, colazione e spa in una prenotazione. Coupon da 30 €.'],
+    'family-reset-package.html': ['assets/img/people/family-terrace.jpg', 'Room, breakfast and spa in one booking.', 'Camera, colazione e spa in una prenotazione.'],
     'ciao-again.html': ['assets/img/people/family-welcome-back.jpg', 'Welcome back. Your Italian story continues.', 'Bentornati. La tua storia italiana continua.'],
     'business-travel.html': ['assets/img/people/business-desk.jpg', 'Meetings, recovery and dinner in one address.', 'Riunioni, recupero e cena in un unico indirizzo.'],
     'executive-business-stay.html': ['assets/img/people/business-meeting.jpg', 'Room, breakfast, Wi-Fi, spa and meeting room.', 'Camera, colazione, Wi-Fi, spa e sala riunioni.'],
