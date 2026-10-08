@@ -61,8 +61,8 @@
      Sign-ups go to FORMS_ENDPOINT as form "newsletter" with {list, firstName, email, consent}.
      Connect that to your email tool (Brevo, Mailchimp…) and send the emails in /emails. */
   var NEWSLETTER = {
-    familyGift: '€30',        // welcome coupon for the family list ('' = no coupon)
-    familyCode: 'FAMILY30',   // code shown after sign-up and filled in on the booking form
+    familyGift: '€50',        // welcome coupon for the family list ('' = no coupon)
+    familyCode: 'FAMILY50',   // code shown after sign-up and filled in on the booking form
     showAfterSeconds: 8,      // or when the visitor has scrolled 40% of the home page
     snoozeDays: 30            // after "No thanks", wait this long before showing it again
   };

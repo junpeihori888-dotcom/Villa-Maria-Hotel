@@ -21,8 +21,8 @@ SITE_URL = ''
 FIRST_NAME = '{{first_name}}'
 UNSUBSCRIBE = '{{unsubscribe_url}}'
 # Same values as NEWSLETTER in assets/js/site.js.
-FAMILY_GIFT = '€30'
-FAMILY_CODE = 'FAMILY30'
+FAMILY_GIFT = '€50'
+FAMILY_CODE = 'FAMILY50'
 
 SAND, SAND2, WHITE, INK, MUTED, LINE = '#F4F1EA', '#EAE5DA', '#FFFFFF', '#2B2F33', '#596066', '#DAD4C8'
 SLATE, SKY, SKY_SOFT, OLIVE = '#44555F', '#8BB2C9', '#C5DAE6', '#5D6B43'
@@ -259,8 +259,8 @@ def family_1():
         section(eyebrow(('Create memories together', 'Crea ricordi insieme')) +
                 h(('The moments your family *will talk about for years.*', 'I momenti di cui la tua famiglia *parlerà per anni.*')) +
                 photos([('people/moment-pool.jpg', ('Pool & park days', 'Giornate tra piscina e parco'), ('The day no one checked the time', 'Il giorno in cui nessuno guardò l’ora')),
-                        ('people/moment-dinner.jpg', ('Hotel restaurant', 'Ristorante dell’hotel'), ('Dinners that last until the stars', 'Cene che durano fino alle stelle')),
-                        ('people/moment-spa.jpg', ('Spa moments', 'Momenti in spa'), ('An afternoon to exhale', 'Un pomeriggio per respirare'))]), WHITE),
+                        ('restaurant-dinner.jpg', ('Hotel restaurant', 'Ristorante dell’hotel'), ('Dinners that last until the stars', 'Cene che durano fino alle stelle')),
+                        ('wellness.jpg', ('Spa moments', 'Momenti in spa'), ('An afternoon to exhale', 'Un pomeriggio per respirare'))]), WHITE),
         section(eyebrow(('Something for every generation', 'Qualcosa per ogni generazione'), SLATE, True) +
                 h(('Everyone gets *the holiday they hoped for.*', 'Ognuno ha *la vacanza che sperava.*'), 28, INK, True) +
                 grid([(('For parents', 'Per i genitori'), ('Long mornings, spa afternoons.', 'Mattine lente, pomeriggi in spa.')),
