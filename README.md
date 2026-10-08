@@ -49,6 +49,15 @@ Every page has a question-and-answer accordion just before the footer. Questions
 
 The build also adds Google's FAQPage data, generated from the visible questions.
 
+## Email marketing
+- **Sign-up pop-up** (home page only, once per visitor, after 8 seconds or 40% scroll): two lists, *I travel with family* and *I travel for business*. It opens on Business for visitors who have read the business pages. "No thanks" hides it for 30 days. Every page has a "Get our emails" link in the footer. Settings: `NEWSLETTER` in `assets/js/site.js` (the €30 family welcome coupon and its code `FAMILY30`).
+- Sign-ups go to `FORMS_ENDPOINT` as form `newsletter` with `{list: 'family'|'business', firstName, email, consent, source}`. Add them to the matching list in your email tool (Brevo, Mailchimp…).
+- **The emails** are in `emails/en/` and `emails/it/`, built from the campaign PDFs by `python3 tools/emails.py`. Preview them all at `emails/index.html`.
+  - Family: 1 Italian Memories with the €30 coupon (right after sign-up), 2 Family Discount (7 days later), 3 Ciao Again (after check-out).
+  - Business: 1 Take the pressure out of business travel (right after sign-up), 2 Executive Business Stay (7 days later), 3 The Padel Experience (after check-out).
+- Before sending, set `SITE_URL` in `tools/emails.py` (images and links must be absolute in email), set `FIRST_NAME` and `UNSUBSCRIBE` to your email tool's merge tags, and rebuild. Links carry `utm_source=newsletter` and the email name.
+- Email links can open things on the site: `#help`, `#review`, `#join`, `#refer`, `#message`, `#newsletter`, and `booking.html?code=FAMILY30#family-discount` fills in the coupon.
+
 ## Servers to connect (all optional; the site says "demo mode" until they are set)
 In `assets/js/site.js`:
 - `FORMS_ENDPOINT` — receives booking requests, messages, reviews, sign-ups and referrals as JSON `{form, lang, page, sentAt, data}`.

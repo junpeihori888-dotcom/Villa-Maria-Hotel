@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Villa Maria emails</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--sand:#F4F1EA;--sand-2:#EAE5DA;--ink:#2B2F33;--muted:#596066;--line:#DAD4C8;--slate:#44555F;--olive:#5D6B43}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--sand-2);color:var(--ink);font:400 15px/1.5 Manrope,Arial,sans-serif}
+  header{padding:20px 16px;background:var(--sand);border-bottom:1px solid var(--line)}
+  header .in,main{max-width:1180px;margin:0 auto}
+  h1{font:400 32px/1.1 'Cormorant Garamond',Georgia,serif;margin:0}
+  header p{margin:6px 0 0;color:var(--muted);font-size:14px}
+  main{display:grid;grid-template-columns:340px 1fr;gap:24px;padding:24px 16px}
+  .seg{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:#fff;width:max-content;margin-bottom:14px}
+  .seg button{appearance:none;border:0;background:none;border-radius:999px;padding:7px 14px;font:700 11px Manrope,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);cursor:pointer}
+  .seg button[aria-pressed=true]{background:var(--slate);color:#fff}
+  h2{font:700 11px Manrope,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);margin:18px 0 8px}
+  .list button{display:block;width:100%;text-align:left;appearance:none;border:1px solid var(--line);background:#fff;padding:12px 14px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit}
+  .list button[aria-current=true]{border-color:var(--slate);box-shadow:inset 3px 0 0 var(--slate)}
+  .list b{display:block;font-weight:600}
+  .list span{display:block;font-size:12px;color:var(--muted)}
+  .meta{background:#fff;border:1px solid var(--line);padding:12px 16px;font-size:13px}
+  .meta b{display:inline-block;min-width:76px;color:var(--muted);font-weight:600}
+  .meta a{color:var(--slate)}
+  iframe{display:block;width:100%;height:80vh;border:1px solid var(--line);background:#fff;margin-top:12px}
+  @media (max-width:860px){main{grid-template-columns:1fr}iframe{height:70vh}}
+</style>
+</head>
+<body>
+<header><div class="in"><h1>Email marketing</h1>
+<p>Two lists from the sign-up pop-up: families and business guests. Three emails each, in English and Italian. Sample names are filled in here; the files use your email tool’s merge tag.</p></div></header>
+<main>
+<div>
+  <div class="seg" id="lang"><button type="button" data-v="en" aria-pressed="true">English</button><button type="button" data-v="it" aria-pressed="false">Italiano</button></div>
+  <div class="list" id="list"></div>
+</div>
+<div>
+  <div class="meta" id="meta"></div>
+  <iframe id="view" title="Email preview"></iframe>
+</div>
+</main>
+<script>
+var DATA = [{"lang": "en", "list": "family", "step": 1, "file": "family-1-italian-memories", "subject": "Your €30 welcome gift, and Italian Memories", "preheader": "A four-star seaside hotel & spa, made for rest and time together.", "send": "Right after sign-up"}, {"lang": "en", "list": "family", "step": 2, "file": "family-2-family-discount", "subject": "Your family rate: room, breakfast and spa included", "preheader": "The Family Discount, for families who book direct.", "send": "7 days later"}, {"lang": "en", "list": "family", "step": 3, "file": "family-3-ciao-again", "subject": "Ciao again. Your Italian story continues.", "preheader": "Some holidays end. The best stories continue.", "send": "After check-out, to returning guests"}, {"lang": "en", "list": "business", "step": 1, "file": "business-1-business-travel", "subject": "Take the pressure out of business travel", "preheader": "Meetings, recovery and dinner in one four-star address by the sea.", "send": "Right after sign-up"}, {"lang": "en", "list": "business", "step": 2, "file": "business-2-executive-business-stay", "subject": "Your business stay, already arranged", "preheader": "Room, breakfast, spa and meeting space in one package.", "send": "7 days later"}, {"lang": "en", "list": "business", "step": 3, "file": "business-3-padel-experience", "subject": "The best business relationships continue beyond the meeting room", "preheader": "Next time, bring a racket.", "send": "After check-out, to returning guests"}, {"lang": "it", "list": "family", "step": 1, "file": "family-1-italian-memories", "subject": "Il tuo regalo di benvenuto da €30, e i ricordi italiani", "preheader": "Un hotel & spa quattro stelle sul mare, pensato per stare insieme.", "send": "Subito dopo l’iscrizione"}, {"lang": "it", "list": "family", "step": 2, "file": "family-2-family-discount", "subject": "La tariffa per la tua famiglia: camera, colazione e spa inclusi", "preheader": "Lo Sconto Famiglia, per chi prenota direttamente.", "send": "7 giorni dopo"}, {"lang": "it", "list": "family", "step": 3, "file": "family-3-ciao-again", "subject": "Ciao di nuovo. La tua storia italiana continua.", "preheader": "Alcune vacanze finiscono. Le storie più belle continuano.", "send": "Dopo il check-out, agli ospiti che tornano"}, {"lang": "it", "list": "business", "step": 1, "file": "business-1-business-travel", "subject": "Viaggiare per lavoro, senza pressione", "preheader": "Riunioni, relax e cena in un solo indirizzo quattro stelle sul mare.", "send": "Subito dopo l’iscrizione"}, {"lang": "it", "list": "business", "step": 2, "file": "business-2-executive-business-stay", "subject": "Il tuo soggiorno di lavoro, già organizzato", "preheader": "Camera, colazione, spa e sale meeting in un solo pacchetto.", "send": "7 giorni dopo"}, {"lang": "it", "list": "business", "step": 3, "file": "business-3-padel-experience", "subject": "Le migliori relazioni di lavoro continuano oltre la sala riunioni", "preheader": "La prossima volta, porta una racchetta.", "send": "Dopo il check-out, agli ospiti che tornano"}], MERGE = "{{first_name}}", lang = 'en', cur = null;
+var NAMES = { family: 'Sarah', business: 'Alessandro' };
+var LISTS = { family: ['Family list', 'Lista famiglie'], business: ['Business list', 'Lista business'] };
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function render() {
+  var out = '';
+  ['family', 'business'].forEach(function (l) {
+    out += '<h2>' + LISTS[l][lang === 'en' ? 0 : 1] + '</h2>';
+    DATA.filter(function (d) { return d.lang === lang && d.list === l; }).forEach(function (d) {
+      out += '<button type="button" data-f="' + d.file + '"' + (cur && cur.file === d.file ? ' aria-current="true"' : '') + '><b>' + d.step + '. ' + esc(d.subject) + '</b><span>' + esc(d.send) + '</span></button>';
+    });
+  });
+  document.getElementById('list').innerHTML = out;
+}
+function show(file) {
+  cur = DATA.filter(function (d) { return d.lang === lang && d.file === file; })[0];
+  render();
+  var path = lang + '/' + file + '.html';
+  document.getElementById('meta').innerHTML = '<div><b>Subject</b> ' + esc(cur.subject) + '</div><div><b>Preview</b> ' + esc(cur.preheader) + '</div><div><b>Send</b> ' + esc(cur.send) + '</div><div><b>File</b> <a href="' + path + '" target="_blank" rel="noopener">emails/' + path + '</a></div>';
+  fetch(path).then(function (r) { return r.text(); }).then(function (h) {
+    h = h.split(MERGE).join(NAMES[cur.list]).replace('<head>', '<head><base href="' + new URL(lang + '/', location.href).href + '" target="_blank">');
+    document.getElementById('view').srcdoc = h;
+  }).catch(function () { document.getElementById('view').src = path; });
+}
+document.getElementById('list').addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (b) show(b.getAttribute('data-f')); });
+document.getElementById('lang').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-v]'); if (!b) return;
+  lang = b.getAttribute('data-v');
+  this.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+  show(cur ? cur.file : DATA[0].file);
+});
+show(DATA[0].file);
+</script>
+</body>
+</html>

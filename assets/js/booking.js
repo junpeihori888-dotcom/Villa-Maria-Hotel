@@ -31,6 +31,8 @@
     'returning': ['returning', true], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'], 'suite': ['room', 'suite']
   };
 
+  /* A coupon from the email pop-up, or ?code=… in an email link, fills the promo field. */
+  try { var savedCode = new URLSearchParams(location.search).get('code') || localStorage.getItem('vm-code'); if (savedCode && document.getElementById('promo')) document.getElementById('promo').value = savedCode; } catch (e) {}
   var form = document.getElementById('booking-form');
   if (!form) return;
   var $ = function (id) { return document.getElementById(id); };
@@ -223,7 +225,7 @@
       adults: +$('adults').value, children: +$('children').value,
       package: PACKAGES[val('package')][0], room: ROOMS[val('room')],
       name: $('name').value.trim(), email: $('email').value.trim(), phone: $('phone').value.trim(),
-      arrival: $('arrival').value, company: $('company').value.trim(), companyCode: $('companycode').value.trim(),
+      arrival: $('arrival').value, company: $('company').value.trim(), companyCode: $('companycode').value.trim(), promoCode: $('promo').value.trim(),
       notes: $('notes').value.trim(), returningGuest: $('returning').checked
     };
     var ref = 'VM-' + Math.random().toString(36).slice(2, 8).toUpperCase();

@@ -57,6 +57,16 @@
     }
   };
 
+  /* Email sign-up pop-up on the home page, with two lists: family and business.
+     Sign-ups go to FORMS_ENDPOINT as form "newsletter" with {list, firstName, email, consent}.
+     Connect that to your email tool (Brevo, Mailchimp…) and send the emails in /emails. */
+  var NEWSLETTER = {
+    familyGift: '€30',        // welcome coupon for the family list ('' = no coupon)
+    familyCode: 'FAMILY30',   // code shown after sign-up and filled in on the booking form
+    showAfterSeconds: 8,      // or when the visitor has scrolled 40% of the home page
+    snoozeDays: 30            // after "No thanks", wait this long before showing it again
+  };
+
   /* ---------- Language and paths ---------- */
   var lang = document.documentElement.lang === 'it' ? 'it' : 'en';
   var BASE = lang === 'it' ? '../' : '';     // Italian pages live in /it/
@@ -159,6 +169,7 @@
       '<div><h4>' + t('The hotel', "L'hotel") + '</h4><ul>' + links(PAGES.hotel.slice(1)) + '</ul></div>' +
       '<div class="legal"><span>© 2026 ' + esc(HOTEL.name) + (legal.length ? ' · ' + legal.join(' · ') : '') + '</span>' +
         '<span class="concept-note">' + t('Concept website: some descriptions are illustrative and not confirmed by the hotel.', 'Sito concept: alcune descrizioni sono illustrative e non confermate dall’hotel.') + '</span>' +
+        '<button type="button" class="linkish" data-news="">' + t('Get our emails', 'Ricevi le nostre email') + '</button>' +
         '<a href="privacy.html">' + t('Privacy & cookies', 'Privacy e cookie') + '</a></div>' +
     '</div>';
 
@@ -513,6 +524,141 @@
 
 
 
+  /* ---------- Email sign-up pop-up ---------- */
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  if (PAGES.families.some(function (p) { return p[0] === page; })) store('vm-aud', 'family');
+  if (PAGES.business.some(function (p) { return p[0] === page; })) store('vm-aud', 'business');
+  var gift = NEWSLETTER.familyGift;
+  var NEWS = {
+    family: {
+      tab: t('I travel with family', 'Viaggio in famiglia'),
+      photo: 'assets/img/people/moment-pool.jpg',
+      title: gift ? t('We’ll pay you ' + gift + ' for your email.', 'Ti regaliamo ' + gift + ' per la tua email.') : t('Italian Memories, in your inbox.', 'Italian Memories, nella tua casella.'),
+      intro: (gift ? t('Join our family list and get a ' + gift + ' welcome coupon for your next stay. ', 'Iscriviti alla lista famiglie e ricevi un buono di benvenuto da ' + gift + ' per il tuo prossimo soggiorno. ') : '') +
+        t('Then, about once a month: the Family Discount first, summer ideas and moments worth coming back for.', 'Poi, circa una volta al mese: lo Sconto Famiglia in anteprima, idee per l’estate e momenti per cui tornare.'),
+      submit: gift ? t('Send me the ' + gift + ' coupon', 'Inviami il buono da ' + gift) : t('Sign me up', 'Iscrivimi')
+    },
+    business: {
+      tab: t('I travel for business', 'Viaggio per lavoro'),
+      photo: 'assets/img/people/business-meeting.jpg',
+      title: t('Lighter business trips, straight to your inbox.', 'Trasferte più leggere, direttamente nella tua casella.'),
+      intro: t('Company rates before anyone else, padel evenings and meeting-room news for business travellers to Abruzzo. About once a month.',
+        'Tariffe aziendali in anteprima, serate di padel e novità sulle sale meeting per chi viaggia per lavoro in Abruzzo. Circa una volta al mese.'),
+      submit: t('Keep me posted', 'Tienimi aggiornato')
+    }
+  };
+  var newsPop = document.createElement('div');
+  newsPop.className = 'modal news-pop';
+  newsPop.hidden = true;
+  newsPop.setAttribute('role', 'dialog');
+  newsPop.setAttribute('aria-modal', 'true');
+  newsPop.setAttribute('aria-labelledby', 'news-title');
+  var newsList = store('vm-aud') === 'business' ? 'business' : 'family';
+  function newsRender() {
+    var d = NEWS[newsList];
+    newsPop.innerHTML =
+      '<div class="modal-box news-box">' +
+        '<div class="news-photo"><img src="' + BASE + d.photo + '" alt=""></div>' +
+        '<div class="news-body">' +
+          '<button type="button" class="modal-x" aria-label="' + t('Close', 'Chiudi') + '">×</button>' +
+          '<div class="news-tabs" role="tablist" aria-label="' + t('Choose your emails', 'Scegli le email') + '">' +
+            ['family', 'business'].map(function (k) {
+              return '<button type="button" role="tab" data-list="' + k + '" aria-selected="' + (k === newsList) + '">' + NEWS[k].tab + '</button>';
+            }).join('') +
+          '</div>' +
+          '<h2 id="news-title">' + d.title + '</h2><p class="news-intro">' + d.intro + '</p>' +
+          '<form class="own-form news-form" novalidate>' +
+            '<div class="field"><label for="n-first">' + t('First name', 'Nome') + ' <span class="opt">' + t('(optional)', '(facoltativo)') + '</span></label><input id="n-first" name="firstName" autocomplete="given-name"></div>' +
+            '<div class="field"><label for="n-email">Email</label><input id="n-email" name="email" type="email" autocomplete="email" required></div>' +
+            '<label class="check"><input type="checkbox" name="consent" required><span>' +
+              t('Yes, send me Villa Maria emails. I can unsubscribe at any time. See the <a href="privacy.html">privacy notice</a>.',
+                'Sì, inviatemi le email di Villa Maria. Posso disiscrivermi in qualsiasi momento. Vedi l’<a href="privacy.html">informativa privacy</a>.') + '</span></label>' +
+            '<p class="err" hidden>' + t('Please add your email and tick the box.', 'Inserisci la tua email e spunta la casella.') + '</p>' +
+            '<button type="submit" class="btn btn-slate btn-block">' + d.submit + '</button>' +
+          '</form>' +
+          '<button type="button" class="news-skip">' + t('No thanks', 'No, grazie') + '</button>' +
+        '</div>' +
+      '</div>';
+    newsPop.querySelector('.modal-x').addEventListener('click', newsSkip);
+    newsPop.querySelector('.news-skip').addEventListener('click', newsSkip);
+    newsPop.querySelectorAll('.news-tabs button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var em = newsPop.querySelector('#n-email').value, fn = newsPop.querySelector('#n-first').value;
+        newsList = b.getAttribute('data-list'); newsRender();
+        newsPop.querySelector('#n-email').value = em; newsPop.querySelector('#n-first').value = fn;
+        newsPop.querySelector('[data-list="' + newsList + '"]').focus();
+      });
+    });
+    var f = newsPop.querySelector('form');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var em = f.elements.namedItem('email'), ok1 = em.checkValidity() && em.value.trim(), ok2 = f.elements.namedItem('consent').checked;
+      em.closest('.field').classList.toggle('is-bad', !ok1);
+      f.querySelector('.check').classList.toggle('is-bad', !ok2);
+      f.querySelector('.err').hidden = ok1 && ok2;
+      if (!(ok1 && ok2)) return;
+      var btn = f.querySelector('[type=submit]');
+      btn.disabled = true; btn.textContent = t('Sending…', 'Invio in corso…');
+      var data = { list: newsList, firstName: f.elements.namedItem('firstName').value.trim(), email: em.value.trim(), consent: true, source: 'home-popup' };
+      send('newsletter', data).then(function (res) {
+        store('vm-news', 'joined');
+        var fam = newsList === 'family', out = '<div class="news-done">';
+        if (fam && gift) {
+          store('vm-code', NEWSLETTER.familyCode);
+          out += '<p class="eb">' + t('Welcome to the Villa Maria family', 'Benvenuto nella famiglia Villa Maria') + '</p>' +
+            '<p>' + t('Here is your ' + gift + ' welcome coupon. Add the code when you book; we have also sent it to your inbox.',
+              'Ecco il tuo buono di benvenuto da ' + gift + '. Inserisci il codice quando prenoti; te lo abbiamo inviato anche via email.') + '</p>' +
+            '<div class="code">' + esc(NEWSLETTER.familyCode) + '</div>' +
+            '<a class="btn btn-sky btn-block" href="booking.html#family-discount">' + t('Book with my coupon →', 'Prenota con il buono →') + '</a>';
+        } else {
+          out += '<p class="eb">' + t('You are on the list', 'Sei nella lista') + '</p>' +
+            '<p>' + (fam ? t('Your first email, Italian Memories, arrives shortly.', 'La prima email, Italian Memories, arriva a breve.')
+              : t('Your first email, on taking the pressure out of business travel, arrives shortly.', 'La prima email, su come viaggiare per lavoro senza pressione, arriva a breve.')) + '</p>' +
+            '<a class="btn btn-sky btn-block" href="' + (fam ? 'italian-memories.html' : 'business-travel.html') + '">' + t('Have a look now →', 'Dai un’occhiata ora →') + '</a>';
+        }
+        f.outerHTML = out + '</div>' + (res.sent ? '' : demoNote());
+        newsPop.querySelector('.news-tabs').remove();
+        newsPop.querySelector('.news-skip').textContent = t('Close', 'Chiudi');
+        newsPop.querySelector('h2').textContent = t('Thank you' + (data.firstName ? ', ' + data.firstName : '') + '.', 'Grazie' + (data.firstName ? ', ' + data.firstName : '') + '.');
+        newsPop.querySelector('.news-intro').remove();
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = NEWS[newsList].submit;
+        f.querySelector('.err').hidden = false;
+        f.querySelector('.err').textContent = t('We could not sign you up. Please try again.', 'Iscrizione non riuscita. Riprova.');
+      });
+    });
+  }
+  function newsOpen(list) {
+    if (list) newsList = list;
+    newsRender();
+    if (!help.hidden) help.hidden = true;
+    if (!formModal.hidden) formModal.hidden = true;
+    openModal(newsPop);
+  }
+  function newsSkip() {
+    if (store('vm-news') !== 'joined') store('vm-news', String(Date.now()));
+    closeModal(newsPop);
+  }
+  /* Home page only: once, after a few seconds or 40% scroll, never over another panel. */
+  (function () {
+    if (page !== 'index.html' || location.hash) return;
+    var seen = store('vm-news');
+    if (seen === 'joined' || (seen && Date.now() - +seen < NEWSLETTER.snoozeDays * 864e5)) return;
+    var done = false, timer;
+    function go() {
+      if (done) return;
+      if (menu.classList.contains('open') || !help.hidden || !formModal.hidden || (lb && !lb.hidden)) { clearTimeout(timer); timer = setTimeout(go, 4000); return; }
+      done = true; window.removeEventListener('scroll', onScroll);
+      newsOpen();
+    }
+    function onScroll() {
+      var h = document.documentElement.scrollHeight - innerHeight;
+      if (h > 0 && scrollY / h > 0.4) go();
+    }
+    timer = setTimeout(go, NEWSLETTER.showAfterSeconds * 1000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+
   /* ---------- Showcase carousels: ‹ › flips photos inside a card, ← → moves between cards ---------- */
   document.querySelectorAll('.sc-card').forEach(function (card) {
     var slides = card.querySelectorAll('.sc-slide'), count = card.querySelector('.sc-count'), i = 0;
@@ -605,7 +751,7 @@
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, formModal, bar, fab, lb].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, formModal, newsPop, bar, fab, lb].forEach(function (el) { body.appendChild(el); });
 
   /* Book buttons open our own booking page; data-book="family-discount" etc. preselects the package. */
   document.querySelectorAll('[data-book]').forEach(function (a) {
@@ -672,6 +818,7 @@
     if (lastFocus) lastFocus.focus();
   }
   formModal.addEventListener('click', function (e) { if (e.target === formModal) closeModal(formModal); });
+  newsPop.addEventListener('click', function (e) { if (e.target === newsPop) newsSkip(); });
   [help].forEach(function (m) {
     m.querySelector('.modal-x').addEventListener('click', function () { closeModal(m); });
     m.addEventListener('click', function (e) { if (e.target === m) closeModal(m); });
@@ -679,19 +826,27 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    if (!formModal.hidden) closeModal(formModal);
+    if (!newsPop.hidden) newsSkip();
+    else if (!formModal.hidden) closeModal(formModal);
     else if (!help.hidden) closeModal(help);
     else if (menu.classList.contains('open')) closeMenu();
   });
   /* Personal review link sent after check-out: page.html#review-VM-AB12CD */
   function reviewLink() {
     var rv = /^#review-(VM-[A-Za-z0-9]{6})$/.exec(location.hash);
-    if (rv) openForm('verify', { reference: rv[1].toUpperCase() });
+    if (rv) { openForm('verify', { reference: rv[1].toUpperCase() }); return; }
+    /* Links from the emails: page.html#help, #review, #join, #refer, #message, #newsletter */
+    var hs = location.hash.slice(1);
+    if (hs === 'help') openModal(help);
+    else if (hs === 'newsletter' || hs === 'news-family' || hs === 'news-business') newsOpen(hs === 'news-business' ? 'business' : hs === 'news-family' ? 'family' : undefined);
+    else if (FORMS[hs]) openForm(hs);
   }
   setTimeout(reviewLink, 0);
   window.addEventListener('hashchange', reviewLink);
 
   document.addEventListener('click', function (e) {
+    var nw = e.target.closest('[data-news]');
+    if (nw) { e.preventDefault(); newsOpen(nw.getAttribute('data-news') || undefined); return; }
     var fm = e.target.closest('[data-form]');
     if (fm) { e.preventDefault(); openForm(fm.getAttribute('data-form')); return; }
     if (e.target.closest('[data-help]')) { e.preventDefault(); openModal(help); }
