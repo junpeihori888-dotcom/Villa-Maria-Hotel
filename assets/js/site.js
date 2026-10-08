@@ -268,5 +268,8 @@
     b.addEventListener('click', function () { answer(b.dataset.q); });
   });
 
+  var exec = document.getElementById('exec-form');
+  if (exec) exec.addEventListener('submit', function (e) { e.preventDefault(); });
+
   setLang(lang);
 })();
