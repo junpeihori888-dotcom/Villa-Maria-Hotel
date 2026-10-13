@@ -93,6 +93,16 @@
       ['restaurant.html', 'Restaurant', 'Ristorante', 'restaurant-hall.jpg'],
       ['activities.html', 'Activities & experiences', 'Attività ed esperienze', 'pool-park.jpg'],
       ['contact.html', 'Getting here & contact', 'Come arrivare e contatti', 'gardens.jpg']
+    ],
+    /* Blog articles stay in the language they were written in (built by tools/blog.py).
+       [file, title, language, list]: English ones at the root, Italian ones in /it/. */
+    blog: [
+      ['blog-italian-stop-family-abruzzo.html', 'The Italian Stop We Didn\'t Know We Needed', 'en', 'family'],
+      ['blog-three-days-zero-alarm-clocks.html', 'Three Days, Four People, Zero Alarm Clocks', 'en', 'family'],
+      ['blog-letter-to-the-family-planner.html', 'A Letter to the Family Planner', 'en', 'family'],
+      ['blog-martedi-sera-manager-pescara.html', 'Il martedì sera di un manager a Pescara', 'it', 'business'],
+      ['blog-quando-il-meeting-funziona.html', 'Quando il meeting funziona davvero', 'it', 'business'],
+      ['blog-dopo-l-ultima-call.html', 'Dopo l\'ultima call', 'it', 'business']
     ]
   };
 
@@ -103,6 +113,14 @@
       var img = withPhotos && p[3] ? '<img src="' + BASE + 'assets/img/' + p[3] + '" alt="" loading="lazy">' : '';
       return '<li><a href="' + p[0] + '"' + cur + (img ? ' class="with-photo"' : '') + '>' + img + '<span>' + esc(t(p[1], p[2])) + '</span></a></li>';
     }).join('');
+  }
+  /* A blog article lives next to the pages of its own language. */
+  function blogHref(b) { return b[2] === lang ? b[0] : (b[2] === 'it' ? 'it/' : '../') + b[0]; }
+  function blogLinks(list) {
+    return '<p class="menu-sub">Blog</p><ul class="menu-blog">' + PAGES.blog.filter(function (b) { return b[3] === list; }).map(function (b) {
+      var cur = b[0] === page && b[2] === lang ? ' aria-current="page"' : '';
+      return '<li><a href="' + blogHref(b) + '" hreflang="' + b[2] + '"' + cur + '><span lang="' + b[2] + '">' + esc(b[1]) + '</span> <span class="lang-chip">' + b[2].toUpperCase() + '</span></a></li>';
+    }).join('') + '<li><a class="menu-all" href="blog.html#' + list + '">' + t('All articles →', 'Tutti gli articoli →') + '</a></li></ul>';
   }
   function telHref(n) { return 'tel:' + n.replace(/[^\d+]/g, ''); }
 
@@ -120,6 +138,10 @@
   /* ---------- Header ---------- */
   var enHref = lang === 'it' ? '../' + page : page;
   var itHref = lang === 'it' ? page : 'it/' + page;
+  // An article has no translation: the other language opens the blog index.
+  if (PAGES.blog.some(function (b) { return b[0] === page; })) {
+    if (lang === 'en') itHref = 'it/blog.html'; else enHref = '../blog.html';
+  }
   var header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML =
@@ -146,8 +168,8 @@
     '<div class="wrap menu-top"><button type="button" class="menu-close">' + t('Close ✕', 'Chiudi ✕') + '</button>' +
       '<a class="btn btn-sky" href="booking.html">' + t('Book Now', 'Prenota') + '</a></div>' +
     '<nav class="wrap menu-grid" aria-label="' + t('Main', 'Principale') + '">' +
-      '<div><h3>' + t('For families', 'Per le famiglie') + '</h3><ul>' + links(PAGES.families) + '</ul></div>' +
-      '<div><h3>' + t('For business', 'Per il business') + '</h3><ul>' + links(PAGES.business) + '</ul></div>' +
+      '<div><h3>' + t('For families', 'Per le famiglie') + '</h3><ul>' + links(PAGES.families) + '</ul>' + blogLinks('family') + '</div>' +
+      '<div><h3>' + t('For business', 'Per il business') + '</h3><ul>' + links(PAGES.business) + '</ul>' + blogLinks('business') + '</div>' +
       '<div><h3>' + t('The hotel', "L'hotel") + '</h3><ul class="menu-photos">' + links(PAGES.hotel, true) + '</ul></div>' +
     '</nav>' +
     '<div class="wrap menu-foot"><span>' + esc(HOTEL.address) + '</span>' +
@@ -166,7 +188,7 @@
       '<div><div class="brand">Villa Maria<br>Hotel &amp; Spa</div>' + contactList() + '</div>' +
       '<div><h4>' + t('Families', 'Famiglie') + '</h4><ul>' + links(PAGES.families) + '</ul></div>' +
       '<div><h4>Business</h4><ul>' + links(PAGES.business) + '</ul></div>' +
-      '<div><h4>' + t('The hotel', "L'hotel") + '</h4><ul>' + links(PAGES.hotel.slice(1)) + '</ul></div>' +
+      '<div><h4>' + t('The hotel', "L'hotel") + '</h4><ul>' + links(PAGES.hotel.slice(1)) + '<li><a href="blog.html">Blog</a></li></ul></div>' +
       '<div class="legal"><span>© 2026 ' + esc(HOTEL.name) + (legal.length ? ' · ' + legal.join(' · ') : '') + '</span>' +
         '<span class="concept-note">' + t('Concept website: some descriptions are illustrative and not confirmed by the hotel.', 'Sito concept: alcune descrizioni sono illustrative e non confermate dall’hotel.') + '</span>' +
         '<button type="button" class="linkish" data-news="">' + t('Get our emails', 'Ricevi le nostre email') + '</button>' +

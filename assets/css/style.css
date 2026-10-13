@@ -599,3 +599,26 @@ a.card:hover .ph img{transform:scale(1.04)}
   .news-pop h2{font-size:28px;margin-top:16px}
   .news-tabs button{padding:8px 10px;letter-spacing:.08em}
 }
+
+/* ---------- Blog ---------- */
+.menu-sub{margin:28px 0 8px;padding-top:18px;border-top:1px solid rgba(244,241,234,.15);font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--sky-soft)}
+.menu .menu-blog li a{font-size:clamp(18px,1.8vw,22px);line-height:1.25;padding:5px 0}
+.menu .menu-blog li a.menu-all{font-family:var(--f-body);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);padding-top:10px}
+.lang-chip{display:inline-block;vertical-align:middle;margin-left:6px;padding:2px 6px;border:1px solid currentColor;border-radius:2px;font:700 10px/1.2 var(--f-body);letter-spacing:.12em;opacity:.75}
+.post-head{background:var(--sand);padding-top:clamp(40px,6vw,72px)}
+.post-head .eb a{color:inherit}
+.post-title{max-width:20ch}
+.post-teaser{font-size:clamp(17px,1.7vw,20px);line-height:1.55;color:var(--muted);max-width:60ch;margin:18px 0 0}
+.post-meta{font-size:13px;color:var(--muted);margin:14px 0 0;letter-spacing:.04em}
+.post-cover{margin:32px 0 0;aspect-ratio:16/7;overflow:hidden;border-radius:2px;background:var(--sand-2)}
+.post-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.blog-head{padding-bottom:clamp(28px,4vw,48px)}
+.post-body{margin-inline:auto;font-size:17px}
+.post-body p{color:var(--ink);line-height:1.75;margin:18px 0 0}
+.post-body .h3{margin-top:40px}
+.post-fig{margin:36px 0 0}
+.post-fig img{width:100%;height:auto;display:block;border-radius:2px}
+.blog-card .t{font-size:24px}
+.blog-card .eb .lang-chip{color:var(--olive)}
+.head .more-link{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-decoration:none}
+@media (max-width:700px){.post-cover{aspect-ratio:4/3}.post-body{font-size:16px}}

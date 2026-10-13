@@ -49,6 +49,12 @@ Every page has a question-and-answer accordion just before the footer. Questions
 
 The build also adds Google's FAQPage data, generated from the visible questions.
 
+## Blog
+- Source: `content/blog.html`, the Word document converted with `pandoc Digital_Marketing.docx -t html --wrap=none -o content/blog.html`. Run `python3 tools/blog.py` to rebuild.
+- Each article stays in the language it was written in: the family articles (English) are `blog-*.html` at the root, the business articles (Italian) are `it/blog-*.html`. The blog index exists in both languages (`blog.html`, `it/blog.html`). On an article, the EN/IT switch opens the blog index in the other language.
+- Covers, teasers and the call-to-action under each article are set in `POSTS` in `tools/blog.py`. The MENU lists the articles from `PAGES.blog` in `assets/js/site.js` (under For families and For business, with an EN/IT tag); keep both lists in step when adding an article.
+- Each article gets BlogPosting and FAQPage structured data and its keywords from the document.
+
 ## Email marketing
 - **Sign-up pop-up** (home page only, once per visitor, after 8 seconds or 40% scroll): two lists, *I travel with family* and *I travel for business*. It opens on Business for visitors who have read the business pages. "No thanks" hides it for 30 days. Every page has a "Get our emails" link in the footer. Settings: `NEWSLETTER` in `assets/js/site.js` (the €50 family welcome coupon and its code `FAMILY50`).
 - Sign-ups go to `FORMS_ENDPOINT` as form `newsletter` with `{list: 'family'|'business', firstName, email, consent, source}`. Add them to the matching list in your email tool (Brevo, Mailchimp…).
