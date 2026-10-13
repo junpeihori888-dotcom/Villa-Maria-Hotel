@@ -62,7 +62,7 @@ The build also adds Google's FAQPage data, generated from the visible questions.
   - Family: 1 Italian Memories with the €50 coupon (right after sign-up), 2 Family Discount (7 days later), 3 Ciao Again (after check-out).
   - Business: 1 Take the pressure out of business travel (right after sign-up), 2 Executive Business Stay (7 days later), 3 Beyond the Meeting Room (after check-out).
 - Before sending, set `SITE_URL` in `tools/emails.py` (images and links must be absolute in email), set `FIRST_NAME` and `UNSUBSCRIBE` to your email tool's merge tags, and rebuild. Links carry `utm_source=newsletter` and the email name.
-- Email links can open things on the site: `#help`, `#review`, `#join`, `#refer`, `#message`, `#newsletter`, and `booking.html?code=FAMILY50#family-discount` fills in the coupon.
+- Email links can open things on the site: `#help`, `#review`, `#join`, `#refer`, `#message`, `#newsletter`, and `booking.html?code=FAMILY50` fills in the coupon.
 
 ## Servers to connect (all optional; the site says "demo mode" until they are set)
 In `assets/js/site.js`:

@@ -13,10 +13,6 @@
 
   var PACKAGES = {
     'room-only': [t('Room & breakfast', 'Camera e colazione')],
-    'family-discount': [t('Family Discount', 'Sconto Famiglia'), [
-      t('Room, breakfast and spa included', 'Camera, colazione e spa inclusi'),
-      t('€20 in-house voucher on your first direct booking', 'Voucher da 20 € alla prima prenotazione diretta'),
-      t('10% off your next stay when you book it here', '10% sul prossimo soggiorno prenotandolo qui')]],
     'executive': [t('Executive Business Stay Package', 'Pacchetto Executive Business Stay'), [
       t('Early breakfast and express check-out', 'Colazione presto e check-out rapido'),
       t('Spa & sauna access, meeting room on request', 'Spa e sauna, sala riunioni su richiesta'),
@@ -27,7 +23,7 @@
   };
   var ROOMS = { superior: t('Superior Room', 'Camera Superior'), deluxe: t('Deluxe Room', 'Camera Deluxe'), suite: 'Suite' };
   var LINKS = { // booking.html#<token> preselects a package or room
-    'family-discount': ['package', 'family-discount'], 'executive': ['package', 'executive'], 'beyond': ['package', 'beyond'],
+    'executive': ['package', 'executive'], 'beyond': ['package', 'beyond'],
     'returning': ['returning', true], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'], 'suite': ['room', 'suite']
   };
 
