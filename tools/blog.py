@@ -40,7 +40,7 @@ POSTS = [
          cta=('Organizza il tuo meeting', 'Raccontaci data, numero di persone e formato: ti proponiamo la sala giusta.', 'Scrivici →', 'business-travel.html#message')),
     dict(slug='dopo-l-ultima-call', list='business', lang='it', cover='garden-gazebo.jpg', inline='people/business-padel.jpg',
          teaser='Il venerdì sera che non ti aspettavi: una partita a padel, una cena e magari la famiglia che ti raggiunge.',
-         cta=('Il campo è pronto. Anche la camera.', 'Gioca, recupera, brinda, cena.', 'Scopri la Padel Experience →', 'padel-experience.html')),
+         cta=('La tua prossima trasferta, già organizzata', 'Camera silenziosa, colazione presto, spa e sala riunioni.', 'Scopri l’Executive Business Stay →', 'executive-business-stay.html')),
 ]
 
 UI = {

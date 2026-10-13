@@ -95,7 +95,6 @@ FAQS = {
     'ciao-again.html': [CANCEL, FAM_GOOD, CHECKIN, PARKING],
     'business-travel.html': [LOCATION, BIZ_MEET, BIZ_INVOICE, BIZ_PKG, PARKING],
     'executive-business-stay.html': [BIZ_PKG, BIZ_INVOICE, BIZ_MEET, CHECKIN, CANCEL],
-    'padel-experience.html': [BIZ_PADEL, BIZ_MEET, BIZ_INVOICE, PARKING],
 }
 
 

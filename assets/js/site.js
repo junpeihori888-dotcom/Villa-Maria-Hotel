@@ -83,8 +83,7 @@
     ],
     business: [
       ['business-travel.html', 'Take the pressure out of business travel', 'Viaggiare per lavoro, senza pressione'],
-      ['executive-business-stay.html', 'Executive Business Stay Package', 'Pacchetto Executive Business Stay'],
-      ['padel-experience.html', 'The Padel Experience', 'La Padel Experience']
+      ['executive-business-stay.html', 'Executive Business Stay Package', 'Pacchetto Executive Business Stay']
     ],
     hotel: [
       ['index.html', 'Home', 'Home', 'villa-adriatic.jpg'],
@@ -285,8 +284,8 @@
       'Yes, we invoice your company directly and accept corporate cards. If you have a company code, add it when you book. The Executive Business Stay Package includes early breakfast, fast Wi-Fi, spa and a meeting room on request.',
       'Sì, fatturiamo direttamente alla tua azienda e accettiamo carte aziendali. Se hai un codice aziendale, inseriscilo quando prenoti. Il Pacchetto Executive Business Stay include colazione presto, Wi-Fi veloce, spa e sala riunioni su richiesta.'],
     [/padel/i,
-      'Our padel courts are in the gardens above the Adriatic. The Padel Experience pairs a match with the spa, an aperitivo at the bar and dinner at the chef’s table.',
-      'I campi da padel sono nei giardini sopra l’Adriatico. La Padel Experience abbina la partita a spa, aperitivo al bar e cena alla tavola dello chef.'],
+      'Our padel courts are in the gardens above the Adriatic. Book a slot at reception, then recover in the Linfa spa.',
+      'I campi da padel sono nei giardini sopra l’Adriatico. Prenota l’orario in reception, poi recupera nella spa Linfa.'],
     [/breakfast|restaurant|dinner|lunch|food|eat|colazion|ristorant|cena|pranzo|mangiare/i,
       'Breakfast is a local buffet and is included in our packages. The hotel restaurant serves Abruzzo recipes, and the bar serves aperitivo in the evening.',
       'La colazione è a buffet con prodotti locali ed è inclusa nei pacchetti. Il ristorante dell’hotel propone ricette abruzzesi e il bar serve l’aperitivo la sera.'],

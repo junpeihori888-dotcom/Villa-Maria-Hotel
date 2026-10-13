@@ -622,3 +622,18 @@ a.card:hover .ph img{transform:scale(1.04)}
 .blog-card .eb .lang-chip{color:var(--olive)}
 .head .more-link{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-decoration:none}
 @media (max-width:700px){.post-cover{aspect-ratio:4/3}.post-body{font-size:16px}}
+
+/* ---------- Business pages (as in the campaign emails) ---------- */
+.section.sky-band{background:var(--sky)}
+.section.sky-band .eb{color:var(--ink)}
+.section.sky-band .muted,.section.sky-band .points span{color:#2F3B43}
+.section.sky-band .points > div{border-color:rgba(43,47,51,.25)}
+.wrap.center{text-align:center}
+.wrap.center .muted{max-width:60ch;margin:14px auto 0}
+.wrap.center .btns{justify-content:center}
+.split-photo{width:100%;height:auto;display:block;border-radius:2px}
+.hero-note{margin:14px 0 0;font-size:13px;color:rgba(255,255,255,.8)}
+.room-pick .card{background:#fff;border:1px solid var(--line);padding:28px 24px;text-align:center}
+.room-pick .card .eb{margin-top:0}
+.room-pick .card .btn{margin-top:18px}
+.wrap.center .h2{margin-inline:auto;max-width:none}

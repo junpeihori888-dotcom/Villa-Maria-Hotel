@@ -33,8 +33,6 @@ IT_META = {
                              'Riunioni, recupero e cena in un unico indirizzo 4 stelle sul mare, vicino all\'aeroporto di Pescara e all\'A14.'),
     'executive-business-stay.html': ('Pacchetto Executive Business Stay · Villa Maria Hotel & Spa',
                                      'Pacchetto Executive Business Stay: camera silenziosa, colazione presto, Wi-Fi veloce, spa e sala riunioni in un unico pacchetto sull\'Adriatico.'),
-    'padel-experience.html': ('La Padel Experience · Villa Maria Hotel & Spa',
-                              'La Padel Experience a Villa Maria Hotel & Spa: porta una racchetta e il cliente, il collega o il team che vuoi conoscere meglio.'),
     'rooms.html': ('Camere e Suite · Villa Maria Hotel & Spa',
                    'Camere Superior, Deluxe e suite a Villa Maria Hotel & Spa, molte con vista sull\'Adriatico.'),
     'spa.html': ('Linfa Wellness & Spa · Villa Maria Hotel & Spa',

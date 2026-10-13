@@ -123,8 +123,8 @@ PAGES = {
      T('A suggestion for your first visit: twenty minutes in the hydromassage pool, a round of sauna and Turkish bath, the sensory shower, then a long rest with a herbal tea while the light changes over the park.',
        'Un consiglio per la prima visita: venti minuti in idromassaggio, un giro tra sauna e bagno turco, la doccia emozionale e poi un lungo riposo con una tisana mentre la luce cambia sul parco.')]),
    (T('Spa in your package', 'La spa nel tuo pacchetto'), [
-     T('Spa access is included in the Family Discount and in the Executive Business Stay Package. The Padel Experience ends the match with sauna, spa and a massage.',
-       'L’accesso alla spa è incluso nello Sconto Famiglia e nel Pacchetto Executive Business Stay. La Padel Experience chiude la partita con sauna, spa e massaggio.')]),
+     T('Spa access is included in the Family Discount and in the Executive Business Stay Package.',
+       'L’accesso alla spa è incluso nello Sconto Famiglia e nel Pacchetto Executive Business Stay.')]),
   ],
   'gallery': [
    ('spa.jpg', T('Indoor pool', 'Piscina interna')),
@@ -222,8 +222,8 @@ PAGES = {
      T('Hydromassage pool, Turkish bath, sauna and sensory shower, plus beauty and fitness areas. Hotel guests enjoy a free two-hour spa session; booking is required.',
        'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, più aree beauty e fitness. Gli ospiti dell’hotel hanno una sessione spa gratuita di due ore; la prenotazione è obbligatoria.')]),
    (T('Padel', 'Padel'), [
-     T('Our padel court is in the garden. Book a slot for a family match or bring a client: The Padel Experience pairs the game with the spa, an aperitivo and dinner.',
-       'Il nostro campo da padel è in giardino. Prenota un orario per una partita in famiglia o porta un cliente: la Padel Experience abbina la partita a spa, aperitivo e cena.')]),
+     T('Our padel court is in the garden. Book a slot for a family match or bring a client, then recover in the Linfa spa.',
+       'Il nostro campo da padel è in giardino. Prenota un orario per una partita in famiglia o porta un cliente, poi recupera nella spa Linfa.')]),
    (T('Nature and the coast', 'Natura e costa'), [
      T('Walk among the pines of the Pineta Dannunziana nature reserve in Pescara, ride a bike along the coast towards the Costa dei Trabocchi, or go snorkelling and diving in the Adriatic. Horse riding and hiking in the hills are also close by.',
        'Passeggia tra i pini della riserva naturale Pineta Dannunziana a Pescara, pedala lungo la costa verso la Costa dei Trabocchi, o fai snorkeling e immersioni nell’Adriatico. Equitazione ed escursioni in collina sono vicine.')]),
@@ -375,30 +375,6 @@ PAGES = {
        'Colazione alle 6:30, una videochiamata dalla camera, riunione con il cliente alle 10:00, pranzo in terrazza, padel e massaggio alle 18:30, cena alla tavola dello chef alle 21:00.')]),
   ],
  },
- # ------------------------------------------------------------------ Padel
- 'padel-experience.html': {
-  'eb': T('About The Padel Experience', 'La Padel Experience'),
-  'h2': T('The court, the spa <i>and the table.</i>', 'Il campo, la spa <i>e la tavola.</i>'),
-  'intro': T('Padel is played in doubles, easy to learn and impossible to play in silence. Our court is in the garden above the Adriatic, and the evening continues in the spa, at the bar and at the chef’s table.',
-             'Il padel si gioca in doppio, si impara in fretta ed è impossibile giocarlo in silenzio. Il nostro campo è in giardino sopra l’Adriatico, e la serata continua in spa, al bar e alla tavola dello chef.'),
-  'topics': [
-   (T('The court', 'Il campo'), [
-     T('A padel court in the hotel garden, surrounded by greenery. Book your slot at reception or add it to your booking request.',
-       'Un campo da padel nel giardino dell’hotel, circondato dal verde. Prenota l’orario in reception o aggiungilo alla richiesta di prenotazione.')]),
-   (T('New to padel?', 'Mai giocato a padel?'), [  # illustrative
-     T('No problem: rackets and balls can be arranged, and the rules take ten minutes to learn. A short lesson can be organised on request so everyone enjoys the first match.',
-       'Nessun problema: racchette e palline si possono organizzare e le regole si imparano in dieci minuti. Su richiesta si può organizzare una breve lezione perché tutti si godano la prima partita.')]),
-   (T('Recovery in the Linfa spa', 'Recupero nella spa Linfa'), [
-     T('After the match: hydromassage pool, Turkish bath, sauna and sensory shower, with a free two-hour session for hotel guests. Add a massage for the full ritual.',
-       'Dopo la partita: piscina idromassaggio, bagno turco, sauna e doccia emozionale, con una sessione gratuita di due ore per gli ospiti. Aggiungi un massaggio per il rituale completo.')]),
-   (T('Aperitivo and dinner', 'Aperitivo e cena'), [
-     T('Winners pay for the aperitivo at the bar; then dinner at the chef’s table, with Abruzzo specialities and a quiet corner for business talk.',
-       'Chi vince offre l’aperitivo al bar; poi cena alla tavola dello chef, con specialità abruzzesi e un angolo tranquillo per parlare di lavoro.')]),
-   (T('Team days and tournaments', 'Giornate di team e tornei'), [  # illustrative
-     T('Bring your team: a padel round-robin in the afternoon, a meeting room in the morning and a group dinner make a simple, memorable company day.',
-       'Porta il tuo team: un torneo di padel nel pomeriggio, una sala riunioni al mattino e una cena di gruppo fanno una giornata aziendale semplice e memorabile.')]),
-  ],
- },
 }
 
 
@@ -458,7 +434,7 @@ CARDS = {
   (T('Sport', 'Sport'), T('Padel &amp; gardens', 'Padel e giardini'),
    T('A padel court in the garden, shady lawns and terraces with a view of the sea.', 'Un campo da padel in giardino, prati all’ombra e terrazze con vista mare.'),
    [P('people/business-padel.jpg', 'Padel in the garden', 'Padel in giardino'), P('gardens.jpg', 'The gardens', 'I giardini'),
-    P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare')], 'padel-experience.html'),
+    P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare')], 'activities.html'),
  ],
  'rooms.html': [
   (T('For short stays', 'Per soggiorni brevi'), T('Standard &amp; Superior', 'Standard e Superior'),
@@ -493,7 +469,7 @@ CARDS = {
    [P('people/moment-spa.jpg', 'Time for two', 'Tempo per due'), P('wellness.jpg', 'Quiet after a treatment', 'Silenzio dopo il trattamento')], ''),
   (T('Fitness area', 'Area fitness'), T('Move, then recover', 'Muoviti, poi recupera'),
    T('The fitness area, and the padel court in the garden for a match before the spa.', 'L’area fitness e il campo da padel in giardino per una partita prima della spa.'),
-   [P('people/business-padel.jpg', 'Padel before the spa', 'Padel prima della spa'), P('gardens.jpg', 'The gardens', 'I giardini')], 'padel-experience.html'),
+   [P('people/business-padel.jpg', 'Padel before the spa', 'Padel prima della spa'), P('gardens.jpg', 'The gardens', 'I giardini')], 'activities.html'),
   (T('Outside', 'Fuori'), T('Terrace &amp; plunge pool', 'Terrazza e piscinetta'),
    T('Step outside for fresh air and a view of the Adriatic.', 'Esci per un po’ d’aria e la vista sull’Adriatico.'),
    [P('walk.jpg', 'Terrace with a plunge pool', 'Terrazza con piscinetta'), P('villa-adriatic.jpg', 'The hotel above the sea', 'L’hotel sopra il mare')], ''),
@@ -540,7 +516,7 @@ CARDS = {
     P('people/moment-spa.jpg', 'Time for two', 'Tempo per due')], 'spa.html'),
   (T('Sport', 'Sport'), T('Padel', 'Padel'),
    T('A court in the garden for family matches or a game with clients.', 'Un campo in giardino per partite in famiglia o con i clienti.'),
-   [P('people/business-padel.jpg', 'Padel in the garden', 'Padel in giardino'), P('gardens.jpg', 'The gardens', 'I giardini')], 'padel-experience.html'),
+   [P('people/business-padel.jpg', 'Padel in the garden', 'Padel in giardino'), P('gardens.jpg', 'The gardens', 'I giardini')], ''),
   (T('Outdoors', 'All’aperto'), T('The park', 'Il parco'),
    T('Shady lawns, a gazebo and terraces with a view of the sea.', 'Prati all’ombra, un gazebo e terrazze con vista mare.'),
    [P('garden-gazebo.jpg', 'The gazebo', 'Il gazebo'), P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare'),

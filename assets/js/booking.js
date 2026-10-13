@@ -20,14 +20,11 @@
     'executive': [t('Executive Business Stay Package', 'Pacchetto Executive Business Stay'), [
       t('Early breakfast and express check-out', 'Colazione presto e check-out rapido'),
       t('Spa & sauna access, meeting room on request', 'Spa e sauna, sala riunioni su richiesta'),
-      t('Company invoicing', 'Fatturazione aziendale')]],
-    'padel': [t('The Padel Experience', 'La Padel Experience'), [
-      t('Padel court in the gardens', 'Campo da padel nei giardini'),
-      t('Sauna, spa, aperitivo and the chef\'s dinner', 'Sauna, spa, aperitivo e cena dello chef')]]
+      t('Company invoicing', 'Fatturazione aziendale')]]
   };
   var ROOMS = { superior: t('Superior Room', 'Camera Superior'), deluxe: t('Deluxe Room', 'Camera Deluxe'), suite: 'Suite' };
   var LINKS = { // booking.html#<token> preselects a package or room
-    'family-discount': ['package', 'family-discount'], 'executive': ['package', 'executive'], 'padel': ['package', 'padel'],
+    'family-discount': ['package', 'family-discount'], 'executive': ['package', 'executive'],
     'returning': ['returning', true], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'], 'suite': ['room', 'suite']
   };
 
@@ -196,7 +193,7 @@
       ? t('About €' + rate * n + ' (confirmed by email)', 'Circa ' + rate * n + ' € (confermato via email)')
       : t('Confirmed by email', 'Confermato via email');
     $('s-perks').innerHTML = (p[1] || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
-    var biz = val('package') === 'executive' || val('package') === 'padel';
+    var biz = val('package') === 'executive';
     form.querySelector('.business-only').hidden = !biz;
   }
   form.addEventListener('input', update);

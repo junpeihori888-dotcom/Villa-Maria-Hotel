@@ -5,7 +5,7 @@ Static site (HTML/CSS/JS, no build server). Serve the folder (`python3 -m http.s
 ## Pages
 - Home: `index.html`
 - Families: `italian-memories.html` (Italian Memories), `family-reset-package.html` (Family Discount), `ciao-again.html` (Ciao Again)
-- Business: `business-travel.html` (Take the pressure out of business travel), `executive-business-stay.html` (Executive Business Stay Package), `padel-experience.html` (The Padel Experience)
+- Business: `business-travel.html` (Take the pressure out of business travel), `executive-business-stay.html` (Executive Business Stay Package)
 - Package names and copy follow the Leisure and Business campaign emails (EN/IT PDFs).
 - Booking: `booking.html` + `assets/js/booking.js` — our own booking-request page with a date-range calendar (nights counted automatically; no payment). Set nightly `RATES` in booking.js to show estimates.
 - Hotel: `activities.html`, `rooms.html`, `spa.html`, `restaurant.html`, `contact.html` (getting here & contact), `privacy.html`
@@ -60,7 +60,7 @@ The build also adds Google's FAQPage data, generated from the visible questions.
 - Sign-ups go to `FORMS_ENDPOINT` as form `newsletter` with `{list: 'family'|'business', firstName, email, consent, source}`. Add them to the matching list in your email tool (Brevo, Mailchimp…).
 - **The emails** are in `emails/en/` and `emails/it/`, built from the campaign PDFs by `python3 tools/emails.py`. Preview them all at `emails/index.html`.
   - Family: 1 Italian Memories with the €50 coupon (right after sign-up), 2 Family Discount (7 days later), 3 Ciao Again (after check-out).
-  - Business: 1 Take the pressure out of business travel (right after sign-up), 2 Executive Business Stay (7 days later), 3 The Padel Experience (after check-out).
+  - Business: 1 Take the pressure out of business travel (right after sign-up), 2 Executive Business Stay (7 days later).
 - Before sending, set `SITE_URL` in `tools/emails.py` (images and links must be absolute in email), set `FIRST_NAME` and `UNSUBSCRIBE` to your email tool's merge tags, and rebuild. Links carry `utm_source=newsletter` and the email name.
 - Email links can open things on the site: `#help`, `#review`, `#join`, `#refer`, `#message`, `#newsletter`, and `booking.html?code=FAMILY50#family-discount` fills in the coupon.
 
