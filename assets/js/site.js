@@ -115,8 +115,11 @@
   }
   /* A blog article lives next to the pages of its own language. */
   function blogHref(b) { return b[2] === lang ? b[0] : (b[2] === 'it' ? 'it/' : '../') + b[0]; }
+  /* Only articles written in the visitor's language: English site -> English articles, Italian site -> Italian ones. */
   function blogLinks(list) {
-    return '<p class="menu-sub">Blog</p><ul class="menu-blog">' + PAGES.blog.filter(function (b) { return b[3] === list; }).map(function (b) {
+    var posts = PAGES.blog.filter(function (b) { return b[3] === list && b[2] === lang; });
+    if (!posts.length) return '';
+    return '<p class="menu-sub">Blog</p><ul class="menu-blog">' + posts.map(function (b) {
       var cur = b[0] === page && b[2] === lang ? ' aria-current="page"' : '';
       return '<li><a href="' + blogHref(b) + '" hreflang="' + b[2] + '"' + cur + '><span lang="' + b[2] + '">' + esc(b[1]) + '</span></a></li>';
     }).join('') + '<li><a class="menu-all" href="blog.html#' + list + '">' + t('All articles →', 'Tutti gli articoli →') + '</a></li></ul>';

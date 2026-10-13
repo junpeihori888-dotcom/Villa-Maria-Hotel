@@ -51,7 +51,7 @@ The build also adds Google's FAQPage data, generated from the visible questions.
 
 ## Blog
 - Source: `content/blog.html`, the Word document converted with `pandoc Digital_Marketing.docx -t html --wrap=none -o content/blog.html`. Run `python3 tools/blog.py` to rebuild.
-- Each article stays in the language it was written in: the family articles (English) are `blog-*.html` at the root, the business articles (Italian) are `it/blog-*.html`. The blog index exists in both languages (`blog.html`, `it/blog.html`). On an article, the EN/IT switch opens the blog index in the other language.
+- Each article stays in the language it was written in and is only shown on the site in that language (English site: family articles; Italian site: business articles): the family articles (English) are `blog-*.html` at the root, the business articles (Italian) are `it/blog-*.html`. The blog index exists in both languages (`blog.html`, `it/blog.html`). On an article, the EN/IT switch opens the blog index in the other language.
 - Covers, teasers and the call-to-action under each article are set in `POSTS` in `tools/blog.py`. The MENU lists the articles from `PAGES.blog` in `assets/js/site.js` (under For families and For business, with an EN/IT tag); keep both lists in step when adding an article.
 - Each article gets BlogPosting and FAQPage structured data and its keywords from the document.
 
