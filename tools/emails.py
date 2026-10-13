@@ -3,7 +3,7 @@
 
 Two lists, three emails each, in English and Italian:
   family:   1 Italian Memories (welcome, with the coupon) · 2 Family Discount · 3 Ciao Again
-  business: 1 Business travel (welcome, consideration) · 2 Executive Business Stay (purchase)
+  business: 1 Business travel (welcome, consideration) · 2 Executive Business Stay (purchase) · 3 Beyond the Meeting Room (returning guests)
 
 The HTML is email-safe: tables, inline styles, 600px wide, no scripts.
 Run:  python3 tools/emails.py
@@ -494,8 +494,59 @@ def business_2():
         ('Room, breakfast, spa and meeting space in one package.', 'Camera, colazione, spa e sale meeting in un solo pacchetto.'), rows
 
 
+def business_3():
+    c = 'business-3-beyond-the-meeting-room'
+    rows = [
+        header(('For our returning guests', 'Per i nostri ospiti abituali')),
+        hero('garden-gazebo.jpg', ('The gardens of Villa Maria', 'I giardini di Villa Maria')),
+        intro(('Beyond the Meeting Room · Villa Maria', 'Beyond the Meeting Room · Villa Maria'),
+              ('Some of the best business relationships continue *beyond the meeting room.*', 'Alcune delle migliori relazioni di lavoro continuano *oltre la sala riunioni.*'),
+              ('Welcome back, {name}. You already know the quiet rooms, the spa and the table by the garden. Next time, bring a racket, and the client, the colleague or the team you want to know better.',
+               'Bentornato, {name}. Conosci già le camere silenziose, la spa e il tavolo sul giardino. La prossima volta porta una racchetta, e il cliente, il collega o il team che vuoi conoscere meglio.'),
+              [(('Explore Beyond the Meeting Room →', 'Scopri Beyond the Meeting Room →'), link('beyond-the-meeting-room.html', c), 'dark'),
+               (('Refer a colleague', 'Consiglia un collega'), link('beyond-the-meeting-room.html', c, '#refer'), 'ghost')]),
+        section(eyebrow(('Why padel, why here', 'Perché il padel, perché qui'), MUTED, True) +
+                h(('Four players, one court, *no agenda.*', 'Quattro giocatori, un campo, *nessuna agenda.*'), 30, INK, True) +
+                p(('Padel is played in doubles, easy to learn and impossible to play in silence, which is exactly why it works.',
+                   'Il padel si gioca in doppio, si impara in fretta ed è impossibile giocarlo in silenzio, ed è proprio per questo che funziona.'), MUTED, True) +
+                grid([(('01 · Networking', '01 · Networking'), ('A match says more than a pitch deck. Invite a client, close the day as partners.', 'Una partita dice più di una presentazione. Invita un cliente, chiudete la giornata da partner.')),
+                      (('02 · Wellness', '02 · Benessere'), ('An hour of movement between meetings, then sauna and massage to recover.', 'Un’ora di movimento tra una riunione e l’altra, poi sauna e massaggio per recuperare.')),
+                      (('03 · Social', '03 · Socialità'), ('Doubles by design. Meet other guests, play with your team, laugh a little.', 'Si gioca in doppio. Conosci altri ospiti, gioca con il tuo team, sorridi un po’.')),
+                      (('04 · A reason to return', '04 · Un motivo per tornare'), ('Courts in the gardens above the Adriatic, a rematch is always waiting.', 'Campi nei giardini sopra l’Adriatico, la rivincita ti aspetta sempre.'))]), WHITE),
+        section(eyebrow(('The Villa Maria padel ritual', 'Il rituale padel di Villa Maria'), MUTED, True) +
+                h(('Play. Recover. Toast. *Dine.*', 'Gioca. Recupera. Brinda. *Cena.*'), 30, INK, True) +
+                p(('The match is only the beginning. The rest of the evening is already waiting.', 'La partita è solo l’inizio. Il resto della serata ti sta già aspettando.'), MUTED, True) +
+                photos([('people/business-padel.jpg', '18:00', ('The match', 'La partita')),
+                        ('spa-whirlpool.jpg', '19:15', ('Recovery', 'Recupero')),
+                        ('bar.jpg', '20:15', ('The toast', 'Il brindisi')),
+                        ('chef-dinner.jpg', '21:00', ('The dinner', 'La cena'))], 2)),
+        section(eyebrow(('Welcome back, every time', 'Bentornato, ogni volta'), SLATE, True) +
+                h(('Your preferred business destination *awaits.*', 'La tua destinazione business preferita *ti aspetta.*'), 28, INK, True) +
+                grid([(('Your room, the way you like it', 'La tua camera, come piace a te'), ('Share your preferences once and we’ll keep them for your next stay.', 'Indicaci le tue preferenze una volta e le terremo pronte per il prossimo soggiorno.')),
+                      (('Regular trips, made simple', 'Trasferte ricorrenti, più semplici'), ('Coming back every month? Talk to us about recurring stays.', 'Torni ogni mese? Parliamo di soggiorni ricorrenti.')),
+                      (('Next time, with the family', 'La prossima volta, con la famiglia'), ('Pools, gardens and a kids’ club: the same hotel at a weekend pace.', 'Piscine, giardini e un kids’ club: lo stesso hotel, al ritmo del weekend.')),
+                      (('Stay in the loop', 'Resta aggiornato'), ('Padel evenings, chef’s dinners and spa news, straight to your inbox.', 'Serate di padel, cene dello chef e novità della spa, direttamente via email.'))],
+                     INK, '#3D4A52', 'rgba(43,47,51,.25)'), SKY),
+        section(eyebrow(('Refer a colleague', 'Consiglia un collega'), SKY_SOFT, True) +
+                h(('Good places are *meant to be shared.*', 'I bei posti sono fatti *per essere condivisi.*'), 30, WHITE, True) +
+                p(('Know someone who travels to Abruzzo for work, and would play a better game here? Introduce them to Villa Maria. We’ll take care of them the way we take care of you.',
+                   'Conosci qualcuno che viaggia in Abruzzo per lavoro, e che qui giocherebbe meglio? Presentagli Villa Maria. Ci prenderemo cura di lui come ci prendiamo cura di te.'), '#D9DCDD', True) +
+                grid([(('1', '1'), ('Share your personal link', 'Condividi il tuo link personale')),
+                      (('2', '2'), ('Your colleague stays', 'Il tuo collega soggiorna')),
+                      (('3', '3'), ('We welcome them like you', 'Lo accogliamo come te'))], WHITE, '#C9CED1', 'rgba(255,255,255,.25)', 3) +
+                buttons([(('Refer a colleague →', 'Consiglia un collega →'), link('beyond-the-meeting-room.html', c, '#refer'), 'light')]) +
+                p(('Enjoyed your stay? <a href="' + link('beyond-the-meeting-room.html', c, '#review') + '" style="color:#FFFFFF">Share your review</a>',
+                   'Ti è piaciuto il soggiorno? <a href="' + link('beyond-the-meeting-room.html', c, '#review') + '" style="color:#FFFFFF">Lascia una recensione</a>'), '#D9DCDD', True, 13, 16)
+                .replace('&lt;', '<').replace('&gt;', '>'), SLATE),
+        section(h(('Your court is ready. *So is your room.*', 'Il tuo campo è pronto. *Anche la tua camera.*'), 30, INK, True) +
+                buttons([(('Book Beyond the Meeting Room →', 'Prenota Beyond the Meeting Room →'), link('booking.html', c, '#beyond'), 'dark')])),
+        footer()]
+    return c, ('The best business relationships continue beyond the meeting room', 'Le migliori relazioni di lavoro continuano oltre la sala riunioni'), \
+        ('Next time, bring a racket.', 'La prossima volta, porta una racchetta.'), rows
+
+
 EMAILS = [('family', 1, family_1), ('family', 2, family_2), ('family', 3, family_3),
-          ('business', 1, business_1), ('business', 2, business_2)]
+          ('business', 1, business_1), ('business', 2, business_2), ('business', 3, business_3)]
 WHEN = {1: ('Right after sign-up', 'Subito dopo l’iscrizione'), 2: ('7 days later', '7 giorni dopo'),
         3: ('After check-out, to returning guests', 'Dopo il check-out, agli ospiti che tornano')}
 
