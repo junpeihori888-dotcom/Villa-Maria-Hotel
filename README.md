@@ -49,9 +49,8 @@ Every page has a question-and-answer accordion just before the footer. Questions
 
 The build also adds Google's FAQPage data, generated from the visible questions.
 
-## Intro film (home page)
-- `assets/video/intro-loop.mp4` / `.webm`: the first 10.4 seconds of the film, without sound and without the logo ending. It loops silently behind the home-page headline (EN + IT); `assets/img/intro-poster.jpg` shows while it loads, and visitors who ask their device for reduced motion see the still image.
-- `assets/video/intro.mp4` / `.webm`: the full 13-second film with sound and logo, opened by the "▶ Watch the film" button (`data-film` in `index.html`). MP4 plays in Safari, Chrome and Edge; the WebM copy covers other browsers.
+## Intro video (home page)
+- `assets/video/intro-loop.mp4` / `.webm`: the first 10.4 seconds of the film (no sound, no logo ending), slowed to 0.8× speed (13 seconds). It loops silently behind the home-page headline (EN + IT); `assets/img/intro-poster.jpg` shows while it loads, and visitors who ask their device for reduced motion see the still image. MP4 plays in Safari, Chrome and Edge; the WebM copy covers other browsers.
 
 ## Blog
 - Source: `content/blog.html`, the Word document converted with `pandoc Digital_Marketing.docx -t html --wrap=none -o content/blog.html`. Run `python3 tools/blog.py` to rebuild.
