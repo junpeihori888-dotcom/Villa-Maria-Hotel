@@ -672,7 +672,7 @@
     var done = false, timer;
     function go() {
       if (done) return;
-      if (menu.classList.contains('open') || !help.hidden || !formModal.hidden || (lb && !lb.hidden)) { clearTimeout(timer); timer = setTimeout(go, 4000); return; }
+      if (menu.classList.contains('open') || !help.hidden || !formModal.hidden || !film.hidden || (lb && !lb.hidden)) { clearTimeout(timer); timer = setTimeout(go, 4000); return; }
       done = true; window.removeEventListener('scroll', onScroll);
       newsOpen();
     }
@@ -683,6 +683,37 @@
     timer = setTimeout(go, NEWSLETTER.showAfterSeconds * 1000);
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
+
+  /* ---------- Intro film: silent loop behind the home headline, full film with sound on request ---------- */
+  var heroVideo = document.querySelector('.hero-video');
+  if (heroVideo && window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.removeAttribute('autoplay'); heroVideo.pause();
+  }
+  var film = document.createElement('div');
+  film.className = 'modal film-modal';
+  film.hidden = true;
+  film.setAttribute('role', 'dialog');
+  film.setAttribute('aria-modal', 'true');
+  film.setAttribute('aria-label', t('Villa Maria film', 'Il video di Villa Maria'));
+  film.innerHTML = '<div class="film-box"><button type="button" class="modal-x" aria-label="' + t('Close', 'Chiudi') + '">×</button><video controls playsinline preload="none"></video></div>';
+  var filmVideo = film.querySelector('video');
+  function filmOpen(src) {
+    // MP4 (H.264) plays in Safari, Chrome and Edge; the WebM copy covers browsers without H.264.
+    if (!filmVideo.canPlayType('video/mp4; codecs="avc1.42E01E"') && filmVideo.canPlayType('video/webm')) src = src.replace(/\.mp4$/, '.webm');
+    if (filmVideo.getAttribute('src') !== src) filmVideo.setAttribute('src', src);
+    if (heroVideo) heroVideo.pause();
+    openModal(film);
+    filmVideo.currentTime = 0;
+    var pr = filmVideo.play(); if (pr && pr.catch) pr.catch(function () {});
+  }
+  function filmClose() {
+    filmVideo.pause();
+    closeModal(film);
+    if (heroVideo && heroVideo.hasAttribute('autoplay')) { var pr = heroVideo.play(); if (pr && pr.catch) pr.catch(function () {}); }
+  }
+  film.querySelector('.modal-x').addEventListener('click', filmClose);
+  film.addEventListener('click', function (e) { if (e.target === film) filmClose(); });
+  filmVideo.addEventListener('ended', filmClose);
 
   /* ---------- Showcase carousels: ‹ › flips photos inside a card, ← → moves between cards ---------- */
   document.querySelectorAll('.sc-card').forEach(function (card) {
@@ -776,7 +807,7 @@
   var skip = document.createElement('a');
   skip.className = 'skip'; skip.href = '#main'; skip.textContent = t('Skip to content', 'Vai al contenuto');
   body.insertBefore(skip, body.firstChild);
-  [menu, footer, help, formModal, newsPop, bar, fab, lb].forEach(function (el) { body.appendChild(el); });
+  [menu, footer, help, formModal, newsPop, film, bar, fab, lb].forEach(function (el) { body.appendChild(el); });
 
   /* Book buttons open our own booking page; data-book="executive" etc. preselects the package. */
   document.querySelectorAll('[data-book]').forEach(function (a) {
@@ -851,7 +882,8 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    if (!newsPop.hidden) newsSkip();
+    if (!film.hidden) filmClose();
+    else if (!newsPop.hidden) newsSkip();
     else if (!formModal.hidden) closeModal(formModal);
     else if (!help.hidden) closeModal(help);
     else if (menu.classList.contains('open')) closeMenu();
@@ -870,6 +902,8 @@
   window.addEventListener('hashchange', reviewLink);
 
   document.addEventListener('click', function (e) {
+    var fl = e.target.closest('[data-film]');
+    if (fl) { e.preventDefault(); filmOpen(BASE + fl.getAttribute('data-film').replace(/^(\.\.\/)+/, '')); return; }
     var nw = e.target.closest('[data-news]');
     if (nw) { e.preventDefault(); newsOpen(nw.getAttribute('data-news') || undefined); return; }
     var fm = e.target.closest('[data-form]');

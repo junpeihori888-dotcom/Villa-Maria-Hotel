@@ -637,3 +637,10 @@ a.card:hover .ph img{transform:scale(1.04)}
 .room-pick .card .eb{margin-top:0}
 .room-pick .card .btn{margin-top:18px}
 .wrap.center .h2{margin-inline:auto;max-width:none}
+
+/* ---------- Intro film (home page) ---------- */
+.hero > video.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.film-modal{background:rgba(20,24,27,.92)}
+.film-box{position:relative;width:min(1100px,100%)}
+.film-box video{display:block;width:100%;height:auto;max-height:82vh;background:#000;border-radius:2px}
+.film-box .modal-x{top:-48px;right:-6px;color:#fff}
