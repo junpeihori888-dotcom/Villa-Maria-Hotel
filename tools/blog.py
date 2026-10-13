@@ -143,7 +143,7 @@ def card(post, from_lang, base):
     label = u['family'] if post['list'] == 'family' else u['business']
     return (f'<a class="card blog-card" href="{href(post, from_lang)}" hreflang="{post["lang"]}">'
             f'<div class="ph"><img alt="" loading="lazy" src="{base}assets/img/{post["cover"]}"/></div>'
-            f'<p class="eb">{label} <span class="lang-chip" lang="{post["lang"]}">{post["lang"].upper()}</span></p>'
+            f'<p class="eb">{label}</p>'
             f'<div class="t" lang="{post["lang"]}">{html.escape(post["title"])}</div>'
             f'<div class="s" lang="{post["lang"]}">{html.escape(post["teaser"])}</div>'
             f'<span class="more">{post["minutes"]} {u["read"]}</span></a>')
@@ -228,7 +228,7 @@ def index(posts, lang):
         group = [p for p in posts if p['list'] == lst]
         out += f'''<section class="section{' white' if lst == 'business' else ''} tight" id="{lst}">
 <div class="wrap">
-<div class="head"><div><p class="eb">{u[lst]} <span class="lang-chip">{group[0]["lang"].upper()}</span></p></div></div>
+<div class="head"><div><p class="eb">{u[lst]}</p></div></div>
 <div class="cards" style="--cols:3">
 {chr(10).join(card(p, lang, base) for p in group)}
 </div>

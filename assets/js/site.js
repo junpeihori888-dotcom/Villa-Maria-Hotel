@@ -119,7 +119,7 @@
   function blogLinks(list) {
     return '<p class="menu-sub">Blog</p><ul class="menu-blog">' + PAGES.blog.filter(function (b) { return b[3] === list; }).map(function (b) {
       var cur = b[0] === page && b[2] === lang ? ' aria-current="page"' : '';
-      return '<li><a href="' + blogHref(b) + '" hreflang="' + b[2] + '"' + cur + '><span lang="' + b[2] + '">' + esc(b[1]) + '</span> <span class="lang-chip">' + b[2].toUpperCase() + '</span></a></li>';
+      return '<li><a href="' + blogHref(b) + '" hreflang="' + b[2] + '"' + cur + '><span lang="' + b[2] + '">' + esc(b[1]) + '</span></a></li>';
     }).join('') + '<li><a class="menu-all" href="blog.html#' + list + '">' + t('All articles →', 'Tutti gli articoli →') + '</a></li></ul>';
   }
   function telHref(n) { return 'tel:' + n.replace(/[^\d+]/g, ''); }
