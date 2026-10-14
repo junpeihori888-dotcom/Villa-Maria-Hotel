@@ -83,8 +83,8 @@
     ],
     business: [
       ['business-travel.html', 'Take the pressure out of business travel', 'Viaggiare per lavoro, senza pressione'],
-      ['executive-business-stay.html', 'Executive Business Stay Package', 'Pacchetto Executive Business Stay'],
-      ['beyond-the-meeting-room.html', 'Beyond the Meeting Room', 'Beyond the Meeting Room']
+      ['executive-business-stay.html', 'Executive Business Stay Package', 'Il tuo soggiorno di lavoro'],
+      ['beyond-the-meeting-room.html', 'Beyond the Meeting Room', 'Alcune delle migliori relazioni di lavoro']
     ],
     hotel: [
       ['index.html', 'Home', 'Home', 'villa-adriatic.jpg'],
