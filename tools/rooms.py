@@ -38,8 +38,8 @@ ICON = {
 # value, name EN/IT, text EN/IT, photos, features [(icon, EN, IT)]
 ROOMS = [
     ('standard', 'Standard Room', 'Camera Standard',
-     'Calm, practical rooms facing the park, in a quiet part of the hotel.',
-     'Camere sobrie e funzionali con vista sul parco, in una zona tranquilla dell’hotel.',
+     'Calm, practical rooms facing the park, in a quiet part of the hotel past the winter garden. The spa is reached through reception. Good for a short stay on a budget.',
+     'Camere sobrie e funzionali con vista sul parco, in una zona tranquilla dell’hotel oltre il giardino d’inverno. Alla spa si accede dalla reception. Ideali per un soggiorno breve a budget contenuto.',
      ['superior-room.jpg', 'villa-adriatic.jpg'],
      [('park', 'Park view', 'Vista parco'), ('quiet', 'Quiet area', 'Zona tranquilla'),
       ('bath', 'Shower or bath', 'Doccia o vasca'), ('kit', 'Spa access & wellness kit', 'Accesso spa e kit benessere')]),

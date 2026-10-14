@@ -182,8 +182,16 @@
       '<div><h3>' + t('For business', 'Per il business') + '</h3><ul>' + links(PAGES.business) + '</ul>' + blogLinks('business') + '</div>' +
       '<div><h3>' + t('The hotel', "L'hotel") + '</h3><ul class="menu-photos">' + links(PAGES.hotel, true) + '</ul></div>' +
     '</nav>' +
-    '<div class="wrap menu-foot"><span>' + esc(HOTEL.address) + '</span>' +
+    '<div class="wrap menu-foot"><span>' + esc(HOTEL.address) + '</span>' + socialLinks() +
       (HOTEL.phone ? '<a href="' + telHref(HOTEL.phone) + '">' + esc(HOTEL.phone) + '</a>' : '') + '</div>';
+
+  /* Instagram and Facebook buttons (footer and MENU). */
+  function socialLinks() {
+    return '<div class="social"><span>' + t('Follow us', 'Seguici') + '</span>' +
+      '<a href="' + esc(HOTEL.instagram || 'https://www.instagram.com/') + '" rel="noopener" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>' +
+      '<a href="' + esc(HOTEL.facebook || 'https://www.facebook.com/') + '" rel="noopener" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V7c0-.8.5-1.2 1.2-1.2H17V2.6h-2.6C11.8 2.6 10.8 4.3 10.8 6.6v1.9H8.5v3.3h2.3V21.4H14v-9.6h2.6l.4-3.3z" class="fill"/></svg></a>' +
+      '</div>';
+  }
 
   /* ---------- Footer ---------- */
   var legal = [];
@@ -196,10 +204,8 @@
   footer.innerHTML =
     '<div class="wrap">' +
       '<div><div class="brand">Villa Maria<br>Hotel &amp; Spa</div>' + contactList() +
-        '<div class="social"><span>' + t('Follow us', 'Seguici') + '</span>' +
-          '<a href="' + esc(HOTEL.instagram || 'https://www.instagram.com/') + '" rel="noopener" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>' +
-          '<a href="' + esc(HOTEL.facebook || 'https://www.facebook.com/') + '" rel="noopener" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V7c0-.8.5-1.2 1.2-1.2H17V2.6h-2.6C11.8 2.6 10.8 4.3 10.8 6.6v1.9H8.5v3.3h2.3V21.4H14v-9.6h2.6l.4-3.3z" class="fill"/></svg></a>' +
-        '</div></div>' +
+        socialLinks() +
+        '</div>' +
       '<div><h4>' + t('Families', 'Famiglie') + '</h4><ul>' + links(PAGES.families) + '</ul></div>' +
       '<div><h4>Business</h4><ul>' + links(PAGES.business) + '</ul></div>' +
       '<div><h4>' + t('The hotel', "L'hotel") + '</h4><ul>' + links(PAGES.hotel.slice(1)) + '<li><a href="blog.html">Blog</a></li></ul></div>' +
