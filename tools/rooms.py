@@ -40,37 +40,41 @@ ROOMS = [
     ('standard', 'Standard Room', 'Camera Standard',
      'Calm, practical rooms facing the park, in a quiet part of the hotel past the winter garden. The spa is reached through reception. Good for a short stay on a budget.',
      'Camere sobrie e funzionali con vista sul parco, in una zona tranquilla dell’hotel oltre il giardino d’inverno. Alla spa si accede dalla reception. Ideali per un soggiorno breve a budget contenuto.',
-     ['superior-room.jpg', 'villa-adriatic.jpg'],
+     [('rooms/standard-1.jpg', 'Reading corner with a view of the park', 'Angolo lettura con vista sul parco'),
+      ('rooms/standard-2.jpg', 'Bathroom with walk-in shower and wellness kit', 'Bagno con doccia walk-in e kit benessere')],
      [('park', 'Park view', 'Vista parco'), ('quiet', 'Quiet area', 'Zona tranquilla'),
       ('bath', 'Shower or bath', 'Doccia o vasca'), ('kit', 'Spa access & wellness kit', 'Accesso spa e kit benessere')]),
     ('superior', 'Superior Room', 'Camera Superior',
      'In the main building next to the spa, with a view over the pine grove or the sea in the distance.',
      'Nel corpo centrale vicino alla spa, con vista sulla pineta o sul mare in lontananza.',
-     ['rooms/superior-1.jpg', 'rooms/superior-2.jpg', 'rooms/superior-3.jpg'],
+     [('rooms/superior-1.jpg', 'Desk and balcony over the pines, the sea in the distance', 'Scrivania e balcone sui pini, il mare in lontananza'),
+      ('rooms/superior-2.jpg', 'Bathrobe, slippers and wellness kit, ready for the spa', 'Accappatoio, ciabattine e kit benessere, pronti per la spa')],
      [('park', 'Pine grove or distant sea view', 'Vista pineta o mare in lontananza'), ('lift', 'Direct spa access from your floor', 'Accesso diretto alla spa dal piano'),
       ('bath', 'Shower or bath', 'Doccia o vasca'), ('kit', 'Wellness kit', 'Kit benessere')]),
     ('deluxe', 'Deluxe Room', 'Camera Deluxe',
      'A room with its own terrace, looking out to the sea or the pine forest.',
      'Una camera con la propria terrazza, affacciata sul mare o sulla pineta.',
-     ['rooms/deluxe-1.jpg', 'deluxe-room.jpg'],
+     [('rooms/deluxe-1.jpg', 'The room opens onto a private sea-view terrace', 'La camera si apre su una terrazza privata vista mare'),
+      ('deluxe-room.jpg', 'Double bed, with the terrace beyond the glass doors', 'Letto matrimoniale, con la terrazza oltre le vetrate')],
      [('terrace', 'Private terrace', 'Terrazza privata'), ('sea', 'Sea or pine-forest view', 'Vista mare o pineta'),
       ('spa', 'Spa access', 'Accesso alla spa'), ('kit', 'Wellness kit', 'Kit benessere')]),
     ('suite', 'Junior Suite', 'Junior Suite',
      'A sleeping area and a separate sitting area, with a private terrace. Room for families and longer stays.',
      'Zona notte e soggiorno separati, con terrazza privata. Spazio per famiglie e soggiorni più lunghi.',
-     ['rooms/junior-suite-1.jpg', 'suite-seaview.jpg'],
+     [('rooms/junior-suite-1.jpg', 'Sitting area, with the bedroom beyond', 'Zona soggiorno, con la camera da letto oltre')],
      [('sofa', 'Separate sitting area', 'Zona soggiorno separata'), ('terrace', 'Private terrace', 'Terrazza privata'),
       ('lift', 'Direct spa access by lift', 'Accesso diretto alla spa in ascensore'), ('kettle', 'Kettle', 'Bollitore')]),
     ('mini-spa', 'Mini SPA Suite', 'Mini SPA Suite',
      'A hydromassage tub for two inside the suite, and a sea-view terrace with a solarium.',
      'Una vasca idromassaggio di coppia in camera e una terrazza vista mare con solarium.',
-     ['suite-terrace.jpg', 'spa-whirlpool.jpg'],
+     [('spa-whirlpool.jpg', 'The Linfa spa, reached directly from your floor', 'La spa Linfa, raggiungibile direttamente dal piano')],
      [('tub2', 'Hydromassage tub for two', 'Vasca idromassaggio di coppia'), ('sun', 'Sea-view terrace & solarium', 'Terrazza vista mare e solarium'),
       ('lift', 'Direct spa access from your floor', 'Accesso diretto alla spa dal piano'), ('kit', 'Wellness kit', 'Kit benessere')]),
     ('master-spa', 'Master SPA Suite', 'Master SPA Suite',
      'Two rooms with a sauna for two, and a large corner terrace with a heated mini jacuzzi, facing east and fully private.',
      'Due ambienti con sauna di coppia e una grande terrazza ad angolo con mini jacuzzi riscaldata, esposta a est e riservata.',
-     ['suite-terrace.jpg', 'walk.jpg', 'sauna.jpg'],
+     [('suite-terrace.jpg', 'Private terrace with a hot tub and a sea view', 'Terrazza privata con vasca idromassaggio e vista mare'),
+      ('sauna.jpg', 'Sauna for two', 'Sauna di coppia')],
      [('rooms2', 'Two rooms, separate bathroom', 'Due ambienti, bagno separato'), ('sauna', 'Sauna for two', 'Sauna di coppia'),
       ('jacuzzi', 'Heated mini jacuzzi on the terrace', 'Mini jacuzzi riscaldata in terrazza'), ('sun', 'Corner terrace & solarium', 'Terrazza ad angolo e solarium')]),
 ]
@@ -81,11 +85,14 @@ ALL = ('In every room: free Wi-Fi, air conditioning, satellite TV, safe, hairdry
 
 
 def media(photos):
-    slides = ''.join(f'<img alt="" class="rc-slide{" is-active" if i == 0 else ""}" loading="lazy" src="assets/img/{p}"/>' for i, p in enumerate(photos))
+    """photos = [(file, caption EN, caption IT)]; the caption is the alt text and shows on the photo."""
+    slides = ''.join(f'<img alt="{A(en)}" class="rc-slide{" is-active" if i == 0 else ""}" data-it-alt="{A(it)}" loading="lazy" src="assets/img/{f}"/>'
+                     for i, (f, en, it) in enumerate(photos))
+    cap = f'<span class="rc-cap" data-it="{A(photos[0][2])}">{html.escape(photos[0][1], quote=False)}</span>'
     nav = ('<button aria-label="Previous photo" class="rc-prev" data-it-aria="Foto precedente" type="button">‹</button>'
            '<button aria-label="Next photo" class="rc-next" data-it-aria="Foto successiva" type="button">›</button>'
            f'<span class="rc-count">1 / {len(photos)}</span>') if len(photos) > 1 else ''
-    return f'<span class="rc-media">{slides}{nav}</span>'
+    return f'<span class="rc-media">{slides}{cap}{nav}</span>'
 
 
 def feats(fs):

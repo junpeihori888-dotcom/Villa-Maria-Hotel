@@ -750,3 +750,6 @@ a.card:hover .ph img{transform:scale(1.04)}
 .menu-foot .social{margin:0}
 .menu-foot .social span{display:none}
 .menu-foot .social a{width:36px;height:36px}
+/* Photo captions on room cards and showcase cards */
+.rc-cap,.sc-cap{position:absolute;left:10px;bottom:10px;max-width:calc(100% - 90px);background:rgba(43,47,51,.72);color:#fff;font-size:12px;line-height:1.35;padding:5px 10px;border-radius:2px;pointer-events:none}
+.sc-cap{right:auto;max-width:calc(100% - 20px)}

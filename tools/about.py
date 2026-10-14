@@ -424,7 +424,7 @@ CARDS = {
    T('From Standard rooms to the Master SPA Suite, facing the park or the Adriatic.', 'Dalla Standard alla Master SPA Suite, con vista sul parco o sull’Adriatico.'),
    [P('rooms/deluxe-1.jpg', 'Deluxe Room', 'Camera Deluxe'), P('rooms/superior-1.jpg', 'Superior Room', 'Camera Superior'),
     P('rooms/junior-suite-1.jpg', 'Junior Suite', 'Junior Suite'),
-    P('suite-terrace.jpg', 'Suite terrace with hot tub', 'Terrazza della suite con idromassaggio'), P('suite-seaview.jpg', 'Sea view from a suite', 'Vista mare da una suite')], 'rooms.html'),
+    P('suite-terrace.jpg', 'Suite terrace with hot tub', 'Terrazza della suite con idromassaggio')], 'rooms.html'),
   (T('Wellness', 'Benessere'), T('Linfa wellness &amp; spa', 'Benessere e spa Linfa'),
    T('Hydromassage pool, Turkish bath, sauna and sensory shower, with a free two-hour session for every guest.', 'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, con due ore gratuite per ogni ospite.'),
    [P('spa-whirlpool.jpg', 'Hydromassage pool', 'Piscina idromassaggio'), P('spa.jpg', 'Indoor pool', 'Piscina interna'),
@@ -524,7 +524,8 @@ def showcase_section(cards):
     for i, (eb, title, text, photos, link) in enumerate(cards):
         slides = ''.join(
             f'<a class="g-item sc-slide{" is-active" if j == 0 else ""}" href="assets/img/{f}" data-caption="{a(cap[0])}" data-it-caption="{a(cap[1])}">'
-            f'<img src="assets/img/{f}" alt="{a(cap[0])}" data-it-alt="{a(cap[1])}" loading="lazy"></a>'
+            f'<img src="assets/img/{f}" alt="{a(cap[0])}" data-it-alt="{a(cap[1])}" loading="lazy">'
+            f'<span class="sc-cap" data-it="{a(cap[1])}">{cap[0]}</span></a>'
             for j, (f, cap) in enumerate(photos))
         ctrl = ('' if len(photos) < 2 else
                 '<div class="sc-ctrl"><span class="sc-count" aria-live="polite">1 / ' + str(len(photos)) + '</span>'

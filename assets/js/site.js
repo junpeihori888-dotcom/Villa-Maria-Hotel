@@ -830,6 +830,8 @@
     i = (i + (b.classList.contains('rc-next') ? 1 : -1) + slides.length) % slides.length;
     slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
     media.querySelector('.rc-count').textContent = (i + 1) + ' / ' + slides.length;
+    var cap = media.querySelector('.rc-cap');
+    if (cap) cap.textContent = slides[i].alt;
   });
 
   /* Offer terms: shown only for the fields that are filled in. */
