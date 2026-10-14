@@ -690,6 +690,19 @@
     heroVideo.removeAttribute('autoplay'); heroVideo.pause();
   }
 
+  /* ---------- "▶ Kids Club" badge: play the clip in place of the photo ---------- */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-play]');
+    if (!b) return;
+    var box = b.parentNode, src = BASE + b.getAttribute('data-play');
+    var v = document.createElement('video');
+    v.controls = true; v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true;
+    v.setAttribute('poster', (box.querySelector('img') || {}).src || '');
+    v.innerHTML = '<source src="' + src + '.mp4" type="video/mp4"><source src="' + src + '.webm" type="video/webm">';
+    box.innerHTML = ''; box.appendChild(v);
+    var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+  });
+
   /* ---------- Showcase carousels: ‹ › flips photos inside a card, ← → moves between cards ---------- */
   document.querySelectorAll('.sc-card').forEach(function (card) {
     var slides = card.querySelectorAll('.sc-slide'), count = card.querySelector('.sc-count'), i = 0;
