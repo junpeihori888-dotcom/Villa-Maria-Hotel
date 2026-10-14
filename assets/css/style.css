@@ -689,3 +689,4 @@ a.card:hover .ph img{transform:scale(1.04)}
 .join-box .points > div{border-color:rgba(244,241,234,.25)}
 .join-box .points span{color:rgba(244,241,234,.75)}
 .cta .cta-stack{flex-direction:column;align-items:stretch;min-width:260px}
+.offer > .t:first-child{margin-top:0}
