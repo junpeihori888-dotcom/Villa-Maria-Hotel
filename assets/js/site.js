@@ -169,7 +169,10 @@
   menu.setAttribute('aria-label', 'Menu');
   menu.innerHTML =
     '<div class="wrap menu-top"><button type="button" class="menu-close">' + t('Close ✕', 'Chiudi ✕') + '</button>' +
-      '<a class="btn btn-sky" href="booking.html">' + t('Book Now', 'Prenota') + '</a></div>' +
+      '<div class="menu-right"><nav class="lang lang-dark" aria-label="' + t('Language', 'Lingua') + '">' +
+        '<a href="' + enHref + '" hreflang="en" lang="en"' + (lang === 'en' ? ' aria-current="true"' : '') + '>EN</a>' +
+        '<a href="' + itHref + '" hreflang="it" lang="it"' + (lang === 'it' ? ' aria-current="true"' : '') + '>IT</a>' +
+      '</nav><a class="btn btn-sky" href="booking.html">' + t('Book Now', 'Prenota') + '</a></div></div>' +
     '<nav class="wrap menu-grid" aria-label="' + t('Main', 'Principale') + '">' +
       '<div><h3>' + t('For families', 'Per le famiglie') + '</h3><ul>' + links(PAGES.families) + '</ul>' + blogLinks('family') + '</div>' +
       '<div><h3>' + t('For business', 'Per il business') + '</h3><ul>' + links(PAGES.business) + '</ul>' + blogLinks('business') + '</div>' +
