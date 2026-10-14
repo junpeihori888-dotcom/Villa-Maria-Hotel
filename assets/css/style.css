@@ -726,7 +726,17 @@ a.card:hover .ph img{transform:scale(1.04)}
 .room-card:has(input:checked) .rc-pick-off{display:none}
 .room-card:has(input:checked) .rc-pick-on{display:inline;color:var(--olive)}
 .rc-all{font-size:13px;color:var(--muted);margin:12px 0 0}
-@media (max-width:700px){.room-card{grid-template-columns:1fr}.rc-media{min-height:0;aspect-ratio:16/10}.rc-name{font-size:23px}}
+/* Rooms page: the same cards, for reading (no radio). */
+.rooms-list .h2{margin-bottom:28px}
+.room-card.is-display{cursor:default}
+.room-card.is-display:hover{border-color:var(--line)}
+.room-card.is-display .rc-media{min-height:280px}
+.room-card.is-display .rc-name{margin:0}
+.room-card.is-display .rc-text{margin:8px 0 0}
+.rc-book{margin-top:auto;align-self:flex-start}
+.room-card.is-display .rc-feats{margin-bottom:18px}
+.rooms-list .muted{margin-top:6px}
+@media (max-width:700px){.room-card{grid-template-columns:1fr}.room-card.is-display .rc-media{min-height:0}.rc-book{align-self:stretch;text-align:center}.rc-media{min-height:0;aspect-ratio:16/10}.rc-name{font-size:23px}}
 @media (max-width:400px){.rc-feats{grid-template-columns:1fr}}
 
 /* Footer: Instagram & Facebook */

@@ -11,8 +11,8 @@
     name: 'Villa Maria Hotel & Spa',
     // Full links to the hotel's own social pages, e.g. 'https://www.instagram.com/villamaria…'.
     // Until they are set, the footer icons open Instagram and Facebook.
-    instagram: '',
-    facebook: '',
+    instagram: 'https://www.instagram.com/hotel_villamaria/',
+    facebook: 'https://www.facebook.com/villamariahotelspa',
     legalName: '',            // company name as registered, e.g. 'Villa Maria S.r.l.'
     vat: '',                  // P.IVA, e.g. '01234567890'
     cin: '',                  // Codice Identificativo Nazionale, e.g. 'IT069035A1XXXXXXXX'
@@ -812,6 +812,18 @@
   document.querySelectorAll('[data-book]').forEach(function (a) {
     var key = a.getAttribute('data-book');
     if (a.tagName === 'A') a.href = 'booking.html' + (key ? '#' + key : '');
+  });
+
+  /* Room cards (booking and Rooms pages): ‹ › flips the photos without selecting the room. */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.rc-prev, .rc-next');
+    if (!b) return;
+    e.preventDefault();
+    var media = b.closest('.rc-media'), slides = media.querySelectorAll('.rc-slide');
+    var i = [].indexOf.call(slides, media.querySelector('.rc-slide.is-active'));
+    i = (i + (b.classList.contains('rc-next') ? 1 : -1) + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+    media.querySelector('.rc-count').textContent = (i + 1) + ' / ' + slides.length;
   });
 
   /* Offer terms: shown only for the fields that are filled in. */

@@ -41,6 +41,13 @@ between cards. Add photos to a card's list to show more. After editing:
 
     python3 tools/about.py && python3 tools/build-it.py
 
+## Room cards
+The six rooms (photos, short description, four features with icons, and the line about what every room has)
+live in `ROOMS` in `tools/rooms.py`. The same cards appear on the Rooms page (each with a "Book this room"
+button) and in step 3 of the booking page (as the room choice). After editing them:
+
+    python3 tools/rooms.py && python3 tools/build-it.py
+
 ## FAQ ("Good to know") sections
 Every page has a question-and-answer accordion just before the footer. Questions and answers
 (English and Italian) live in `tools/faq.py`. After editing them:

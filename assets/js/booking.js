@@ -180,18 +180,6 @@
       : t('Price confirmed by email', 'Prezzo confermato via email');
   });
 
-  /* Room cards: ‹ › flips the photos without selecting the room. */
-  form.addEventListener('click', function (e) {
-    var b = e.target.closest('.rc-prev, .rc-next');
-    if (!b) return;
-    e.preventDefault();
-    var media = b.closest('.rc-media'), slides = media.querySelectorAll('.rc-slide');
-    var i = [].indexOf.call(slides, media.querySelector('.rc-slide.is-active'));
-    i = (i + (b.classList.contains('rc-next') ? 1 : -1) + slides.length) % slides.length;
-    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
-    media.querySelector('.rc-count').textContent = (i + 1) + ' / ' + slides.length;
-  });
-
   function update() {
     var n = nights();
     $('s-dates').textContent = ci.value && co.value ? fmt(ci.value) + ' → ' + fmt(co.value) : '—';
