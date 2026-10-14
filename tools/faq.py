@@ -15,17 +15,17 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # (question EN, question IT, answer EN, answer IT)
 LOCATION = ('Where is Villa Maria Hotel & Spa?', "Dove si trova Villa Maria Hotel & Spa?",
-    'On the hill above Francavilla al Mare, just south of Pescara in Abruzzo. Abruzzo Airport (Pescara) is a short drive away, Pescara Centrale station has easy rail connections, and the A14 Pescara Sud exit is close by.',
-    "Sulla collina sopra Francavilla al Mare, appena a sud di Pescara, in Abruzzo. L'aeroporto d'Abruzzo (Pescara) è a pochi minuti d'auto, la stazione di Pescara Centrale ha comodi collegamenti e l'uscita A14 Pescara Sud è vicina.")
+    'On the hill above Francavilla al Mare, in Abruzzo, 5 km from the centre of Pescara. Chieti, Pescara and Abruzzo International Airport are about 15 minutes away, Pescara Centrale station has easy rail connections, and the A14 Pescara Sud exit is close by.',
+    "Sulla collina sopra Francavilla al Mare, in Abruzzo, a 5 km dal centro di Pescara. Chieti, Pescara e l'Aeroporto Internazionale d'Abruzzo sono a circa 15 minuti, la stazione di Pescara Centrale ha comodi collegamenti e l'uscita A14 Pescara Sud è vicina.")
 CHECKIN = ('What are the check-in and check-out times?', 'Quali sono gli orari di check-in e check-out?',
     'Your check-in and check-out times are in your booking confirmation. If you need an early check-in or a late check-out, ask us and we will do our best.',
     'Gli orari di check-in e check-out sono nella conferma di prenotazione. Se ti serve un check-in anticipato o un check-out posticipato, chiedicelo e faremo il possibile.')
 PARKING = ('Is there parking?', "C'è il parcheggio?",
-    'Yes. Private parking is free for guests and includes EV charging.',
-    'Sì. Il parcheggio privato è gratuito per gli ospiti e ha la ricarica per auto elettriche.')
+    'Yes. Outdoor parking is free for guests and has charging points for electric cars.',
+    'Sì. Il parcheggio all’aperto è gratuito per gli ospiti e ha colonnine di ricarica per auto elettriche.')
 SPA = ('What is in the Linfa wellness & spa?', "Cosa c'è nella spa Linfa?",
-    'A hydromassage pool, Turkish bath, sauna and sensory shower, plus relaxation, beauty and fitness areas. Every hotel guest has a free two-hour session; booking is required. Treatments for one or two can be added.',
-    'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, più aree relax, beauty e fitness. Ogni ospite ha una sessione gratuita di due ore; la prenotazione è obbligatoria. Si possono aggiungere trattamenti per uno o per due.')
+    'Indoor and outdoor pools with hydromassage points, a whirlpool, saunas, a Turkish bath, chromotherapy and aromatherapy showers, a herbal tea corner and a private garden. Every hotel guest has a free two-hour session; booking is required (+39 085 45 00 55 60). Massages for one or two can be added.',
+    'Piscine interna ed esterna con punti idromassaggio, vasca idromassaggio, saune, bagno turco, docce di cromoterapia e aromaterapia, angolo tisane e giardino privato. Ogni ospite ha una sessione gratuita di due ore; la prenotazione è obbligatoria (+39 085 45 00 55 60). Si possono aggiungere massaggi per uno o per due.')
 DIRECT = ('Why book directly with the hotel?', 'Perché prenotare direttamente con l’hotel?',
     'You get the package exactly as designed, a real person before and during your stay, and extras that are not on booking sites, such as the €20 in-house voucher on your first direct Family Discount booking.',
     'Hai il pacchetto esattamente come progettato, una persona vera prima e durante il soggiorno ed extra che non trovi sui portali, come il voucher da 20 € alla prima prenotazione diretta con lo Sconto Famiglia.')
@@ -60,26 +60,26 @@ BIZ_PADEL = ('Can I play padel with clients or colleagues?', 'Posso giocare a pa
     'Sì. I campi sono nei giardini sopra l’Adriatico. Abbina la partita alla spa, a un aperitivo al bar e alla cena alla tavola dello chef.')
 
 PETS = ('Are pets allowed?', 'Sono ammessi animali?',
-    'Yes, pets are welcome for a supplement. Tell us when you book so we can prepare the right room.',
-    'Sì, gli animali sono benvenuti con un supplemento. Diccelo quando prenoti, così prepariamo la camera giusta.')
+    'Yes, pets of all sizes are welcome for a supplement. The Cottage, at the hotel entrance, has a fully fenced outdoor area for them. Tell us when you book so we can prepare the right room.',
+    'Sì, gli animali di ogni taglia sono benvenuti con un supplemento. Il Cottage, all’ingresso dell’hotel, ha un’area esterna recintata per loro. Diccelo quando prenoti, così prepariamo la camera giusta.')
 POOLS = ('What pools does the hotel have?', "Che piscine ha l'hotel?",
-    'Two outdoor pools in the park, the Blue Pool (up to 2.5 m deep) and the Riviera Pool, plus a shallow children’s pool with water games. The outdoor pools are open in the summer season; the Linfa spa has an indoor hydromassage pool all year.',
-    'Due piscine all’aperto nel parco, la Blue Pool (fino a 2,5 m di profondità) e la Riviera Pool, più una piscina bassa per bambini con giochi d’acqua. Le piscine esterne sono aperte in estate; la spa Linfa ha una piscina idromassaggio interna tutto l’anno.')
+    'Two outdoor pools in the park: the Blue Pool, up to 2.5 m deep (open until 15 September), and the Riviera Pool for children, no deeper than 50 cm, with a twelve-jet fountain and a water umbrella (open until 30 September). The Linfa spa has indoor and outdoor pools with hydromassage all year.',
+    'Due piscine all’aperto nel parco: la Blue Pool, profonda fino a 2,5 m (aperta fino al 15 settembre), e la Riviera Pool per i bambini, profonda al massimo 50 cm, con fontana a dodici getti e ombrello d’acqua (aperta fino al 30 settembre). La spa Linfa ha piscine interna ed esterna con idromassaggio tutto l’anno.')
 BEACH = ('Is there a beach?', "C'è una spiaggia?",
     'Yes. A free shuttle takes you to a white-sand beach in Francavilla al Mare, a few kilometres away, at a private lido with a bar and restaurant that has an agreement with the hotel.',
     'Sì. Una navetta gratuita ti porta su una spiaggia di sabbia bianca a Francavilla al Mare, a pochi chilometri, in un lido privato convenzionato con bar e ristorante.')
 KIDS = ('What is there for children?', 'Cosa c’è per i bambini?',
-    'A play room with games, books, colouring and puzzles, a shallow pool with water games, the park, padel and the beach by shuttle. Nearby, families love the Guardiagrele adventure park and the zoo in Lanciano.',
-    'Una sala giochi con giochi, libri, colori e puzzle, una piscina bassa con giochi d’acqua, il parco, il padel e la spiaggia con la navetta. Nei dintorni le famiglie amano il parco avventura di Guardiagrele e lo zoo di Lanciano.')
+    'In July and August the Kids Club has a play room with games, books and puzzles, educational workshops from Tuesday to Saturday and an outdoor play area. There is also the Riviera Pool for children, the park, padel and the beach by shuttle. Nearby, families love the Guardiagrele adventure park and the zoo in Lanciano.',
+    'A luglio e agosto il Kids Club offre sala giochi con giochi, libri e puzzle, laboratori didattici dal martedì al sabato e un’area giochi all’aperto. Ci sono anche la Riviera Pool per i bambini, il parco, il padel e la spiaggia con la navetta. Nei dintorni le famiglie amano il parco avventura di Guardiagrele e lo zoo di Lanciano.')
 NEARBY = ('What can we do nearby?', 'Cosa possiamo fare nei dintorni?',
-    'Walk in the Pineta Dannunziana nature reserve in Pescara, cycle along the coast towards the Costa dei Trabocchi, go snorkelling or diving, horse riding or hiking in the hills, or visit Chieti and Pescara.',
-    'Passeggiare nella riserva Pineta Dannunziana a Pescara, pedalare lungo la costa verso la Costa dei Trabocchi, fare snorkeling o immersioni, equitazione o escursioni in collina, o visitare Chieti e Pescara.')
+    'Cycle the Bike to Coast path towards the Costa dei Trabocchi, a few minutes from the hotel, walk in the Pineta Dannunziana nature reserve in Pescara, or join a guided excursion to the Majella and Gran Sasso national parks, Chieti and Pescara.',
+    'Pedalare sulla pista Bike to Coast verso la Costa dei Trabocchi, a pochi minuti dall’hotel, passeggiare nella riserva Pineta Dannunziana a Pescara o partecipare a un’escursione guidata nei parchi nazionali della Majella e del Gran Sasso, a Chieti e a Pescara.')
 ROOMS_Q = ('Which room is right for me?', 'Quale camera fa per me?',
-    'The Superior Room, with a garden or partial sea view and a desk, suits short stays of 1 to 2 nights. The Deluxe Room and the Suites have more space and Adriatic views, for 3 nights or more.',
-    'La Camera Superior, con vista giardino o parziale vista mare e scrivania, è ideale per 1–2 notti. Le Camere Deluxe e le Suite hanno più spazio e vista Adriatico, per 3 notti o più.')
+    'For a short stay on a budget, the Standard Room faces the park. The Superior Room, near the spa with a pine grove or distant sea view, suits 1 to 2 nights. Deluxe rooms and Junior Suites have terraces over the sea or the park, Family Rooms suit families, and the Mini SPA and Master SPA Suites have their own spa in the room.',
+    'Per un soggiorno breve a budget contenuto, la Camera Standard guarda il parco. La Camera Superior, vicino alla spa con vista pineta o mare in lontananza, è ideale per 1–2 notti. Deluxe e Junior Suite hanno terrazze sul mare o sul parco, le Family Room sono pensate per le famiglie e le Mini SPA e Master SPA Suite hanno la spa in camera.')
 REST_Q = ('Is breakfast included?', 'La colazione è inclusa?',
-    'Breakfast is included in our packages and served as a local buffet. Executive guests can have it early, before the first call.',
-    'La colazione è inclusa nei pacchetti ed è servita a buffet con prodotti locali. Gli ospiti Executive possono averla presto, prima della prima call.')
+    'Breakfast is included in our packages and served as a buffet from 7:00 to 10:00, on the terrace in the warmer months. Lunch is 12:30–14:00 and dinner 19:30–22:00.',
+    'La colazione è inclusa nei pacchetti ed è servita a buffet dalle 7:00 alle 10:00, in terrazza nei mesi più caldi. Il pranzo è dalle 12:30 alle 14:00 e la cena dalle 19:30 alle 22:00.')
 
 GENERAL = [LOCATION, CHECKIN, PARKING, SPA, POOLS, PETS, DIRECT, CANCEL]
 FAQS = {

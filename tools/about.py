@@ -32,27 +32,27 @@ PAGES = {
  'index.html': {
   'eb': T('About Villa Maria', 'Su Villa Maria'),
   'h2': T('A four-star hotel &amp; spa <i>above the Adriatic.</i>', 'Un hotel &amp; spa quattro stelle <i>sopra l’Adriatico.</i>'),
-  'intro': T('Villa Maria Hotel &amp; Spa sits in a large private park in Contrada Pretaro, on the hill above Francavilla al Mare, just south of Pescara. Rooms look out over the park or the sea; two outdoor pools, the Linfa spa and a padel court are a few steps away, and a free shuttle takes you down to a white-sand beach.',
-             'Villa Maria Hotel &amp; Spa si trova in un grande parco privato in Contrada Pretaro, sulla collina sopra Francavilla al Mare, appena a sud di Pescara. Le camere guardano il parco o il mare; due piscine all’aperto, la spa Linfa e il campo da padel sono a pochi passi, e una navetta gratuita ti porta su una spiaggia di sabbia bianca.'),
+  'intro': T('Villa Maria Hotel &amp; Spa is a four-star hotel on the hills of Francavilla al Mare, 5 km from the centre of Pescara. It sits in a 6-hectare park of pines and olive trees with a view over the Adriatic coast, about 15 minutes from Chieti, Pescara and Abruzzo International Airport. Two outdoor pools, the Linfa spa, a padel court and an outdoor gym are inside the park, and a free shuttle takes you to a white-sand beach.',
+             'Villa Maria Hotel &amp; Spa è un hotel quattro stelle sulle colline di Francavilla al Mare, a 5 km dal centro di Pescara. Si trova in un parco di 6 ettari tra pini e ulivi, con vista sulla costa adriatica, a circa 15 minuti da Chieti, Pescara e dall’Aeroporto Internazionale d’Abruzzo. Nel parco ci sono due piscine all’aperto, la spa Linfa, un campo da padel e una palestra all’aperto, e una navetta gratuita ti porta su una spiaggia di sabbia bianca.'),
   'topics': [
    (T('The hotel and its park', 'L’hotel e il parco'), [
-     T('The park is the heart of the hotel: pine and olive trees, a fountain, loungers in the shade and a gazebo for slow afternoons. Two pools sit inside it, the Blue Pool and the Riviera Pool, plus a shallow pool for children.',
-       'Il parco è il cuore dell’hotel: pini e ulivi, una fontana, lettini all’ombra e un gazebo per pomeriggi lenti. Al suo interno ci sono due piscine, la Blue Pool e la Riviera Pool, più una piscina bassa per i bambini.')]),
+     T('A 6-hectare park to walk or jog in, among pines and olive groves, with the Adriatic coast in view from the hill. Inside it are the two outdoor pools, the new padel court between the pools and an outdoor fitness area with Technogym equipment.',
+       'Un parco di 6 ettari dove passeggiare o correre, tra pini e ulivi, con la costa adriatica in vista dalla collina. Al suo interno ci sono le due piscine all’aperto, il nuovo campo da padel tra le piscine e un’area fitness all’aperto con attrezzature Technogym.')]),
    (T('Rooms and suites', 'Camere e suite'), [
-     T('Six room types, from Standard and Superior rooms to Deluxe rooms, Junior Suites and the Master SPA Suite, each facing the park or the Adriatic.',
-       'Sei tipologie di camere, dalle Standard e Superior alle Deluxe, alle Junior Suite e alla Master SPA Suite, tutte con vista sul parco o sull’Adriatico.')]),
+     T('Standard, Superior and Deluxe rooms, Junior Suites, Family Rooms, the Mini SPA Suite and the Master SPA Suite, plus the Cottage for guests travelling with a pet. Every room has free Wi-Fi, air conditioning, satellite TV, a safe, a hairdryer, a wellness kit and spa access.',
+       'Camere Standard, Superior e Deluxe, Junior Suite, Family Room, Mini SPA Suite e Master SPA Suite, più il Cottage per chi viaggia con un animale. Ogni camera ha Wi-Fi gratuito, aria condizionata, TV satellitare, cassaforte, asciugacapelli, kit benessere e accesso alla spa.')]),
    (T('For families', 'Per le famiglie'), [
-     T('Children have their own play room with games, books, colouring and puzzles, a shallow pool with water games, and the beach by shuttle. Parents get the Linfa spa, long dinners and real rest. The Family Discount puts room, breakfast and spa in one booking.',
-       'I bambini hanno la loro sala giochi con giochi, libri, colori e puzzle, una piscina bassa con giochi d’acqua e la spiaggia con la navetta. I genitori hanno la spa Linfa, lunghe cene e vero riposo. Lo Sconto Famiglia riunisce camera, colazione e spa in una prenotazione.')]),
+     T('In July and August the Kids Club has a play room with games, books and puzzles, educational workshops from Tuesday to Saturday and an outdoor play area. The Riviera Pool is made for children: no deeper than 50 cm, with a twelve-jet fountain and a water umbrella. Family Rooms give everyone privacy and comfort.',
+       'A luglio e agosto il Kids Club offre una sala giochi con giochi, libri e puzzle, laboratori didattici dal martedì al sabato e un’area giochi all’aperto. La Riviera Pool è pensata per i bambini: profonda al massimo 50 cm, con fontana a dodici getti e ombrello d’acqua. Le Family Room danno a tutti privacy e comfort.')]),
    (T('For business travel', 'Per i viaggi di lavoro'), [
-     T('Five conference rooms, from small meetings to plenary sessions, with video-conferencing and fast Wi-Fi. Pescara Airport, Pescara Centrale station and the A14 are close, and the day can end in the spa or on the padel court.',
-       'Cinque sale congressi, dalle riunioni ristrette alle plenarie, con videoconferenza e Wi-Fi veloce. Aeroporto di Pescara, stazione di Pescara Centrale e A14 sono vicini, e la giornata può finire in spa o sul campo da padel.')]),
-   (T('Wellness, food and service', 'Benessere, cucina e servizio'), [
-     T('The Linfa wellness centre has a hydromassage pool, Turkish bath, sauna and sensory shower, with a free two-hour session for hotel guests. The restaurant and terrace serve Abruzzo specialities, and the team looks after you before you arrive and during your stay.',
-       'Il centro benessere Linfa ha piscina idromassaggio, bagno turco, sauna e doccia emozionale, con una sessione gratuita di due ore per gli ospiti. Ristorante e terrazza propongono specialità abruzzesi, e il team si prende cura di te prima dell’arrivo e durante il soggiorno.')]),
+     T('Five conference rooms, from small meetings to plenary sessions, with video-conferencing and fast Wi-Fi, 15 minutes from Abruzzo Airport, Chieti and Pescara. The day can end in the spa, in the outdoor gym or on the padel court.',
+       'Cinque sale congressi, dalle riunioni ristrette alle plenarie, con videoconferenza e Wi-Fi veloce, a 15 minuti da Aeroporto d’Abruzzo, Chieti e Pescara. La giornata può finire in spa, nella palestra all’aperto o sul campo da padel.')]),
+   (T('Wellness and food', 'Benessere e cucina'), [
+     T('The Linfa wellness centre has indoor and outdoor pools with hydromassage points, saunas, a Turkish bath, emotional showers, a herbal tea corner and a private garden, with a free two-hour session for hotel guests. Breakfast is served from 7:00 to 10:00, lunch from 12:30 to 14:00 and dinner from 19:30 to 22:00.',
+       'Il centro benessere Linfa ha piscine interna ed esterna con punti idromassaggio, saune, bagno turco, docce emozionali, angolo tisane e giardino privato, con una sessione gratuita di due ore per gli ospiti. La colazione è servita dalle 7:00 alle 10:00, il pranzo dalle 12:30 alle 14:00 e la cena dalle 19:30 alle 22:00.')]),
    (T('Pets welcome', 'Animali benvenuti'), [
-     T('Pets are welcome for a supplement. Tell us when you book so we can prepare the right room.',
-       'Gli animali sono benvenuti con un supplemento. Diccelo quando prenoti, così prepariamo la camera giusta.')]),
+     T('Pets of all sizes are welcome. The Cottage, at the hotel entrance with its own door, has a fully fenced outdoor area just for them. A supplement applies: tell us when you book.',
+       'Gli animali di ogni taglia sono benvenuti. Il Cottage, all’ingresso dell’hotel con entrata indipendente, ha un’area esterna completamente recintata solo per loro. È previsto un supplemento: diccelo quando prenoti.')]),
   ],
   'gallery': [
    ('villa-adriatic.jpg', T('Villa Maria above the Adriatic', 'Villa Maria sopra l’Adriatico')),
@@ -69,59 +69,62 @@ PAGES = {
  # ------------------------------------------------------------------ Rooms
  'rooms.html': {
   'eb': T('About our rooms', 'Le nostre camere'),
-  'h2': T('Six room types, <i>park or sea.</i>', 'Sei tipologie, <i>parco o mare.</i>'),
-  'intro': T('Villa Maria has six room types, from Standard rooms to the Master SPA Suite. Every room faces the park or the Adriatic and is a quiet place to sleep well, with a writing desk, power by the bed and high-speed Wi-Fi.',
-             'Villa Maria ha sei tipologie di camere, dalla Standard alla Master SPA Suite. Ogni camera guarda il parco o l’Adriatico ed è un posto tranquillo per dormire bene, con scrivania, prese vicino al letto e Wi-Fi ad alta velocità.'),
+  'h2': T('Every kind of stay, <i>park or sea.</i>', 'Ogni tipo di soggiorno, <i>parco o mare.</i>'),
+  'intro': T('Villa Maria has rooms for every kind of stay, from a Standard room for a short visit to the Master SPA Suite with its own sauna. Rooms face the park or the Adriatic, and most are in the central building with direct access to the Linfa spa from your floor.',
+             'Villa Maria ha camere per ogni tipo di soggiorno, dalla Standard per una visita breve alla Master SPA Suite con la sua sauna. Le camere guardano il parco o l’Adriatico e la maggior parte è nel corpo centrale, con accesso diretto alla spa Linfa dal piano.'),
   'topics': [
-   (T('Standard and Superior rooms', 'Camere Standard e Superior'), [
-     T('Comfortable rooms with a garden or partial sea view and a writing desk. The Superior Room is ideal for one or two nights and is the standard room of the Executive Business Stay Package.',
-       'Camere confortevoli con vista giardino o parziale vista mare e scrivania. La Camera Superior è ideale per una o due notti ed è la camera del Pacchetto Executive Business Stay.')]),
+   (T('Standard rooms', 'Camere Standard'), [
+     T('A simple, functional room with a park view, in a quiet part of the hotel reached along the corridor past the winter garden. It is not directly connected to the spa: you reach it through reception. Ideal for a short stay on a budget.',
+       'Una camera sobria e funzionale con vista sul parco, in una zona tranquilla dell’hotel raggiungibile dal corridoio oltre il giardino d’inverno. Non è collegata direttamente alla spa: si accede dalla reception. Ideale per un soggiorno breve a budget contenuto.')]),
+   (T('Superior rooms', 'Camere Superior'), [
+     T('In the main building near the spa, with direct access from your floor and a view of the pine trees in the park or of the sea in the distance.',
+       'Nel corpo centrale vicino alla spa, con accesso diretto dal piano e vista sui pini del parco o sul mare in lontananza.')]),
    (T('Deluxe rooms', 'Camere Deluxe'), [
-     T('More space, Adriatic views, a desk and a lounge area. Our choice for stays of three nights or more.',
-       'Più spazio, vista Adriatico, scrivania e zona lounge. La nostra scelta per soggiorni di tre notti o più.')]),
+     T('In the central building with direct spa access. Most have a terrace looking at the sea or the pine forest, and each comes with a double bed or two single beds.',
+       'Nel corpo centrale con accesso diretto alla spa. La maggior parte ha una terrazza sul mare o sulla pineta, e ognuna è disponibile con letto matrimoniale o due letti singoli.')]),
    (T('Junior Suites', 'Junior Suite'), [
-     T('A separate sitting area and room to spread out, good for families and longer stays. Some open onto a terrace with loungers and a view of the sea.',
-       'Una zona giorno separata e spazio in più, ideali per famiglie e soggiorni lunghi. Alcune si aprono su una terrazza con lettini e vista mare.')]),
-   (T('Master SPA Suite', 'Master SPA Suite'), [
-     T('Our most special room: a private terrace with a hot tub and a view over the Adriatic, for anniversaries, honeymoons or simply a few days just for you.',
-       'La nostra camera più speciale: una terrazza privata con vasca idromassaggio e vista sull’Adriatico, per anniversari, viaggi di nozze o qualche giorno solo per te.')]),
-   (T('Families and pets', 'Famiglie e animali'), [
-     T('With the Family Discount, family rooms and suites sleep 2 adults and 2 teens, with breakfast and spa included. Pets are welcome for a supplement. Tell us who is coming and we will suggest the best room.',
-       'Con lo Sconto Famiglia, camere e suite famiglia ospitano 2 adulti e 2 ragazzi, con colazione e spa incluse. Gli animali sono benvenuti con un supplemento. Dicci chi viene e ti suggeriamo la camera migliore.')]),
-   (T('Little touches', 'Piccole attenzioni'), [  # illustrative
-     T('Share your preferences once (pillow, a quiet floor, a room near the lift or away from it) and we keep them for your next stay. A late check-out can often be arranged on request.',
-       'Indicaci le tue preferenze una volta (cuscino, piano tranquillo, vicino o lontano dall’ascensore) e le terremo per il prossimo soggiorno. Un check-out posticipato si può spesso organizzare su richiesta.')]),
+     T('In the central building, with a sleeping area and a separate sitting area, a terrace over the sea or the park, and direct access to the spa by lift.',
+       'Nel corpo centrale, con zona notte e zona soggiorno separate, terrazza sul mare o sul parco e accesso diretto alla spa in ascensore.')]),
+   (T('Family Rooms', 'Family Room'), [
+     T('The ideal solution for families who want total privacy and maximum comfort. Tell us who is coming and we will suggest the right layout.',
+       'La soluzione ideale per le famiglie che vogliono privacy totale e il massimo comfort. Dicci chi viene e ti suggeriamo la sistemazione giusta.')]),
+   (T('Mini SPA and Master SPA Suites', 'Mini SPA e Master SPA Suite'), [
+     T('The Mini SPA Suite has a hydromassage tub for two inside the room and a sea-view terrace with a solarium. The Master SPA Suite has two rooms, a sauna for two and a large corner terrace with a solarium and a heated mini jacuzzi, facing east and fully private.',
+       'La Mini SPA Suite ha una vasca idromassaggio di coppia in camera e una terrazza vista mare con solarium. La Master SPA Suite ha due ambienti, una sauna di coppia e una grande terrazza ad angolo con solarium e mini jacuzzi riscaldata, esposta a est e riservata.')]),
+   (T('The Cottage, for guests with pets', 'Il Cottage, per chi viaggia con animali'), [
+     T('A small annex at the hotel entrance with its own entrance, about 39 m², with a fully fenced outdoor area for pets of all sizes. Inside: air conditioning, a coffee machine, a kitchenette with microwave, LCD TV, Wi-Fi, an iron and board and a park view. Laundry service on request.',
+       'Una piccola dépendance all’ingresso dell’hotel con entrata indipendente, di circa 39 m², con un’area esterna completamente recintata per animali di ogni taglia. All’interno: aria condizionata, macchina del caffè, angolo cottura con microonde, TV LCD, Wi-Fi, ferro e asse da stiro e vista sul parco. Servizio lavanderia su richiesta.')]),
+   (T('In every room', 'In tutte le camere'), [
+     T('Free Wi-Fi, air conditioning, satellite TV, a safe, a hairdryer, a wellness kit and spa access. The minibar is charged.',
+       'Wi-Fi gratuito, aria condizionata, TV satellitare, cassaforte, asciugacapelli, kit benessere e accesso alla spa. Il minibar è a pagamento.')]),
   ],
-  'gallery': [
-   ('superior-room.jpg', T('Superior Room', 'Camera Superior')),
-   ('deluxe-room.jpg', T('Deluxe Room', 'Camera Deluxe')),
-   ('suite-terrace.jpg', T('Suite terrace with hot tub', 'Terrazza della suite con vasca idromassaggio')),
-   ('suite-seaview.jpg', T('Sea view from a suite', 'Vista mare da una suite')),
-   ('concierge.jpg', T('Concierge desk', 'Concierge')),
-  ],
+  'gallery': [],  # no gallery: the room cards above already show the photos
  },
  # ------------------------------------------------------------------ Spa
  'spa.html': {
   'eb': T('About the Linfa spa', 'La spa Linfa'),
   'h2': T('Your own space <i>to unwind.</i>', 'Il tuo spazio <i>per rilassarti.</i>'),
-  'intro': T('Linfa is the hotel’s wellness centre, an oasis where everyone finds their own way to relax. It is organised in three areas, relaxation, beauty and fitness, and every hotel guest can enjoy a free two-hour spa session. Booking is required.',
-             'Linfa è il centro benessere dell’hotel, un’oasi dove ognuno trova il suo modo di rilassarsi. È organizzato in tre aree, relax, beauty e fitness, e ogni ospite dell’hotel può godere di una sessione spa gratuita di due ore. La prenotazione è obbligatoria.'),
+  'intro': T('Linfa is the hotel’s wellness centre. Its relaxation area has indoor and outdoor pools with several hydromassage points, a whirlpool, saunas, a Turkish bath, chromotherapy and aromatherapy showers with water jets and a waterfall, a herbal tea corner and a private garden. Every hotel guest gets a free two-hour session; booking is required.',
+             'Linfa è il centro benessere dell’hotel. L’area relax ha piscine interna ed esterna con diversi punti idromassaggio, vasca idromassaggio, saune, bagno turco, docce di cromoterapia e aromaterapia con getti d’acqua e cascata, angolo tisane e giardino privato. Ogni ospite dell’hotel ha una sessione gratuita di due ore; la prenotazione è obbligatoria.'),
   'topics': [
-   (T('Relaxation area', 'Area relax'), [
-     T('A hydromassage pool, a Turkish bath, a sauna and a sensory shower, with tall windows over the park and towards the sea. Loungers and herbal teas make it easy to stay a little longer.',
-       'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, con grandi vetrate sul parco e verso il mare. Lettini e tisane rendono facile restare un po’ di più.')]),
+   (T('The relaxation area', 'L’area relax'), [
+     T('A visit lasts two hours and includes the indoor and outdoor pools with hydromassage points, the whirlpool, the saunas, the Turkish bath, the emotional showers, the herbal tea corner and the private garden.',
+       'L’ingresso dura due ore e comprende le piscine interna ed esterna con punti idromassaggio, la vasca idromassaggio, le saune, il bagno turco, le docce emozionali, l’angolo tisane e il giardino privato.')]),
    (T('Your free two-hour session', 'La tua sessione gratuita di due ore'), [
-     T('Every hotel guest can enjoy two hours in the relaxation area at no extra cost. Book your time at reception or send us a message before you arrive, especially in high season.',
-       'Ogni ospite dell’hotel può godere di due ore nell’area relax senza costi aggiuntivi. Prenota l’orario in reception o scrivici prima dell’arrivo, soprattutto in alta stagione.')]),
-   (T('Beauty area and treatments', 'Area beauty e trattamenti'), [
-     T('Massages and beauty treatments can be booked for one person or as a couple. Ask our team for the current list and prices, or add a treatment to your booking request.',
-       'Massaggi e trattamenti beauty si possono prenotare per una persona o in coppia. Chiedi al nostro team l’elenco aggiornato e i prezzi, o aggiungi un trattamento alla richiesta di prenotazione.')]),
-   (T('Fitness area', 'Area fitness'), [
-     T('Keep your routine while you travel: the fitness area is part of Linfa, and the padel court in the garden is close by.',
-       'Mantieni la tua routine anche in viaggio: l’area fitness fa parte di Linfa e il campo da padel in giardino è vicino.')]),
-   (T('Rituals we love', 'I rituali che amiamo'), [  # illustrative
-     T('A suggestion for your first visit: twenty minutes in the hydromassage pool, a round of sauna and Turkish bath, the sensory shower, then a long rest with a herbal tea while the light changes over the park.',
-       'Un consiglio per la prima visita: venti minuti in idromassaggio, un giro tra sauna e bagno turco, la doccia emozionale e poi un lungo riposo con una tisana mentre la luce cambia sul parco.')]),
+     T('Every hotel guest can enjoy two hours in the relaxation area at no extra cost. Book your time at reception, call the spa on +39 085 45 00 55 60 or write to benessere@hvillamaria.it, especially in high season.',
+       'Ogni ospite dell’hotel può godere di due ore nell’area relax senza costi aggiuntivi. Prenota l’orario in reception, chiama la spa al +39 085 45 00 55 60 o scrivi a benessere@hvillamaria.it, soprattutto in alta stagione.')]),
+   (T('Opening hours', 'Orari di apertura'), [
+     T('Monday to Thursday 10:00–21:00, Friday 10:00–23:30, Saturday 9:00–23:30, Sunday 9:00–21:00. Hours can change with the season, so check with the spa before you go.',
+       'Dal lunedì al giovedì 10:00–21:00, venerdì 10:00–23:30, sabato 9:00–23:30, domenica 9:00–21:00. Gli orari possono cambiare con la stagione: verifica con la spa prima di andare.')]),
+   (T('Massages and treatments', 'Massaggi e trattamenti'), [
+     T('Massages and beauty treatments for one or for two. Couple massages take place at the same time in two separate cabins. Wellness paths combine the spa with a massage, such as a volcanic hot-stone back massage.',
+       'Massaggi e trattamenti beauty per uno o per due. I massaggi di coppia si svolgono in contemporanea in due cabine separate. I percorsi benessere abbinano la spa a un massaggio, come il massaggio alla schiena con pietre vulcaniche calde.')]),
+   (T('Private SPA for two', 'SPA privata per due'), [
+     T('A private spa in the Master SPA Suite: a sauna for two, a heated mini jacuzzi on the terrace and a solarium over the sea. Some packages add a couple massage and an aperitif on the sea-view terrace.',
+       'Una spa privata nella Master SPA Suite: sauna di coppia, mini jacuzzi riscaldata in terrazza e solarium sul mare. Alcuni pacchetti aggiungono un massaggio di coppia e un aperitivo sulla terrazza vista mare.')]),
+   (T('Fitness', 'Fitness'), [
+     T('An outdoor fitness area with Technogym equipment among the trees of the park, with a view of the sea, and the padel court between the two pools.',
+       'Un’area fitness all’aperto con attrezzature Technogym tra gli alberi del parco, con vista mare, e il campo da padel tra le due piscine.')]),
    (T('Spa in your package', 'La spa nel tuo pacchetto'), [
      T('Spa access is included in the Family Discount and in the Executive Business Stay Package. Beyond the Meeting Room ends the match with sauna, spa and a massage.',
        'L’accesso alla spa è incluso nello Sconto Famiglia e nel Pacchetto Executive Business Stay. Beyond the Meeting Room chiude la partita con sauna, spa e massaggio.')]),
@@ -138,30 +141,33 @@ PAGES = {
  'restaurant.html': {
   'eb': T('About the restaurant', 'Il ristorante'),
   'h2': T('Abruzzo <i>at every meal.</i>', 'L’Abruzzo <i>a ogni pasto.</i>'),
-  'intro': T('The restaurant and its terrace overlook the pool and the park, with the sea breeze in the evening. The kitchen cooks Italian dishes and Abruzzo specialities with local products, from the breakfast buffet to dinner at the chef’s table.',
-             'Il ristorante e la sua terrazza guardano la piscina e il parco, con la brezza del mare la sera. La cucina propone piatti italiani e specialità abruzzesi con prodotti locali, dalla colazione a buffet alla cena alla tavola dello chef.'),
+  'intro': T('The restaurant looks out over the hotel’s centuries-old park, with a sea-view terrace for summer evenings and events. The kitchen cooks Italian dishes and Abruzzo specialities with local products, from breakfast to dinner.',
+             'Il ristorante guarda il parco secolare dell’hotel, con una terrazza vista mare per le serate d’estate e gli eventi. La cucina propone piatti italiani e specialità abruzzesi con prodotti locali, dalla colazione alla cena.'),
   'topics': [
+   (T('Opening times', 'Orari'), [
+     T('Breakfast 7:00–10:00 on the ground floor, and on the terrace in the warmer months. Lunch 12:30–14:00, dinner 19:30–22:00. The bar is open from 10:00 to 23:00. Times can change with the season.',
+       'Colazione 7:00–10:00 al piano terra, e in terrazza nei mesi più caldi. Pranzo 12:30–14:00, cena 19:30–22:00. Il bar è aperto dalle 10:00 alle 23:00. Gli orari possono cambiare con la stagione.')]),
    (T('Breakfast', 'Colazione'), [
-     T('A local buffet with fresh fruit, cakes, pastries and savoury dishes, included in our packages. Business guests can have it early, before the first call.',
-       'Un buffet locale con frutta fresca, torte, dolci e piatti salati, incluso nei pacchetti. Chi viaggia per lavoro può farla presto, prima della prima call.')]),
+     T('A buffet with fresh fruit, cakes, pastries and savoury dishes, included in our packages. Business guests can have it early, before the first call.',
+       'Un buffet con frutta fresca, torte, dolci e piatti salati, incluso nei pacchetti. Chi viaggia per lavoro può farla presto, prima della prima call.')]),
    (T('Lunch and dinner', 'Pranzo e cena'), [
-     T('À la carte Italian cuisine and Abruzzo specialities, served in the dining room or on the terrace over the pool. Long family dinners and quiet business dinners both have their place.',
-       'Cucina italiana à la carte e specialità abruzzesi, servite in sala o in terrazza sulla piscina. Lunghe cene in famiglia e cene di lavoro tranquille hanno entrambe il loro posto.')]),
-   (T('Tastes of Abruzzo', 'I sapori dell’Abruzzo'), [  # illustrative
-     T('Expect the region on the plate: pasta alla chitarra, arrosticini, fish from the Adriatic, extra-virgin olive oil from the hills and a glass of Montepulciano d’Abruzzo or Trebbiano. The menu changes with the seasons.',
-       'Aspettati la regione nel piatto: spaghetti alla chitarra, arrosticini, pesce dell’Adriatico, olio extravergine delle colline e un bicchiere di Montepulciano d’Abruzzo o Trebbiano. Il menu cambia con le stagioni.')]),
+     T('À la carte Italian cuisine and Abruzzo specialities, served in the dining room or on the terrace. Long family dinners and quiet business dinners both have their place.',
+       'Cucina italiana à la carte e specialità abruzzesi, servite in sala o in terrazza. Lunghe cene in famiglia e cene di lavoro tranquille hanno entrambe il loro posto.')]),
    (T('The chef’s table', 'La tavola dello chef'), [
      T('For a special evening, or the dinner after a padel match, the chef’s table is where conversations last and deals are made.',
        'Per una serata speciale, o la cena dopo una partita di padel, la tavola dello chef è dove le conversazioni durano e nascono gli accordi.')]),
-   (T('Bar, aperitivo and the beach', 'Bar, aperitivo e spiaggia'), [
-     T('An aperitivo at the hotel bar before dinner, or lunch on the sand: the partner lido on the beach has its own bar and restaurant for beach lunches, aperitifs and summer evenings.',
-       'Un aperitivo al bar dell’hotel prima di cena, o il pranzo sulla sabbia: il lido convenzionato ha il suo bar e ristorante per pranzi in spiaggia, aperitivi e serate d’estate.')]),
+   (T('The terrace and events', 'La terrazza e gli eventi'), [
+     T('The sea-view terrace hosts aperitifs, celebrations and events. Ask us about a private dinner or a party for your group.',
+       'La terrazza vista mare ospita aperitivi, feste ed eventi. Chiedici una cena privata o una festa per il tuo gruppo.')]),
+   (T('The beach and the trabocchi', 'La spiaggia e i trabocchi'), [
+     T('Our partner lido on the beach has its own bar and restaurant for lunches on the sand and summer evenings. Further south, along the Costa dei Trabocchi, the old fishing platforms over the sea serve fish dishes such as brodetto: ask us to book a table.',
+       'Il lido convenzionato in spiaggia ha il suo bar e ristorante per pranzi sulla sabbia e serate d’estate. Più a sud, lungo la Costa dei Trabocchi, le antiche macchine da pesca sul mare servono piatti di pesce come il brodetto: chiedici di prenotare un tavolo.')]),
    (T('La Bottega di Villa Maria', 'La Bottega di Villa Maria'), [
      T('Our corner of local products and Abruzzo flavours, to taste during your stay and take a little of the region home.',
        'Il nostro angolo di prodotti locali e sapori abruzzesi, da gustare durante il soggiorno e da portare un po’ a casa.')]),
    (T('Allergies and reservations', 'Allergie e prenotazioni'), [
-     T('Tell us about allergies or diets when you book, or send us a message. For opening times and table reservations, ask our team.',
-       'Segnalaci allergie o diete quando prenoti, o scrivici un messaggio. Per orari e prenotazione del tavolo, chiedi al nostro team.')]),
+     T('Tell us about allergies or diets when you book, or send us a message. To reserve a table, call +39 085 45 00 51.',
+       'Segnalaci allergie o diete quando prenoti, o scrivici un messaggio. Per prenotare un tavolo chiama il +39 085 45 00 51.')]),
   ],
   'gallery': [
    ('restaurant-hall.jpg', T('The dining room', 'La sala')),
@@ -175,21 +181,24 @@ PAGES = {
  'contact.html': {
   'eb': T('Plan your arrival', 'Pianifica l’arrivo'),
   'h2': T('Easy to reach, <i>quiet when you arrive.</i>', 'Facile da raggiungere, <i>tranquillo all’arrivo.</i>'),
-  'intro': T('Villa Maria is in Contrada Pretaro, on the hill above Francavilla al Mare, minutes from Pescara: close to the airport, the main station and the A14 motorway, yet outside the city and its traffic.',
-             'Villa Maria è in Contrada Pretaro, sulla collina sopra Francavilla al Mare, a pochi minuti da Pescara: vicina all’aeroporto, alla stazione centrale e all’A14, ma fuori dalla città e dal traffico.'),
+  'intro': T('Villa Maria is in Contrada Pretaro, on the hill above Francavilla al Mare: 5 km from the centre of Pescara and about 15 minutes from Chieti, Pescara and Abruzzo International Airport, yet outside the city and its traffic.',
+             'Villa Maria è in Contrada Pretaro, sulla collina sopra Francavilla al Mare: a 5 km dal centro di Pescara e a circa 15 minuti da Chieti, Pescara e dall’Aeroporto Internazionale d’Abruzzo, ma fuori dalla città e dal traffico.'),
   'topics': [
    (T('By plane', 'In aereo'), [
-     T('Abruzzo Airport (Pescara) is a short drive away. Ask us about a transfer when you book.',
-       'L’aeroporto d’Abruzzo (Pescara) è a pochi minuti d’auto. Chiedici un transfer quando prenoti.')]),
+     T('Abruzzo International Airport (Pescara) is about 15 minutes away by car. Ask us about a transfer when you book.',
+       'L’Aeroporto Internazionale d’Abruzzo (Pescara) è a circa 15 minuti d’auto. Chiedici un transfer quando prenoti.')]),
    (T('By train', 'In treno'), [
      T('Pescara Centrale station has easy rail connections along the Adriatic line and to Rome. From the station, take a taxi or ask us about a transfer.',
        'La stazione di Pescara Centrale ha comodi collegamenti sulla linea adriatica e verso Roma. Dalla stazione prendi un taxi o chiedici un transfer.')]),
    (T('By car', 'In auto'), [
-     T('Leave the A14 at the Pescara Sud – Francavilla exit and follow the signs for Francavilla al Mare and Contrada Pretaro. Free private parking with EV charging is waiting at the hotel.',
-       'Esci dall’A14 a Pescara Sud – Francavilla e segui le indicazioni per Francavilla al Mare e Contrada Pretaro. In hotel ti aspetta il parcheggio privato gratuito con ricarica per auto elettriche.')]),
+     T('Leave the A14 at the Pescara Sud – Francavilla exit and follow the signs for Francavilla al Mare and Contrada Pretaro. Free outdoor parking with charging points for electric cars is waiting at the hotel.',
+       'Esci dall’A14 a Pescara Sud – Francavilla e segui le indicazioni per Francavilla al Mare e Contrada Pretaro. In hotel ti aspetta il parcheggio gratuito all’aperto con colonnine di ricarica per auto elettriche.')]),
    (T('The beach shuttle', 'La navetta per la spiaggia'), [
-     T('A free shuttle takes you to our partner lido on a white-sand beach in Francavilla al Mare, a few kilometres away, with a bar and restaurant on the sand.',
-       'Una navetta gratuita ti porta al lido convenzionato su una spiaggia di sabbia bianca a Francavilla al Mare, a pochi chilometri, con bar e ristorante sulla sabbia.')]),
+     T('A free shuttle takes you to our partner lido on a white-sand beach in Francavilla al Mare, with a bar and restaurant on the sand.',
+       'Una navetta gratuita ti porta al lido convenzionato su una spiaggia di sabbia bianca a Francavilla al Mare, con bar e ristorante sulla sabbia.')]),
+   (T('Who to contact', 'Chi contattare'), [
+     T('Reception: +39 085 45 00 51, info@hvillamaria.it. Reservations: reservation@hvillamaria.it. Meetings and events: +39 085 45 00 55 07, congressi@hvillamaria.it. Linfa spa: +39 085 45 00 55 60, benessere@hvillamaria.it.',
+       'Reception: +39 085 45 00 51, info@hvillamaria.it. Prenotazioni: reservation@hvillamaria.it. Meeting ed eventi: +39 085 45 00 55 07, congressi@hvillamaria.it. Spa Linfa: +39 085 45 00 55 60, benessere@hvillamaria.it.')]),
    (T('Arrival and check-in', 'Arrivo e check-in'), [
      T('Your check-in and check-out times are in your booking confirmation. Tell us your expected arrival time when you book, and ask if you need an early check-in or a late check-out.',
        'Gli orari di check-in e check-out sono nella conferma di prenotazione. Indicaci l’orario di arrivo quando prenoti e chiedici se ti serve un check-in anticipato o un check-out posticipato.')]),
@@ -206,33 +215,36 @@ PAGES = {
  'activities.html': {
   'eb': T('Things to do', 'Cosa fare'),
   'h2': T('Water, wellness <i>and the open air.</i>', 'Acqua, benessere <i>e aria aperta.</i>'),
-  'intro': T('Days at Villa Maria can be as busy or as slow as you like: pools in the park, the beach by shuttle, the Linfa spa, padel in the garden, a play room for children, and the hills, coast and towns of Abruzzo all within easy reach.',
-             'Le giornate a Villa Maria possono essere piene o lente quanto vuoi: piscine nel parco, la spiaggia con la navetta, la spa Linfa, il padel in giardino, una sala giochi per i bambini e colline, costa e borghi d’Abruzzo a portata di mano.'),
+  'intro': T('Days at Villa Maria can be as busy or as slow as you like: two pools in a 6-hectare park, the beach by shuttle, the Linfa spa, padel and an outdoor gym, a Kids Club in summer, and the hills, coast and towns of Abruzzo all within easy reach.',
+             'Le giornate a Villa Maria possono essere piene o lente quanto vuoi: due piscine in un parco di 6 ettari, la spiaggia con la navetta, la spa Linfa, il padel e una palestra all’aperto, un Kids Club d’estate e colline, costa e borghi d’Abruzzo a portata di mano.'),
   'topics': [
    (T('Swimming pools', 'Piscine'), [
-     T('Two outdoor pools in the large hotel park: the Blue Pool, up to 2.5 metres deep, and the Riviera Pool. Children have their own shallow pool, no deeper than 50 cm, with water games and hydromassage. The outdoor pools are open in the summer season; ask us for this year’s dates.',
-       'Due piscine all’aperto nel grande parco dell’hotel: la Blue Pool, profonda fino a 2,5 metri, e la Riviera Pool. I bambini hanno la loro piscina bassa, profonda al massimo 50 cm, con giochi d’acqua e idromassaggio. Le piscine esterne sono aperte nella stagione estiva; chiedici le date di quest’anno.')]),
+     T('Two outdoor pools in the park, among pines and olive trees. The Blue Pool, up to 2.5 metres deep, is for a real swim and is open until 15 September. The Riviera Pool is made for children: no deeper than 50 cm, with a twelve-jet fountain, a water umbrella and hydromassage points, open until 30 September.',
+       'Due piscine all’aperto nel parco, tra pini e ulivi. La Blue Pool, profonda fino a 2,5 metri, è per nuotare davvero ed è aperta fino al 15 settembre. La Riviera Pool è pensata per i bambini: profonda al massimo 50 cm, con fontana a dodici getti, ombrello d’acqua e punti idromassaggio, aperta fino al 30 settembre.')]),
    (T('The beach', 'La spiaggia'), [
-     T('A free shuttle takes you to a white-sand beach in Francavilla al Mare, a few kilometres away, at a private lido with a special agreement with the hotel. The lido has a bar and a restaurant for lunches on the beach, aperitifs and summer evenings.',
-       'Una navetta gratuita ti porta su una spiaggia di sabbia bianca a Francavilla al Mare, a pochi chilometri, in un lido privato convenzionato con l’hotel. Il lido ha bar e ristorante per pranzi in spiaggia, aperitivi e serate d’estate.')]),
-   (T('Kids Club and play room', 'Kids Club e sala giochi'), [
-     T('Inside the hotel a play room welcomes younger guests with games, books, colouring and puzzles. In summer the park becomes their playground, between the shallow pool, the lawns and the shade of the pines.',
-       'In hotel una sala giochi accoglie i più piccoli con giochi, libri, colori e puzzle. D’estate il parco diventa il loro parco giochi, tra la piscina bassa, i prati e l’ombra dei pini.')]),
+     T('A free shuttle takes you to a white-sand beach in Francavilla al Mare, at a private lido with a special agreement with the hotel. The lido has a bar and a restaurant for lunches on the beach, aperitifs and evening events.',
+       'Una navetta gratuita ti porta su una spiaggia di sabbia bianca a Francavilla al Mare, in un lido privato convenzionato con l’hotel. Il lido ha bar e ristorante per pranzi in spiaggia, aperitivi ed eventi serali.')]),
+   (T('Kids Club', 'Kids Club'), [
+     T('In July and August: a play room with games, books and puzzles, the Riviera Pool, educational workshops from Tuesday to Saturday and an outdoor play area.',
+       'A luglio e agosto: sala giochi con giochi, libri e puzzle, la Riviera Pool, laboratori didattici dal martedì al sabato e un’area giochi all’aperto.')]),
    (T('Linfa wellness &amp; spa', 'Benessere e spa Linfa'), [
-     T('Hydromassage pool, Turkish bath, sauna and sensory shower, plus beauty and fitness areas. Hotel guests enjoy a free two-hour spa session; booking is required.',
-       'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, più aree beauty e fitness. Gli ospiti dell’hotel hanno una sessione spa gratuita di due ore; la prenotazione è obbligatoria.')]),
+     T('Indoor and outdoor pools with hydromassage points, saunas, a Turkish bath and emotional showers. Hotel guests enjoy a free two-hour spa session; booking is required.',
+       'Piscine interna ed esterna con punti idromassaggio, saune, bagno turco e docce emozionali. Gli ospiti dell’hotel hanno una sessione spa gratuita di due ore; la prenotazione è obbligatoria.')]),
    (T('Padel', 'Padel'), [
-     T('Our padel court is in the garden. Book a slot for a family match or bring a client: Beyond the Meeting Room pairs the game with the spa, an aperitivo and dinner.',
-       'Il nostro campo da padel è in giardino. Prenota un orario per una partita in famiglia o porta un cliente: Beyond the Meeting Room abbina la partita a spa, aperitivo e cena.')]),
-   (T('Nature and the coast', 'Natura e costa'), [
-     T('Walk among the pines of the Pineta Dannunziana nature reserve in Pescara, ride a bike along the coast towards the Costa dei Trabocchi, or go snorkelling and diving in the Adriatic. Horse riding and hiking in the hills are also close by.',
-       'Passeggia tra i pini della riserva naturale Pineta Dannunziana a Pescara, pedala lungo la costa verso la Costa dei Trabocchi, o fai snorkeling e immersioni nell’Adriatico. Equitazione ed escursioni in collina sono vicine.')]),
+     T('The new padel court is in the park, between the two pools. Book a slot for a family match or bring a client: Beyond the Meeting Room pairs the game with the spa, an aperitivo and dinner.',
+       'Il nuovo campo da padel è nel parco, tra le due piscine. Prenota un orario per una partita in famiglia o porta un cliente: Beyond the Meeting Room abbina la partita a spa, aperitivo e cena.')]),
+   (T('Outdoor gym and the park', 'Palestra all’aperto e parco'), [
+     T('An outdoor fitness area with Technogym equipment among the trees, with a view of the sea, and 6 hectares of park to walk or jog in.',
+       'Un’area fitness all’aperto con attrezzature Technogym tra gli alberi, con vista mare, e 6 ettari di parco dove passeggiare o correre.')]),
+   (T('Cycling the coast', 'In bici lungo la costa'), [
+     T('The Bike to Coast cycle and pedestrian path runs along the Abruzzo coast towards the Costa dei Trabocchi, a few minutes from the hotel.',
+       'La pista ciclopedonale Bike to Coast corre lungo la costa abruzzese verso la Costa dei Trabocchi, a pochi minuti dall’hotel.')]),
+   (T('Abruzzo Experience', 'Abruzzo Experience'), [
+     T('Guided excursions with transfers, also in English and German: the Majella and Gran Sasso national parks, the trabocchi coast, Chieti and Pescara. Ask us what is running during your stay.',
+       'Escursioni guidate con transfer, anche in inglese e tedesco: i parchi nazionali della Majella e del Gran Sasso, la costa dei trabocchi, Chieti e Pescara. Chiedici cosa è in programma durante il tuo soggiorno.')]),
    (T('Days out with children', 'Gite con i bambini'), [
      T('Two favourites with families: the Guardiagrele adventure park, with tree-top trails in the woods at the foot of the Majella, and the zoo in Lanciano.',
        'Due preferiti dalle famiglie: il parco avventura di Guardiagrele, con percorsi tra gli alberi ai piedi della Majella, e lo zoo di Lanciano.')]),
-   (T('Towns and tastes of Abruzzo', 'Borghi e sapori d’Abruzzo'), [  # illustrative
-     T('Spend a morning in Chieti’s old town, an evening by the sea in Pescara, or follow the coast south to the trabocchi, the old fishing platforms over the water where you can eat fresh fish. Ask our team for ideas for your days.',
-       'Passa una mattina nel centro storico di Chieti, una sera sul mare a Pescara, o segui la costa a sud fino ai trabocchi, le antiche macchine da pesca sull’acqua dove si mangia pesce fresco. Chiedi al nostro team qualche idea per le tue giornate.')]),
   ],
   'gallery': [
    ('pool-park.jpg', T('The Blue Pool', 'La Blue Pool')),
@@ -254,8 +266,8 @@ PAGES = {
              'Italian Memories è la nostra promessa alle famiglie: pensiamo noi ai dettagli, così potete prendervi cura gli uni degli altri. Ecco com’è un soggiorno, dal primo tuffo all’ultima cena.'),
   'topics': [
    (T('Pools for every age', 'Piscine per ogni età'), [
-     T('The Blue Pool and the Riviera Pool sit in the private park, with a shallow pool for children with water games. Teenagers get space to swim and play; little ones stay safely in their depth.',
-       'La Blue Pool e la Riviera Pool sono nel parco privato, con una piscina bassa per i bambini con giochi d’acqua. I ragazzi hanno spazio per nuotare e giocare; i più piccoli restano al sicuro.')]),
+     T('The Blue Pool and the Riviera Pool sit in the private park. The Riviera Pool is made for children, no deeper than 50 cm, with water games; teenagers get the Blue Pool to swim and play.',
+       'La Blue Pool e la Riviera Pool sono nel parco privato. La Riviera Pool è pensata per i bambini, profonda al massimo 50 cm, con giochi d’acqua; i ragazzi hanno la Blue Pool per nuotare e giocare.')]),
    (T('The beach, without the hassle', 'La spiaggia, senza pensieri'), [
      T('A free shuttle runs to our partner lido on a white-sand beach in Francavilla al Mare, with a bar and restaurant for lunch on the sand.',
        'Una navetta gratuita porta al lido convenzionato su una spiaggia di sabbia bianca a Francavilla al Mare, con bar e ristorante per pranzare sulla sabbia.')]),
@@ -332,8 +344,8 @@ PAGES = {
              'Il Pacchetto Executive Business Stay è pensato intorno a una giornata di lavoro: una camera silenziosa, la colazione prima della prima call, una sala riunioni quando serve e la spa quando hai finito.'),
   'topics': [
    (T('Your room', 'La tua camera'), [
-     T('A Superior Room (garden or partial sea view) for one or two nights, or a Deluxe Room or Suite with Adriatic views and a lounge area for three nights or more. Every room has a writing desk and fast Wi-Fi.',
-       'Una Camera Superior (vista giardino o parziale vista mare) per una o due notti, o una Deluxe o Suite con vista Adriatico e zona lounge per tre notti o più. Ogni camera ha scrivania e Wi-Fi veloce.')]),
+     T('A Superior Room (pine grove or distant sea view) for one or two nights, or a Deluxe Room or Suite with Adriatic views and a lounge area for three nights or more. Every room has a writing desk and fast Wi-Fi.',
+       'Una Camera Superior (vista pineta o mare in lontananza) per una o due notti, o una Deluxe o Suite con vista Adriatico e zona lounge per tre notti o più. Ogni camera ha scrivania e Wi-Fi veloce.')]),
    (T('Meeting room on request', 'Sala riunioni su richiesta'), [
      T('Need to meet a client or your team? Book one of our five conference rooms for a few hours, with video-conferencing.',
        'Devi incontrare un cliente o il tuo team? Prenota per qualche ora una delle nostre cinque sale congressi, con videoconferenza.')]),
@@ -409,7 +421,7 @@ P = lambda f, en, it: (f, (en, it))
 CARDS = {
  'index.html': [
   (T('Accommodation', 'Sistemazione'), T('Rooms', 'Camere'),
-   T('Six room types, from Standard rooms to the Master SPA Suite, facing the park or the Adriatic.', 'Sei tipologie, dalla Standard alla Master SPA Suite, con vista sul parco o sull’Adriatico.'),
+   T('From Standard rooms to the Master SPA Suite, facing the park or the Adriatic.', 'Dalla Standard alla Master SPA Suite, con vista sul parco o sull’Adriatico.'),
    [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('superior-room.jpg', 'Superior Room', 'Camera Superior'),
     P('suite-terrace.jpg', 'Suite terrace with hot tub', 'Terrazza della suite con idromassaggio'), P('suite-seaview.jpg', 'Sea view from a suite', 'Vista mare da una suite')], 'rooms.html'),
   (T('Wellness', 'Benessere'), T('Linfa wellness &amp; spa', 'Benessere e spa Linfa'),
@@ -421,7 +433,7 @@ CARDS = {
    [P('restaurant-hall.jpg', 'The dining room', 'La sala'), P('restaurant-dinner.jpg', 'Dinner with a view', 'Cena con vista'),
     P('chef-dinner.jpg', 'The chef’s dishes', 'I piatti dello chef'), P('breakfast.jpg', 'Breakfast buffet', 'Colazione a buffet'), P('bar.jpg', 'The bar', 'Il bar')], 'restaurant.html'),
   (T('Outdoors', 'All’aperto'), T('Pools &amp; park', 'Piscine e parco'),
-   T('The Blue Pool and the Riviera Pool in a private park, with a shallow pool for children.', 'La Blue Pool e la Riviera Pool in un parco privato, con una piscina bassa per i bambini.'),
+   T('The Blue Pool and the Riviera Pool, made for children, in a 6-hectare park.', 'La Blue Pool e la Riviera Pool, pensata per i bambini, in un parco di 6 ettari.'),
    [P('pool-park.jpg', 'The Blue Pool', 'La Blue Pool'), P('pool-fountain.jpg', 'Fountain and pool area', 'Fontana e area piscina'),
     P('people/moment-pool.jpg', 'Pool days with the family', 'Giornate in piscina in famiglia'), P('garden-gazebo.jpg', 'The gazebo', 'Il gazebo')], 'activities.html'),
   (T('Business', 'Business'), T('Meetings &amp; events', 'Meeting ed eventi'),
@@ -433,28 +445,9 @@ CARDS = {
    [P('people/business-padel.jpg', 'Padel in the garden', 'Padel in giardino'), P('gardens.jpg', 'The gardens', 'I giardini'),
     P('walk.jpg', 'Terrace with a sea view', 'Terrazza con vista mare')], 'beyond-the-meeting-room.html'),
  ],
- 'rooms.html': [
-  (T('For short stays', 'Per soggiorni brevi'), T('Standard &amp; Superior', 'Standard e Superior'),
-   T('Garden or partial sea view and a writing desk. Ideal for one or two nights.', 'Vista giardino o parziale vista mare e scrivania. Ideali per una o due notti.'),
-   [P('superior-room.jpg', 'Superior Room', 'Camera Superior'), P('villa-adriatic.jpg', 'Rooms above the park', 'Camere sopra il parco'),
-], 'booking.html#superior'),
-  (T('More space', 'Più spazio'), T('Deluxe Room', 'Camera Deluxe'),
-   T('Adriatic views, a desk and a lounge area. Our choice for three nights or more.', 'Vista Adriatico, scrivania e zona lounge. La nostra scelta per tre notti o più.'),
-   [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('suite-seaview.jpg', 'The view from the terrace', 'La vista dalla terrazza')], 'booking.html#deluxe'),
-  (T('Suites', 'Suite'), T('Junior Suites', 'Junior Suite'),
-   T('A separate sitting area and room to spread out, for families and longer stays.', 'Una zona giorno separata e spazio in più, per famiglie e soggiorni lunghi.'),
-   [P('suite-seaview.jpg', 'Suite with sea view', 'Suite con vista mare'), P('deluxe-room.jpg', 'Bedroom', 'Camera da letto')], 'booking.html#suite'),
-  (T('Signature suite', 'Suite esclusiva'), T('Master SPA Suite', 'Master SPA Suite'),
-   T('A private terrace with a hot tub and the Adriatic in front of you.', 'Una terrazza privata con vasca idromassaggio e l’Adriatico davanti.'),
-   [P('suite-terrace.jpg', 'Terrace with hot tub', 'Terrazza con idromassaggio'), P('walk.jpg', 'Terrace and plunge pool', 'Terrazza e piscinetta')], 'booking.html#master-spa'),
-  (T('Families', 'Famiglie'), T('Family rooms', 'Camere per famiglie'),
-   T('Rooms and suites for 2 adults and 2 teens, with breakfast and spa in the Family Discount.', 'Camere e suite per 2 adulti e 2 ragazzi, con colazione e spa nello Sconto Famiglia.'),
-   [P('people/family-welcome-back.jpg', 'Arriving as a family', 'L’arrivo in famiglia'), P('pool-park.jpg', 'Pools a few steps away', 'Le piscine a pochi passi'),
-    P('breakfast.jpg', 'Breakfast included', 'Colazione inclusa')], 'family-reset-package.html'),
- ],
  'spa.html': [
   (T('Relaxation area', 'Area relax'), T('Water &amp; warmth', 'Acqua e calore'),
-   T('Hydromassage pool and indoor pool, with tall windows over the park and towards the sea.', 'Piscina idromassaggio e piscina interna, con grandi vetrate sul parco e verso il mare.'),
+   T('Indoor and outdoor pools with hydromassage points, saunas and a Turkish bath.', 'Piscine interna ed esterna con punti idromassaggio, saune e bagno turco.'),
    [P('spa-whirlpool.jpg', 'Hydromassage pool', 'Piscina idromassaggio'), P('spa.jpg', 'Indoor pool', 'Piscina interna'),
     P('wellness.jpg', 'Indoor pool with a sea view', 'Piscina interna con vista mare')], ''),
   (T('Heat', 'Calore'), T('Sauna &amp; Turkish bath', 'Sauna e bagno turco'),
@@ -503,7 +496,7 @@ CARDS = {
  ],
  'activities.html': [
   (T('Water', 'Acqua'), T('Swimming pools', 'Piscine'),
-   T('The Blue Pool, the Riviera Pool and a shallow pool for children, in summer.', 'La Blue Pool, la Riviera Pool e una piscina bassa per bambini, in estate.'),
+   T('The Blue Pool for a real swim and the Riviera Pool for children, in summer.', 'La Blue Pool per nuotare davvero e la Riviera Pool per i bambini, in estate.'),
    [P('pool-park.jpg', 'The Blue Pool', 'La Blue Pool'), P('pool-fountain.jpg', 'Fountain and pool area', 'Fontana e area piscina'),
     P('people/moment-pool.jpg', 'Pool days with the family', 'Giornate in piscina in famiglia')], ''),
   (T('Wellness', 'Benessere'), T('Linfa spa', 'Spa Linfa'),
