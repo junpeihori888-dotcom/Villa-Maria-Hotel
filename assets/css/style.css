@@ -728,3 +728,11 @@ a.card:hover .ph img{transform:scale(1.04)}
 .rc-all{font-size:13px;color:var(--muted);margin:12px 0 0}
 @media (max-width:700px){.room-card{grid-template-columns:1fr}.rc-media{min-height:0;aspect-ratio:16/10}.rc-name{font-size:23px}}
 @media (max-width:400px){.rc-feats{grid-template-columns:1fr}}
+
+/* Footer: Instagram & Facebook */
+.site-footer .social{display:flex;align-items:center;gap:12px;margin-top:22px}
+.site-footer .social span{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,234,.6);margin-right:4px}
+.site-footer .social a{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid rgba(244,241,234,.35);border-radius:50%;color:var(--sand);transition:background .2s,color .2s,border-color .2s}
+.site-footer .social a:hover{background:var(--sand);color:var(--ink);border-color:var(--sand)}
+.site-footer .social svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6}
+.site-footer .social svg .dot,.site-footer .social svg .fill{fill:currentColor;stroke:none}

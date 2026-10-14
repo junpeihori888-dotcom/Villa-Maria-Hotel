@@ -408,7 +408,7 @@ def gallery_section(p):
 P = lambda f, en, it: (f, (en, it))
 CARDS = {
  'index.html': [
-  (T('Accommodation', 'Camere'), T('Rooms &amp; suites', 'Camere e suite'),
+  (T('Accommodation', 'Sistemazione'), T('Rooms', 'Camere'),
    T('Six room types, from Standard rooms to the Master SPA Suite, facing the park or the Adriatic.', 'Sei tipologie, dalla Standard alla Master SPA Suite, con vista sul parco o sull’Adriatico.'),
    [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('superior-room.jpg', 'Superior Room', 'Camera Superior'),
     P('suite-terrace.jpg', 'Suite terrace with hot tub', 'Terrazza della suite con idromassaggio'), P('suite-seaview.jpg', 'Sea view from a suite', 'Vista mare da una suite')], 'rooms.html'),
@@ -437,7 +437,7 @@ CARDS = {
   (T('For short stays', 'Per soggiorni brevi'), T('Standard &amp; Superior', 'Standard e Superior'),
    T('Garden or partial sea view and a writing desk. Ideal for one or two nights.', 'Vista giardino o parziale vista mare e scrivania. Ideali per una o due notti.'),
    [P('superior-room.jpg', 'Superior Room', 'Camera Superior'), P('villa-adriatic.jpg', 'Rooms above the park', 'Camere sopra il parco'),
-    P('concierge.jpg', 'Concierge desk', 'Concierge')], 'booking.html#superior'),
+], 'booking.html#superior'),
   (T('More space', 'Più spazio'), T('Deluxe Room', 'Camera Deluxe'),
    T('Adriatic views, a desk and a lounge area. Our choice for three nights or more.', 'Vista Adriatico, scrivania e zona lounge. La nostra scelta per tre notti o più.'),
    [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('suite-seaview.jpg', 'The view from the terrace', 'La vista dalla terrazza')], 'booking.html#deluxe'),
@@ -446,8 +446,7 @@ CARDS = {
    [P('suite-seaview.jpg', 'Suite with sea view', 'Suite con vista mare'), P('deluxe-room.jpg', 'Bedroom', 'Camera da letto')], 'booking.html#suite'),
   (T('Signature suite', 'Suite esclusiva'), T('Master SPA Suite', 'Master SPA Suite'),
    T('A private terrace with a hot tub and the Adriatic in front of you.', 'Una terrazza privata con vasca idromassaggio e l’Adriatico davanti.'),
-   [P('suite-terrace.jpg', 'Terrace with hot tub', 'Terrazza con idromassaggio'), P('walk.jpg', 'Terrace and plunge pool', 'Terrazza e piscinetta'),
-    P('spa-whirlpool.jpg', 'Spa access included', 'Accesso alla spa incluso')], 'booking.html#master-spa'),
+   [P('suite-terrace.jpg', 'Terrace with hot tub', 'Terrazza con idromassaggio'), P('walk.jpg', 'Terrace and plunge pool', 'Terrazza e piscinetta')], 'booking.html#master-spa'),
   (T('Families', 'Famiglie'), T('Family rooms', 'Camere per famiglie'),
    T('Rooms and suites for 2 adults and 2 teens, with breakfast and spa in the Family Discount.', 'Camere e suite per 2 adulti e 2 ragazzi, con colazione e spa nello Sconto Famiglia.'),
    [P('people/family-welcome-back.jpg', 'Arriving as a family', 'L’arrivo in famiglia'), P('pool-park.jpg', 'Pools a few steps away', 'Le piscine a pochi passi'),

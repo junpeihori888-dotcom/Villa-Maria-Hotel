@@ -9,6 +9,10 @@
      ====================================================================== */
   var HOTEL = {
     name: 'Villa Maria Hotel & Spa',
+    // Full links to the hotel's own social pages, e.g. 'https://www.instagram.com/villamaria…'.
+    // Until they are set, the footer icons open Instagram and Facebook.
+    instagram: '',
+    facebook: '',
     legalName: '',            // company name as registered, e.g. 'Villa Maria S.r.l.'
     vat: '',                  // P.IVA, e.g. '01234567890'
     cin: '',                  // Codice Identificativo Nazionale, e.g. 'IT069035A1XXXXXXXX'
@@ -88,7 +92,7 @@
     ],
     hotel: [
       ['index.html', 'Home', 'Home', 'villa-adriatic.jpg'],
-      ['rooms.html', 'Rooms & Suites', 'Camere e Suite', 'deluxe-room.jpg'],
+      ['rooms.html', 'Rooms', 'Camere', 'deluxe-room.jpg'],
       ['spa.html', 'Linfa Wellness & Spa', 'Linfa Wellness & Spa', 'spa.jpg'],
       ['restaurant.html', 'Restaurant', 'Ristorante', 'restaurant-hall.jpg'],
       ['activities.html', 'Activities & experiences', 'Attività ed esperienze', 'pool-park.jpg'],
@@ -191,7 +195,11 @@
   footer.id = 'contact';
   footer.innerHTML =
     '<div class="wrap">' +
-      '<div><div class="brand">Villa Maria<br>Hotel &amp; Spa</div>' + contactList() + '</div>' +
+      '<div><div class="brand">Villa Maria<br>Hotel &amp; Spa</div>' + contactList() +
+        '<div class="social"><span>' + t('Follow us', 'Seguici') + '</span>' +
+          '<a href="' + esc(HOTEL.instagram || 'https://www.instagram.com/') + '" rel="noopener" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></a>' +
+          '<a href="' + esc(HOTEL.facebook || 'https://www.facebook.com/') + '" rel="noopener" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5V7c0-.8.5-1.2 1.2-1.2H17V2.6h-2.6C11.8 2.6 10.8 4.3 10.8 6.6v1.9H8.5v3.3h2.3V21.4H14v-9.6h2.6l.4-3.3z" class="fill"/></svg></a>' +
+        '</div></div>' +
       '<div><h4>' + t('Families', 'Famiglie') + '</h4><ul>' + links(PAGES.families) + '</ul></div>' +
       '<div><h4>Business</h4><ul>' + links(PAGES.business) + '</ul></div>' +
       '<div><h4>' + t('The hotel', "L'hotel") + '</h4><ul>' + links(PAGES.hotel.slice(1)) + '<li><a href="blog.html">Blog</a></li></ul></div>' +
