@@ -273,33 +273,6 @@ PAGES = {
        'Piatti abruzzesi da condividere sulla terrazza sopra la piscina, mentre i bambini corrono sul prato e nessuno guarda l’ora.')]),
   ],
  },
- # ------------------------------------------------------------------ Family Discount
- 'family-reset-package.html': {
-  'eb': T('About the Family Discount', 'Lo Sconto Famiglia'),
-  'h2': T('Everything in one booking, <i>explained.</i>', 'Tutto in una prenotazione, <i>spiegato.</i>'),
-  'intro': T('The Family Discount brings room, breakfast and spa together for families who book directly with the hotel, plus extras you will not find on booking sites. Here are the details.',
-             'Lo Sconto Famiglia riunisce camera, colazione e spa per le famiglie che prenotano direttamente con l’hotel, più extra che non trovi sui portali. Ecco i dettagli.'),
-  'topics': [
-   (T('Your room', 'La tua camera'), [
-     T('Family rooms and suites for 2 adults and 2 teens, facing the park or the sea. Tell us the ages of your children and we will suggest the best room.',
-       'Camere e suite famiglia per 2 adulti e 2 ragazzi, con vista parco o mare. Dicci l’età dei tuoi figli e ti suggeriamo la camera migliore.')]),
-   (T('Breakfast and the spa', 'Colazione e spa'), [
-     T('A local buffet breakfast every morning, and access to the Linfa wellness centre: hydromassage pool, Turkish bath, sauna and sensory shower. Book your spa time at reception.',
-       'Colazione a buffet locale ogni mattina e accesso al centro benessere Linfa: piscina idromassaggio, bagno turco, sauna e doccia emozionale. Prenota l’orario della spa in reception.')]),
-   (T('Pools, beach and play', 'Piscine, spiaggia e gioco'), [
-     T('The Blue Pool, the Riviera Pool and a children’s pool with water games in the park; a free shuttle to our partner lido on a white-sand beach; a play room with games, books and puzzles; and padel in the garden.',
-       'La Blue Pool, la Riviera Pool e una piscina per bambini con giochi d’acqua nel parco; navetta gratuita per il lido convenzionato su una spiaggia di sabbia bianca; una sala giochi con giochi, libri e puzzle; e il padel in giardino.')]),
-   (T('The €20 voucher', 'Il voucher da 20 €'), [
-     T('First-time guests who book directly with the hotel receive a €20 in-house voucher for food and drink or the spa. It is valid for your first stay and first direct booking and expires at check-out.',
-       'Chi prenota direttamente con l’hotel per la prima volta riceve un voucher da 20 € per food and beverage o spa. Vale per il primo soggiorno e la prima prenotazione diretta e scade al check-out.')]),
-   (T('10% off your next stay', '10% sul prossimo soggiorno'), [
-     T('Book your next stay directly at the hotel during your visit and get 10% off the room rate, with free cancellation up to 6 months before arrival and date changes up to 6 weeks before.',
-       'Prenota il prossimo soggiorno direttamente in hotel durante la visita e hai il 10% sulla tariffa della camera, con cancellazione gratuita fino a 6 mesi prima dell’arrivo e cambio date fino a 6 settimane prima.')]),
-   (T('Parking and pets', 'Parcheggio e animali'), [
-     T('Free private parking with EV charging. Pets are welcome for a supplement; let us know when you book.',
-       'Parcheggio privato gratuito con ricarica per auto elettriche. Gli animali sono benvenuti con un supplemento; avvisaci quando prenoti.')]),
-  ],
- },
  # ------------------------------------------------------------------ Ciao Again
  'ciao-again.html': {
   'eb': T('For returning families', 'Per le famiglie che tornano'),
