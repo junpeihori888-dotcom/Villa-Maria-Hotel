@@ -53,17 +53,63 @@
 </fieldset>
 <fieldset class="step">
 <legend><span class="n">3</span><span>Camera</span></legend>
-<div class="rooms">
-<label class="room"><input checked="" name="room" type="radio" value="superior"/>
-<span class="ph"><img alt="" loading="lazy" src="../assets/img/superior-room.jpg"/></span>
-<span class="txt"><b>Camera Superior</b><small>Vista giardino o parziale vista mare.</small><em data-rate="superior"></em></span></label>
-<label class="room"><input name="room" type="radio" value="deluxe"/>
-<span class="ph"><img alt="" loading="lazy" src="../assets/img/deluxe-room.jpg"/></span>
-<span class="txt"><b>Camera Deluxe</b><small>Vista mare, più spazio.</small><em data-rate="deluxe"></em></span></label>
-<label class="room"><input name="room" type="radio" value="suite"/>
-<span class="ph"><img alt="" loading="lazy" src="../assets/img/suite-terrace.jpg"/></span>
-<span class="txt"><b>Suite</b><small>Terrazza privata con vasca idromassaggio.</small><em data-rate="suite"></em></span></label>
+<div class="room-list">
+<label class="room-card"><input name="room" type="radio" value="standard"/>
+<span class="rc-media"><img alt="" class="rc-slide is-active" loading="lazy" src="../assets/img/superior-room.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/villa-adriatic.jpg"/><button aria-label="Foto precedente" class="rc-prev" type="button">‹</button><button aria-label="Foto successiva" class="rc-next" type="button">›</button><span class="rc-count">1 / 2</span></span>
+<span class="rc-body">
+<span class="rc-head"><b class="rc-name">Camera Standard</b><span class="rc-price" data-rate="standard"></span></span>
+<span class="rc-text">Camere sobrie e funzionali con vista sul parco, in una zona tranquilla dell’hotel.</span>
+<ul class="rc-feats"><li><svg viewbox="0 0 24 24"><path d="M12 3l5 7h-3l4 6H6l4-6H7z"></path><path d="M12 16v5"></path></svg><span>Vista parco</span></li><li><svg viewbox="0 0 24 24"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"></path></svg><span>Zona tranquilla</span></li><li><svg viewbox="0 0 24 24"><path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"></path><path d="M6 12V6a2 2 0 0 1 4 0"></path><path d="M7 20l-1 2M17 20l1 2"></path></svg><span>Doccia o vasca</span></li><li><svg viewbox="0 0 24 24"><rect height="13" rx="1" width="16" x="4" y="7"></rect><path d="M9 7V5h6v2M12 11v5M9.5 13.5h5"></path></svg><span>Accesso spa e kit benessere</span></li></ul>
+<span class="rc-pick"><span class="rc-pick-off">Scegli questa camera</span><span class="rc-pick-on">Camera scelta ✓</span></span>
+</span>
+</label>
+<label class="room-card"><input checked="" name="room" type="radio" value="superior"/>
+<span class="rc-media"><img alt="" class="rc-slide is-active" loading="lazy" src="../assets/img/superior-room.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/spa-whirlpool.jpg"/><button aria-label="Foto precedente" class="rc-prev" type="button">‹</button><button aria-label="Foto successiva" class="rc-next" type="button">›</button><span class="rc-count">1 / 2</span></span>
+<span class="rc-body">
+<span class="rc-head"><b class="rc-name">Camera Superior</b><span class="rc-price" data-rate="superior"></span></span>
+<span class="rc-text">Nel corpo centrale vicino alla spa, con vista sulla pineta o sul mare in lontananza.</span>
+<ul class="rc-feats"><li><svg viewbox="0 0 24 24"><path d="M12 3l5 7h-3l4 6H6l4-6H7z"></path><path d="M12 16v5"></path></svg><span>Vista pineta o mare in lontananza</span></li><li><svg viewbox="0 0 24 24"><rect height="18" rx="1" width="14" x="5" y="3"></rect><path d="M9 9l3-3 3 3M9 15l3 3 3-3"></path></svg><span>Accesso diretto alla spa dal piano</span></li><li><svg viewbox="0 0 24 24"><path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"></path><path d="M6 12V6a2 2 0 0 1 4 0"></path><path d="M7 20l-1 2M17 20l1 2"></path></svg><span>Doccia o vasca</span></li><li><svg viewbox="0 0 24 24"><rect height="13" rx="1" width="16" x="4" y="7"></rect><path d="M9 7V5h6v2M12 11v5M9.5 13.5h5"></path></svg><span>Kit benessere</span></li></ul>
+<span class="rc-pick"><span class="rc-pick-off">Scegli questa camera</span><span class="rc-pick-on">Camera scelta ✓</span></span>
+</span>
+</label>
+<label class="room-card"><input name="room" type="radio" value="deluxe"/>
+<span class="rc-media"><img alt="" class="rc-slide is-active" loading="lazy" src="../assets/img/deluxe-room.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/suite-seaview.jpg"/><button aria-label="Foto precedente" class="rc-prev" type="button">‹</button><button aria-label="Foto successiva" class="rc-next" type="button">›</button><span class="rc-count">1 / 2</span></span>
+<span class="rc-body">
+<span class="rc-head"><b class="rc-name">Camera Deluxe</b><span class="rc-price" data-rate="deluxe"></span></span>
+<span class="rc-text">Una camera con la propria terrazza, affacciata sul mare o sulla pineta.</span>
+<ul class="rc-feats"><li><svg viewbox="0 0 24 24"><path d="M3 21h18M5 21v-6h14v6M4 15l8-8 8 8"></path><circle cx="18" cy="5" r="2"></circle></svg><span>Terrazza privata</span></li><li><svg viewbox="0 0 24 24"><path d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 19c2-2 4-2 6 0s4 2 6 0 4-2 6 0"></path><circle cx="16" cy="7" r="3"></circle></svg><span>Vista mare o pineta</span></li><li><svg viewbox="0 0 24 24"><path d="M12 3c3 4 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-6 5-10z"></path></svg><span>Accesso alla spa</span></li><li><svg viewbox="0 0 24 24"><rect height="13" rx="1" width="16" x="4" y="7"></rect><path d="M9 7V5h6v2M12 11v5M9.5 13.5h5"></path></svg><span>Kit benessere</span></li></ul>
+<span class="rc-pick"><span class="rc-pick-off">Scegli questa camera</span><span class="rc-pick-on">Camera scelta ✓</span></span>
+</span>
+</label>
+<label class="room-card"><input name="room" type="radio" value="suite"/>
+<span class="rc-media"><img alt="" class="rc-slide is-active" loading="lazy" src="../assets/img/suite-seaview.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/deluxe-room.jpg"/><button aria-label="Foto precedente" class="rc-prev" type="button">‹</button><button aria-label="Foto successiva" class="rc-next" type="button">›</button><span class="rc-count">1 / 2</span></span>
+<span class="rc-body">
+<span class="rc-head"><b class="rc-name">Junior Suite</b><span class="rc-price" data-rate="suite"></span></span>
+<span class="rc-text">Zona notte e soggiorno separati, con terrazza privata. Spazio per famiglie e soggiorni più lunghi.</span>
+<ul class="rc-feats"><li><svg viewbox="0 0 24 24"><path d="M4 18v-6a2 2 0 0 1 4 0v2h8v-2a2 2 0 0 1 4 0v6zM6 18v2M18 18v2M7 10V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"></path></svg><span>Zona soggiorno separata</span></li><li><svg viewbox="0 0 24 24"><path d="M3 21h18M5 21v-6h14v6M4 15l8-8 8 8"></path><circle cx="18" cy="5" r="2"></circle></svg><span>Terrazza privata</span></li><li><svg viewbox="0 0 24 24"><rect height="18" rx="1" width="14" x="5" y="3"></rect><path d="M9 9l3-3 3 3M9 15l3 3 3-3"></path></svg><span>Accesso diretto alla spa in ascensore</span></li><li><svg viewbox="0 0 24 24"><path d="M6 20h11l1-9H5z"></path><path d="M18 13h2a2 2 0 0 0 0-4h-2M9 11V7h5v4M10 4h3"></path></svg><span>Bollitore</span></li></ul>
+<span class="rc-pick"><span class="rc-pick-off">Scegli questa camera</span><span class="rc-pick-on">Camera scelta ✓</span></span>
+</span>
+</label>
+<label class="room-card"><input name="room" type="radio" value="mini-spa"/>
+<span class="rc-media"><img alt="" class="rc-slide is-active" loading="lazy" src="../assets/img/suite-terrace.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/spa-whirlpool.jpg"/><button aria-label="Foto precedente" class="rc-prev" type="button">‹</button><button aria-label="Foto successiva" class="rc-next" type="button">›</button><span class="rc-count">1 / 2</span></span>
+<span class="rc-body">
+<span class="rc-head"><b class="rc-name">Mini SPA Suite</b><span class="rc-price" data-rate="mini-spa"></span></span>
+<span class="rc-text">Una vasca idromassaggio di coppia in camera e una terrazza vista mare con solarium.</span>
+<ul class="rc-feats"><li><svg viewbox="0 0 24 24"><path d="M3 11h18v3a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z"></path><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle></svg><span>Vasca idromassaggio di coppia</span></li><li><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"></path></svg><span>Terrazza vista mare e solarium</span></li><li><svg viewbox="0 0 24 24"><rect height="18" rx="1" width="14" x="5" y="3"></rect><path d="M9 9l3-3 3 3M9 15l3 3 3-3"></path></svg><span>Accesso diretto alla spa dal piano</span></li><li><svg viewbox="0 0 24 24"><rect height="13" rx="1" width="16" x="4" y="7"></rect><path d="M9 7V5h6v2M12 11v5M9.5 13.5h5"></path></svg><span>Kit benessere</span></li></ul>
+<span class="rc-pick"><span class="rc-pick-off">Scegli questa camera</span><span class="rc-pick-on">Camera scelta ✓</span></span>
+</span>
+</label>
+<label class="room-card"><input name="room" type="radio" value="master-spa"/>
+<span class="rc-media"><img alt="" class="rc-slide is-active" loading="lazy" src="../assets/img/suite-terrace.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/walk.jpg"/><img alt="" class="rc-slide" loading="lazy" src="../assets/img/sauna.jpg"/><button aria-label="Foto precedente" class="rc-prev" type="button">‹</button><button aria-label="Foto successiva" class="rc-next" type="button">›</button><span class="rc-count">1 / 3</span></span>
+<span class="rc-body">
+<span class="rc-head"><b class="rc-name">Master SPA Suite</b><span class="rc-price" data-rate="master-spa"></span></span>
+<span class="rc-text">Due ambienti con sauna di coppia e una grande terrazza ad angolo con mini jacuzzi riscaldata, esposta a est e riservata.</span>
+<ul class="rc-feats"><li><svg viewbox="0 0 24 24"><rect height="14" width="18" x="3" y="5"></rect><path d="M12 5v14M14 12h1M9 12h1"></path></svg><span>Due ambienti, bagno separato</span></li><li><svg viewbox="0 0 24 24"><path d="M12 21c-4 0-6-3-6-6 0-4 4-6 4-11 3 2 8 6 8 11 0 3-2 6-6 6z"></path><path d="M12 21c-1.5 0-2.5-1-2.5-2.5S11 16 12 14c1 2 2.5 3 2.5 4.5S13.5 21 12 21z"></path></svg><span>Sauna di coppia</span></li><li><svg viewbox="0 0 24 24"><path d="M3 13h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"></path><path d="M8 10c0-1 1-1 1-2s-1-1-1-2M12 10c0-1 1-1 1-2s-1-1-1-2M16 10c0-1 1-1 1-2s-1-1-1-2"></path></svg><span>Mini jacuzzi riscaldata in terrazza</span></li><li><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"></path></svg><span>Terrazza ad angolo e solarium</span></li></ul>
+<span class="rc-pick"><span class="rc-pick-off">Scegli questa camera</span><span class="rc-pick-on">Camera scelta ✓</span></span>
+</span>
+</label>
 </div>
+<p class="rc-all">In tutte le camere: Wi-Fi gratuito, aria condizionata, TV satellitare, cassaforte, asciugacapelli e minibar (a pagamento).</p>
 </fieldset>
 <fieldset class="step">
 <legend><span class="n">4</span><span>I tuoi dati</span></legend>

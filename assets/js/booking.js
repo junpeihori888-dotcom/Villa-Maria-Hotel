@@ -6,7 +6,7 @@
 
   /* Nightly rates per room, e.g. superior: 140. Leave empty to show
      "confirmed by email" instead of an estimate. */
-  var RATES = { superior: '', deluxe: '', suite: '' };
+  var RATES = { standard: '', superior: '', deluxe: '', suite: '', 'mini-spa': '', 'master-spa': '' };
 
   var lang = document.documentElement.lang === 'it' ? 'it' : 'en';
   function t(en, it) { return lang === 'it' ? it : en; }
@@ -21,10 +21,12 @@
       t('Padel court in the gardens', 'Campo da padel nei giardini'),
       t('Sauna, spa, aperitivo and the chef\'s dinner', 'Sauna, spa, aperitivo e cena dello chef')]]
   };
-  var ROOMS = { superior: t('Superior Room', 'Camera Superior'), deluxe: t('Deluxe Room', 'Camera Deluxe'), suite: 'Suite' };
+  var ROOMS = { standard: t('Standard Room', 'Camera Standard'), superior: t('Superior Room', 'Camera Superior'), deluxe: t('Deluxe Room', 'Camera Deluxe'),
+    suite: 'Junior Suite', 'mini-spa': 'Mini SPA Suite', 'master-spa': 'Master SPA Suite' };
   var LINKS = { // booking.html#<token> preselects a package or room
     'executive': ['package', 'executive'], 'beyond': ['package', 'beyond'],
-    'returning': ['returning', true], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'], 'suite': ['room', 'suite']
+    'returning': ['returning', true], 'standard': ['room', 'standard'], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'],
+    'suite': ['room', 'suite'], 'junior-suite': ['room', 'suite'], 'mini-spa': ['room', 'mini-spa'], 'master-spa': ['room', 'master-spa']
   };
 
   /* A coupon from the email pop-up, or ?code=… in an email link, fills the promo field. */
@@ -174,7 +176,20 @@
   /* Show the rate on each room card when rates are set. */
   document.querySelectorAll('[data-rate]').forEach(function (el) {
     var r = RATES[el.getAttribute('data-rate')];
-    el.textContent = r ? t('From €' + r + ' per night', 'Da ' + r + ' € a notte') : '';
+    el.innerHTML = r ? t('From <b>€' + r + '</b> / night', 'Da <b>' + r + ' €</b> / notte')
+      : t('Price confirmed by email', 'Prezzo confermato via email');
+  });
+
+  /* Room cards: ‹ › flips the photos without selecting the room. */
+  form.addEventListener('click', function (e) {
+    var b = e.target.closest('.rc-prev, .rc-next');
+    if (!b) return;
+    e.preventDefault();
+    var media = b.closest('.rc-media'), slides = media.querySelectorAll('.rc-slide');
+    var i = [].indexOf.call(slides, media.querySelector('.rc-slide.is-active'));
+    i = (i + (b.classList.contains('rc-next') ? 1 : -1) + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+    media.querySelector('.rc-count').textContent = (i + 1) + ' / ' + slides.length;
   });
 
   function update() {

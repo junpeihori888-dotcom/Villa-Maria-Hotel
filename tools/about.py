@@ -447,7 +447,7 @@ CARDS = {
   (T('Signature suite', 'Suite esclusiva'), T('Master SPA Suite', 'Master SPA Suite'),
    T('A private terrace with a hot tub and the Adriatic in front of you.', 'Una terrazza privata con vasca idromassaggio e l’Adriatico davanti.'),
    [P('suite-terrace.jpg', 'Terrace with hot tub', 'Terrazza con idromassaggio'), P('walk.jpg', 'Terrace and plunge pool', 'Terrazza e piscinetta'),
-    P('spa-whirlpool.jpg', 'Spa access included', 'Accesso alla spa incluso')], 'booking.html#suite'),
+    P('spa-whirlpool.jpg', 'Spa access included', 'Accesso alla spa incluso')], 'booking.html#master-spa'),
   (T('Families', 'Famiglie'), T('Family rooms', 'Camere per famiglie'),
    T('Rooms and suites for 2 adults and 2 teens, with breakfast and spa in the Family Discount.', 'Camere e suite per 2 adulti e 2 ragazzi, con colazione e spa nello Sconto Famiglia.'),
    [P('people/family-welcome-back.jpg', 'Arriving as a family', 'L’arrivo in famiglia'), P('pool-park.jpg', 'Pools a few steps away', 'Le piscine a pochi passi'),
