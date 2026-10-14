@@ -422,7 +422,8 @@ CARDS = {
  'index.html': [
   (T('Accommodation', 'Sistemazione'), T('Rooms', 'Camere'),
    T('From Standard rooms to the Master SPA Suite, facing the park or the Adriatic.', 'Dalla Standard alla Master SPA Suite, con vista sul parco o sull’Adriatico.'),
-   [P('deluxe-room.jpg', 'Deluxe Room', 'Camera Deluxe'), P('superior-room.jpg', 'Superior Room', 'Camera Superior'),
+   [P('rooms/deluxe-1.jpg', 'Deluxe Room', 'Camera Deluxe'), P('rooms/superior-1.jpg', 'Superior Room', 'Camera Superior'),
+    P('rooms/junior-suite-1.jpg', 'Junior Suite', 'Junior Suite'),
     P('suite-terrace.jpg', 'Suite terrace with hot tub', 'Terrazza della suite con idromassaggio'), P('suite-seaview.jpg', 'Sea view from a suite', 'Vista mare da una suite')], 'rooms.html'),
   (T('Wellness', 'Benessere'), T('Linfa wellness &amp; spa', 'Benessere e spa Linfa'),
    T('Hydromassage pool, Turkish bath, sauna and sensory shower, with a free two-hour session for every guest.', 'Piscina idromassaggio, bagno turco, sauna e doccia emozionale, con due ore gratuite per ogni ospite.'),
