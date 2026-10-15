@@ -31,7 +31,7 @@ POSTS = [
          cta=('Your three days start here', 'Room, breakfast and spa included with the Family Discount.', 'See the Family Discount →', 'family-reset-package.html')),
     dict(slug='letter-to-the-family-planner', list='family', lang='en', cover='suite-seaview.jpg', inline='people/family-welcome-back.jpg',
          teaser='Fourteen tabs open at 11 PM? Rooms, meals, cancellation and getting here, told the way a friend would tell you.',
-         cta=('Ready when you are', 'Choose your dates and we confirm by email. No payment now.', 'Check availability →', 'booking.html')),
+         cta=('Ready when you are', 'Choose your dates and we confirm by email. No payment now.', 'Check availability →', 'booking.html#family-discount')),
     dict(slug='martedi-sera-manager-pescara', list='business', lang='it', cover='dining.jpg', inline='superior-room.jpg',
          teaser='Dall’aereo alla cena di lavoro: come un hotel a dieci minuti da Pescara diventa ufficio, spogliatoio e ristorante.',
          cta=('La tua prossima trasferta, già organizzata', 'Camera silenziosa, colazione presto, spa e sala riunioni.', 'Scopri l’Executive Business Stay →', 'executive-business-stay.html')),

@@ -6,13 +6,26 @@
 
   /* Nightly rates per room, e.g. superior: 140. Leave empty to show
      "confirmed by email" instead of an estimate. */
-  var RATES = { standard: '', superior: '', deluxe: '', suite: '', 'mini-spa': '', 'master-spa': '' };
+  var RATES = { standard: '', superior: '', deluxe: '', suite: '', 'family-room': '', 'mini-spa': '', 'master-spa': '', cottage: '' };
 
   var lang = document.documentElement.lang === 'it' ? 'it' : 'en';
   function t(en, it) { return lang === 'it' ? it : en; }
 
   var PACKAGES = {
     'room-only': [t('Room & breakfast', 'Camera e colazione')],
+    'italian-memories': ['Italian Memories', [
+      t('Room, breakfast and spa included', 'Camera, colazione e spa inclusi'),
+      t('Two outdoor pools, the park and the beach shuttle', 'Due piscine all\'aperto, il parco e la navetta per la spiaggia'),
+      t('Kids Club in July and August', 'Kids Club a luglio e agosto')]],
+    'family-discount': [t('Family Discount', 'Sconto Famiglia'), [
+      t('Family room or suite for 2 adults and 2 teens', 'Camera o suite famiglia per 2 adulti e 2 ragazzi'),
+      t('Breakfast and spa included', 'Colazione e spa incluse'),
+      t('Beach shuttle and free parking', 'Navetta per la spiaggia e parcheggio gratuito'),
+      t('10% off your next stay when you book it here', '10% sul prossimo soggiorno prenotandolo qui')]],
+    'ciao-again': ['Ciao Again', [
+      t('Your favourite room and preferences remembered', 'La tua camera preferita e le tue preferenze ricordate'),
+      t('A welcome back from our team', 'Il bentornato del nostro team'),
+      t('10% off your next stay when you book it during your visit', '10% sul prossimo soggiorno prenotandolo durante la visita')]],
     'executive': [t('Executive Business Stay Package', 'Pacchetto Executive Business Stay'), [
       t('Early breakfast and express check-out', 'Colazione presto e check-out rapido'),
       t('Spa & sauna access, meeting room on request', 'Spa e sauna, sala riunioni su richiesta'),
@@ -22,10 +35,12 @@
       t('Sauna, spa, aperitivo and the chef\'s dinner', 'Sauna, spa, aperitivo e cena dello chef')]]
   };
   var ROOMS = { standard: t('Standard Room', 'Camera Standard'), superior: t('Superior Room', 'Camera Superior'), deluxe: t('Deluxe Room', 'Camera Deluxe'),
-    suite: 'Junior Suite', 'mini-spa': 'Mini SPA Suite', 'master-spa': 'Master SPA Suite' };
+    suite: 'Junior Suite', 'family-room': 'Family Room', 'mini-spa': 'Mini SPA Suite', 'master-spa': 'Master SPA Suite', cottage: 'Cottage' };
   var LINKS = { // booking.html#<token> preselects a package or room
     'executive': ['package', 'executive'], 'beyond': ['package', 'beyond'],
-    'returning': ['returning', true], 'standard': ['room', 'standard'], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'],
+    'italian-memories': ['package', 'italian-memories', 'family-room'], 'family-discount': ['package', 'family-discount', 'family-room'],
+    'ciao-again': ['package', 'ciao-again', 'family-room', true], 'returning': ['package', 'ciao-again', 'family-room', true],
+    'family-room': ['room', 'family-room'], 'cottage': ['room', 'cottage'], 'standard': ['room', 'standard'], 'superior': ['room', 'superior'], 'deluxe': ['room', 'deluxe'],
     'suite': ['room', 'suite'], 'junior-suite': ['room', 'suite'], 'mini-spa': ['room', 'mini-spa'], 'master-spa': ['room', 'master-spa']
   };
 
@@ -61,8 +76,9 @@
   var tok = (location.hash || '').slice(1);
   if (LINKS[tok]) {
     var l = LINKS[tok];
-    if (l[0] === 'returning') $('returning').checked = true;
-    else { var r = form.querySelector('[name="' + l[0] + '"][value="' + l[1] + '"]'); if (r) r.checked = true; }
+    var r = form.querySelector('[name="' + l[0] + '"][value="' + l[1] + '"]'); if (r) r.checked = true;
+    if (l[2]) { var rm = form.querySelector('[name="room"][value="' + l[2] + '"]'); if (rm) rm.checked = true; }   // family packages start with the Family Room
+    if (l[3]) $('returning').checked = true;
   }
 
 
@@ -198,6 +214,7 @@
       ? t('About €' + rate * n + ' (confirmed by email)', 'Circa ' + rate * n + ' € (confermato via email)')
       : t('Confirmed by email', 'Confermato via email');
     $('s-perks').innerHTML = (p[1] || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    if (val('package') === 'ciao-again') $('returning').checked = true;   // Ciao Again is for returning families
     var biz = val('package') === 'executive' || val('package') === 'beyond';
     form.querySelector('.business-only').hidden = !biz;
   }

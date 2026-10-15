@@ -237,7 +237,7 @@ def family_1():
             p((f'Thank you for joining our family list. Here is {FAMILY_GIFT} off your next stay: add the code when you book.',
                f'Grazie per esserti iscritto alla lista famiglie. Ecco {FAMILY_GIFT} di sconto sul prossimo soggiorno: inserisci il codice quando prenoti.'), MUTED, True) +
             f'<p style="margin:16px auto 0;max-width:260px;border:1px dashed {OLIVE};background:{SAND};padding:14px;text-align:center;font:700 22px/1 {SANS};letter-spacing:.24em;color:{OLIVE}">{FAMILY_CODE}</p>' +
-            buttons([(('Book with my coupon →', 'Prenota con il buono →'), link(f'booking.html?code={FAMILY_CODE}', c), 'sky')]),
+            buttons([(('Book with my coupon →', 'Prenota con il buono →'), link(f'booking.html?code={FAMILY_CODE}', c, '#italian-memories'), 'sky')]),
             WHITE))
     rows += [
         section(eyebrow(('Why families come to us', 'Perché le famiglie scelgono noi')) +
@@ -286,8 +286,8 @@ def family_2():
               ('Create unforgettable *Italian family memories.*', 'Crea ricordi di famiglia *indimenticabili in Italia.*'),
               ('Hi {name}, time together by the sea, with our exclusive Family Discount package.',
                'Ciao {name}, tempo insieme in riva al mare con il nostro esclusivo pacchetto Sconto Famiglia.'),
-              [(('Book now →', 'Prenota ora →'), link('booking.html', c), 'dark'),
-               (('Check availability', 'Verifica la disponibilità'), link('booking.html', c), 'ghost')],
+              [(('Book now →', 'Prenota ora →'), link('booking.html', c, '#family-discount'), 'dark'),
+               (('Check availability', 'Verifica la disponibilità'), link('booking.html', c, '#family-discount'), 'ghost')],
               ('★★★★★ Loved by families · Verified reviews on Google, Booking.com & TripAdvisor',
                '★★★★★ Amato dalle famiglie · Recensioni verificate su Google, Booking.com e TripAdvisor')),
         section(eyebrow(('Exclusive offer', 'Offerta esclusiva'), SKY_SOFT, True) +
@@ -328,7 +328,7 @@ def family_2():
         reviews(('Families trust us', 'Le famiglie si fidano di noi')),
         cta(('Your family’s next memory *starts here.*', 'Il prossimo ricordo della tua famiglia *inizia qui.*'),
             ('Book direct and enjoy the Family Discount on Italy’s Adriatic coast.', 'Prenota direttamente e goditi lo Sconto Famiglia sulla costa adriatica italiana.'),
-            [(('Book now →', 'Prenota ora →'), link('booking.html', c), 'light'),
+            [(('Book now →', 'Prenota ora →'), link('booking.html', c, '#family-discount'), 'light'),
              (('See the package', 'Vedi il pacchetto'), link('family-reset-package.html', c), 'ghost-dark')]),
         footer()]
     return c, ('Your family rate: room, breakfast and spa included', 'La tariffa per la tua famiglia: camera, colazione e spa inclusi'), \
@@ -353,7 +353,7 @@ def family_3():
         intro(('A note for our returning guests', 'Un pensiero per i nostri ospiti abituali'),
               ('Ciao again. *Your Italian story continues.*', 'Ciao di nuovo. *La tua storia italiana continua.*'),
               ('Hi {name}, some holidays end. The best stories continue.', 'Ciao {name}, alcune vacanze finiscono. Le storie più belle continuano.'),
-              [(('Continue your story →', 'Continua la tua storia →'), link('booking.html', c, '#returning'), 'dark'),
+              [(('Continue your story →', 'Continua la tua storia →'), link('booking.html', c, '#ciao-again'), 'dark'),
                (('Relive your memories', 'Rivivi i tuoi ricordi'), link('ciao-again.html', c), 'ghost')]),
         section(eyebrow(('A look back', 'Uno sguardo indietro'), MUTED, True) +
                 h(('Do you remember *these moments?*', 'Ti ricordi *questi momenti?*'), 30, INK, True) +
@@ -395,7 +395,7 @@ def family_3():
         reviews(('Guest stories', 'Storie dei nostri ospiti')),
         cta(('The next chapter *is waiting.*', 'Il prossimo capitolo *ti aspetta.*'),
             ('Plan your next family stay at Villa Maria.', 'Pianifica il tuo prossimo soggiorno in famiglia a Villa Maria.'),
-            [(('Explore your next chapter →', 'Scopri il tuo prossimo capitolo →'), link('booking.html', c, '#returning'), 'sky'),
+            [(('Explore your next chapter →', 'Scopri il tuo prossimo capitolo →'), link('booking.html', c, '#ciao-again'), 'sky'),
              (('Stay connected', 'Resta in contatto'), link('ciao-again.html', c), 'ghost-dark')], SLATE),
         footer()]
     return c, ('Ciao again. Your Italian story continues.', 'Ciao di nuovo. La tua storia italiana continua.'), \

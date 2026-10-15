@@ -662,7 +662,7 @@
             '<p>' + t('Here is your ' + gift + ' welcome coupon. Add the code when you book; we have also sent it to your inbox.',
               'Ecco il tuo buono di benvenuto da ' + gift + '. Inserisci il codice quando prenoti; te lo abbiamo inviato anche via email.') + '</p>' +
             '<div class="code">' + esc(NEWSLETTER.familyCode) + '</div>' +
-            '<a class="btn btn-sky btn-block" href="booking.html">' + t('Book with my coupon →', 'Prenota con il buono →') + '</a>';
+            '<a class="btn btn-sky btn-block" href="booking.html#family-discount">' + t('Book with my coupon →', 'Prenota con il buono →') + '</a>';
         } else {
           out += '<p class="eb">' + t('You are on the list', 'Sei nella lista') + '</p>' +
             '<p>' + (fam ? t('Your first email, Italian Memories, arrives shortly.', 'La prima email, Italian Memories, arriva a breve.')

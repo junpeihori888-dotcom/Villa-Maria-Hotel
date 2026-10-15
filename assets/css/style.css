@@ -370,6 +370,8 @@ a.card:hover .ph img{transform:scale(1.04)}
 .check.is-bad{box-shadow:none;color:#B4532A}
 .err{color:#B4532A;font-size:14px;font-weight:600;margin:10px 0 0}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice-group{grid-column:1/-1;margin:10px 0 0;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--olive)}
+.choice-group:first-of-type{margin-top:4px}
 .choice,.room{position:relative;display:flex;gap:12px;border:1px solid var(--line);border-radius:2px;padding:14px;cursor:pointer;background:#fff;min-width:0}
 .choice input,.room input{position:absolute;opacity:0;pointer-events:none}
 .choice:has(input:checked),.room:has(input:checked){border-color:var(--slate);box-shadow:0 0 0 1px var(--slate);background:var(--sand)}
@@ -759,3 +761,6 @@ a.card:hover .ph img{transform:scale(1.04)}
 /* Seasons on the home page: summer by default, autumn/winter from 1 Oct to 31 May (class set in <head>) */
 html:not(.is-winter) [data-season="winter"],html.is-winter [data-season="summer"]{display:none!important}
 .season-note{margin-top:28px}
+/* Room card without a photo yet: a quiet icon panel */
+.rc-media.rc-nophoto{display:grid;place-items:center;background:var(--sand-2)}
+.rc-nophoto svg{width:72px;height:72px;fill:none;stroke:var(--slate);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.8}

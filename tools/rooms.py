@@ -33,6 +33,10 @@ ICON = {
     'jacuzzi': '<path d="M3 13h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M8 10c0-1 1-1 1-2s-1-1-1-2M12 10c0-1 1-1 1-2s-1-1-1-2M16 10c0-1 1-1 1-2s-1-1-1-2"/>',
     'rooms2': '<rect x="3" y="5" width="18" height="14"/><path d="M12 5v14M14 12h1M9 12h1"/>',
     'kit': '<rect x="4" y="7" width="16" height="13" rx="1"/><path d="M9 7V5h6v2M12 11v5M9.5 13.5h5"/>',
+    'family': '<circle cx="7.5" cy="6" r="2.2"/><circle cx="16.5" cy="6" r="2.2"/><circle cx="12" cy="12.5" r="1.7"/><path d="M4 20v-5.5a3.5 3.5 0 0 1 7 0M13 14.5a3.5 3.5 0 0 1 7 0V20M9.5 20v-2.5a2.5 2.5 0 0 1 5 0V20"/>',
+    'kids': '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/>',
+    'paw': '<circle cx="6.5" cy="10" r="1.7"/><circle cx="10" cy="6" r="1.7"/><circle cx="14" cy="6" r="1.7"/><circle cx="17.5" cy="10" r="1.7"/><path d="M7.5 17.5c0-3 2-5.5 4.5-5.5s4.5 2.5 4.5 5.5c0 1.6-1.2 2.5-2.6 2.5-.9 0-1.4-.5-1.9-.5s-1 .5-1.9.5c-1.4 0-2.6-.9-2.6-2.5z"/>',
+    'door': '<path d="M6 21V4h12v17M3 21h18"/><circle cx="15" cy="12.5" r=".8"/>',
 }
 
 # value, name EN/IT, text EN/IT, photos, features [(icon, EN, IT)]
@@ -64,6 +68,12 @@ ROOMS = [
      [('rooms/junior-suite-1.jpg', 'Sitting area, with the bedroom beyond', 'Zona soggiorno, con la camera da letto oltre')],
      [('sofa', 'Separate sitting area', 'Zona soggiorno separata'), ('terrace', 'Private terrace', 'Terrazza privata'),
       ('lift', 'Direct spa access by lift', 'Accesso diretto alla spa in ascensore'), ('kettle', 'Kettle', 'Bollitore')]),
+    ('family-room', 'Family Room', 'Family Room',
+     'The ideal solution for families who want total privacy and maximum comfort. Tell us who is coming and we will prepare the right layout.',
+     'La soluzione ideale per le famiglie che vogliono privacy totale e il massimo comfort. Dicci chi viene e prepariamo la sistemazione giusta.',
+     [],
+     [('family', 'Space for the whole family', 'Spazio per tutta la famiglia'), ('quiet', 'Privacy and comfort', 'Privacy e comfort'),
+      ('kids', 'Kids Club in July & August', 'Kids Club a luglio e agosto'), ('kit', 'Spa access & wellness kit', 'Accesso spa e kit benessere')]),
     ('mini-spa', 'Mini SPA Suite', 'Mini SPA Suite',
      'A hydromassage tub for two inside the suite, and a sea-view terrace with a solarium.',
      'Una vasca idromassaggio di coppia in camera e una terrazza vista mare con solarium.',
@@ -77,6 +87,12 @@ ROOMS = [
       ('sauna.jpg', 'Sauna for two', 'Sauna di coppia')],
      [('rooms2', 'Two rooms, separate bathroom', 'Due ambienti, bagno separato'), ('sauna', 'Sauna for two', 'Sauna di coppia'),
       ('jacuzzi', 'Heated mini jacuzzi on the terrace', 'Mini jacuzzi riscaldata in terrazza'), ('sun', 'Corner terrace & solarium', 'Terrazza ad angolo e solarium')]),
+    ('cottage', 'Cottage', 'Cottage',
+     'A small annex at the hotel entrance with its own entrance, made for guests travelling with a pet of any size.',
+     'Una piccola dépendance all’ingresso dell’hotel con entrata indipendente, pensata per chi viaggia con un animale di qualsiasi taglia.',
+     [],
+     [('paw', 'Fenced garden for pets of all sizes', 'Giardino recintato per animali di ogni taglia'), ('door', 'Own entrance, about 39 m²', 'Ingresso indipendente, circa 39 m²'),
+      ('kettle', 'Kitchenette, microwave & coffee machine', 'Angolo cottura, microonde e macchina del caffè'), ('park', 'Park view', 'Vista parco')])
 ]
 
 ALL = ('In every room: free Wi-Fi, air conditioning, satellite TV, safe, hairdryer and minibar (charged).',
@@ -84,8 +100,12 @@ ALL = ('In every room: free Wi-Fi, air conditioning, satellite TV, safe, hairdry
 
 
 
-def media(photos):
-    """photos = [(file, caption EN, caption IT)]; the caption is the alt text and shows on the photo."""
+def media(photos, icon='park'):
+    """photos = [(file, caption EN, caption IT)]; the caption is the alt text and shows on the photo.
+    No photos yet: an icon panel that says so, never a photo of another room."""
+    if not photos:
+        return (f'<span class="rc-media rc-nophoto"><svg aria-hidden="true" viewbox="0 0 24 24">{ICON[icon]}</svg>'
+                '<span class="rc-cap" data-it="Foto in arrivo">Photo coming soon</span></span>')
     slides = ''.join(f'<img alt="{A(en)}" class="rc-slide{" is-active" if i == 0 else ""}" data-it-alt="{A(it)}" loading="lazy" src="assets/img/{f}"/>'
                      for i, (f, en, it) in enumerate(photos))
     cap = f'<span class="rc-cap" data-it="{A(photos[0][2])}">{html.escape(photos[0][1], quote=False)}</span>'
@@ -104,7 +124,7 @@ def pick_card(r, first):
     v, n_en, n_it, d_en, d_it, photos, fs = r
     chk = ' checked=""' if first else ''
     return f'''<label class="room-card"><input{chk} name="room" type="radio" value="{v}"/>
-{media(photos)}
+{media(photos, fs[0][0])}
 <span class="rc-body">
 <span class="rc-head"><b class="rc-name" data-it="{A(n_it)}">{n_en}</b><span class="rc-price" data-rate="{v}"></span></span>
 <span class="rc-text" data-it="{A(d_it)}">{d_en}</span>
@@ -119,7 +139,7 @@ def show_card(r):
     """Rooms page: same card, with a button to book this room."""
     v, n_en, n_it, d_en, d_it, photos, fs = r
     return f'''<article class="room-card is-display" id="room-{v}">
-{media(photos)}
+{media(photos, fs[0][0])}
 <div class="rc-body">
 <div class="rc-head"><h3 class="rc-name" data-it="{A(n_it)}">{n_en}</h3><span class="rc-price" data-rate="{v}"></span></div>
 <p class="rc-text" data-it="{A(d_it)}">{d_en}</p>
