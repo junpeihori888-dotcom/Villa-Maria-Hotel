@@ -121,6 +121,7 @@ def build(page):
     set_faq_schema(soup)
     html = str(soup)
     html = re.sub(r'(\s(?:src|href|poster))="assets/', r'\1="../assets/', html)
+    html = html.replace('href="favicon.ico"', 'href="../favicon.ico"')
     (OUT / page).write_text(html, encoding='utf-8')
     print('it/' + page)
 

@@ -73,7 +73,9 @@ def head(title, desc, base, extra=''):
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="{base}assets/css/style.css" rel="stylesheet"/>
-<link href="{base}assets/img/logo.png" rel="icon"/>
+<link href="{base}favicon.ico" rel="icon" sizes="any"/>
+<link href="{base}assets/img/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="{base}assets/img/apple-touch-icon.png" rel="apple-touch-icon"/>
 </head>
 <body>
 <main id="main">
