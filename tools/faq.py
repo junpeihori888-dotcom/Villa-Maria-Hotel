@@ -18,8 +18,8 @@ LOCATION = ('Where is Villa Maria Hotel & Spa?', "Dove si trova Villa Maria Hote
     'On the hill above Francavilla al Mare, in Abruzzo, 5 km from the centre of Pescara. Chieti, Pescara and Abruzzo International Airport are about 15 minutes away, Pescara Centrale station has easy rail connections, and the A14 Pescara Sud exit is close by.',
     "Sulla collina sopra Francavilla al Mare, in Abruzzo, a 5 km dal centro di Pescara. Chieti, Pescara e l'Aeroporto Internazionale d'Abruzzo sono a circa 15 minuti, la stazione di Pescara Centrale ha comodi collegamenti e l'uscita A14 Pescara Sud è vicina.")
 CHECKIN = ('What are the check-in and check-out times?', 'Quali sono gli orari di check-in e check-out?',
-    'Your check-in and check-out times are in your booking confirmation. If you need an early check-in or a late check-out, ask us and we will do our best.',
-    'Gli orari di check-in e check-out sono nella conferma di prenotazione. Se ti serve un check-in anticipato o un check-out posticipato, chiedicelo e faremo il possibile.')
+    'Check-in is from 14:00 and check-out is by 11:00. An early check-in is possible for a supplement, subject to availability, and you can leave your luggage with us after check-out. For a late check-out, ask us and we will do our best.',
+    'Il check-in è dalle 14:00 e il check-out entro le 11:00. Il check-in anticipato è possibile con supplemento, secondo disponibilità, e dopo il check-out puoi lasciare i bagagli in hotel. Per un check-out posticipato chiedicelo e faremo il possibile.')
 PARKING = ('Is there parking?', "C'è il parcheggio?",
     'Yes. Outdoor parking is free for guests and has charging points for electric cars.',
     'Sì. Il parcheggio all’aperto è gratuito per gli ospiti e ha colonnine di ricarica per auto elettriche.')
@@ -27,8 +27,8 @@ SPA = ('What is in the Linfa wellness & spa?', "Cosa c'è nella spa Linfa?",
     'Indoor and outdoor pools with hydromassage points, a whirlpool, saunas, a Turkish bath, chromotherapy and aromatherapy showers, a herbal tea corner and a private garden. Every hotel guest has a free two-hour session; booking is required (+39 085 45 00 55 60). Massages for one or two can be added.',
     'Piscine interna ed esterna con punti idromassaggio, vasca idromassaggio, saune, bagno turco, docce di cromoterapia e aromaterapia, angolo tisane e giardino privato. Ogni ospite ha una sessione gratuita di due ore; la prenotazione è obbligatoria (+39 085 45 00 55 60). Si possono aggiungere massaggi per uno o per due.')
 DIRECT = ('Why book directly with the hotel?', 'Perché prenotare direttamente con l’hotel?',
-    'You get the package exactly as designed, a real person before and during your stay, and extras that are not on booking sites, such as the €20 in-house voucher on your first direct Family Discount booking.',
-    'Hai il pacchetto esattamente come progettato, una persona vera prima e durante il soggiorno ed extra che non trovi sui portali, come il voucher da 20 € alla prima prenotazione diretta con lo Sconto Famiglia.')
+    'You get the package exactly as designed, a real person before and during your stay, and extras that are not on booking sites, such as the €50 welcome coupon (code FAMILY50) for your next direct booking.',
+    'Hai il pacchetto esattamente come progettato, una persona vera prima e durante il soggiorno ed extra che non trovi sui portali, come il buono di benvenuto da 50 € (codice FAMILY50) per la tua prossima prenotazione diretta.')
 CANCEL = ('What is the cancellation policy?', 'Qual è la politica di cancellazione?',
     'If you book your next stay during your visit (10% off), you can cancel for free up to 6 months before arrival and change dates up to 6 weeks before. For other bookings, the terms are in your booking confirmation.',
     "Se prenoti il prossimo soggiorno durante la visita (10% di sconto), puoi cancellare gratis fino a 6 mesi prima dell'arrivo e cambiare date fino a 6 settimane prima. Per le altre prenotazioni, le condizioni sono nella conferma.")
@@ -42,9 +42,9 @@ FAM_GOOD = ('Is Villa Maria good for families with children?', 'Villa Maria è a
 FAM_INCL = ('What does the Family Discount include?', 'Cosa include lo Sconto Famiglia?',
     'Family rooms and suites for 2 adults and 2 teens, breakfast, spa access at the Linfa wellness centre, family activities, beach access with a free shuttle, and free parking with EV charging.',
     'Camere e suite famiglia per 2 adulti e 2 ragazzi, colazione, accesso alla spa Linfa, attività per famiglie, accesso alla spiaggia con navetta gratuita e parcheggio gratuito con ricarica per auto elettriche.')
-FAM_VOUCHER = ('How does the €20 voucher work?', 'Come funziona il voucher da 20 €?',
-    'It is for first-time guests booking directly with the hotel. Use it on food and drink or in the spa during your stay. It is valid for your first stay and first direct booking and expires at check-out.',
-    'È per chi prenota direttamente con l’hotel per la prima volta. Usalo per food and beverage o nella spa durante il soggiorno. Vale per il primo soggiorno e la prima prenotazione diretta e scade al check-out.')
+FAM_VOUCHER = ('How does the €50 welcome coupon work?', 'Come funziona il buono di benvenuto da 50 €?',
+    'Join our family list (the sign-up on the home page) and you get the code FAMILY50: €50 off your next stay when you book directly with us. Add the code in the promo field of the booking form.',
+    'Iscriviti alla nostra lista famiglie (il modulo sulla home page) e ricevi il codice FAMILY50: 50 € di sconto sul prossimo soggiorno prenotando direttamente con noi. Inserisci il codice nel campo promo del modulo di prenotazione.')
 
 BIZ_MEET = ('Does the hotel have meeting rooms?', "L'hotel ha sale riunioni?",
     'Yes, five conference rooms, from small meeting rooms to an auditorium, with video-conferencing and fast Wi-Fi. Ask us about capacity for your group.',

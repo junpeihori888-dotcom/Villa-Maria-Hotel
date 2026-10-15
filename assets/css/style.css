@@ -753,3 +753,9 @@ a.card:hover .ph img{transform:scale(1.04)}
 /* Photo captions on room cards and showcase cards */
 .rc-cap,.sc-cap{position:absolute;left:10px;bottom:10px;max-width:calc(100% - 90px);background:rgba(43,47,51,.72);color:#fff;font-size:12px;line-height:1.35;padding:5px 10px;border-radius:2px;pointer-events:none}
 .sc-cap{right:auto;max-width:calc(100% - 20px)}
+.home-reviews{margin-top:44px}
+.review-score .stars{color:var(--olive-2);letter-spacing:.12em}
+.review-score a{color:inherit}
+/* Seasons on the home page: summer by default, autumn/winter from 1 Oct to 31 May (class set in <head>) */
+html:not(.is-winter) [data-season="winter"],html.is-winter [data-season="summer"]{display:none!important}
+.season-note{margin-top:28px}

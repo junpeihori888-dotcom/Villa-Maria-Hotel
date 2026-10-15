@@ -32,6 +32,16 @@
   /* A coupon from the email pop-up, or ?code=… in an email link, fills the promo field. */
   try { var savedCode = new URLSearchParams(location.search).get('code') || localStorage.getItem('vm-code'); if (savedCode && document.getElementById('promo')) document.getElementById('promo').value = savedCode; } catch (e) {}
   var form = document.getElementById('booking-form');
+
+  /* Show the rate on each room card (booking and Rooms pages) when rates are set.
+     Without a rate, the booking page says the price comes by email; other pages show nothing. */
+  document.querySelectorAll('[data-rate]').forEach(function (el) {
+    var r = RATES[el.getAttribute('data-rate')];
+    if (r) el.innerHTML = t('From <b>€' + r + '</b> / night', 'Da <b>' + r + ' €</b> / notte');
+    else if (form) el.textContent = t('Price confirmed by email', 'Prezzo confermato via email');
+    else el.hidden = true;
+  });
+
   if (!form) return;
   var $ = function (id) { return document.getElementById(id); };
   var ci = $('checkin'), co = $('checkout');
@@ -172,13 +182,6 @@
   window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { if (!calEl.hidden) renderCal(); }, 150); });
   syncFields();
   showCal(true);
-
-  /* Show the rate on each room card when rates are set. */
-  document.querySelectorAll('[data-rate]').forEach(function (el) {
-    var r = RATES[el.getAttribute('data-rate')];
-    el.innerHTML = r ? t('From <b>€' + r + '</b> / night', 'Da <b>' + r + ' €</b> / notte')
-      : t('Price confirmed by email', 'Prezzo confermato via email');
-  });
 
   function update() {
     var n = nights();

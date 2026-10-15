@@ -200,8 +200,8 @@ PAGES = {
      T('Reception: +39 085 45 00 51, info@hvillamaria.it. Reservations: reservation@hvillamaria.it. Meetings and events: +39 085 45 00 55 07, congressi@hvillamaria.it. Linfa spa: +39 085 45 00 55 60, benessere@hvillamaria.it.',
        'Reception: +39 085 45 00 51, info@hvillamaria.it. Prenotazioni: reservation@hvillamaria.it. Meeting ed eventi: +39 085 45 00 55 07, congressi@hvillamaria.it. Spa Linfa: +39 085 45 00 55 60, benessere@hvillamaria.it.')]),
    (T('Arrival and check-in', 'Arrivo e check-in'), [
-     T('Your check-in and check-out times are in your booking confirmation. Tell us your expected arrival time when you book, and ask if you need an early check-in or a late check-out.',
-       'Gli orari di check-in e check-out sono nella conferma di prenotazione. Indicaci l’orario di arrivo quando prenoti e chiedici se ti serve un check-in anticipato o un check-out posticipato.')]),
+     T('Check-in is from 14:00 and check-out is by 11:00. Tell us your expected arrival time when you book, and ask if you need an early check-in or a late check-out.',
+       'Il check-in è dalle 14:00 e il check-out entro le 11:00. Indicaci l’orario di arrivo quando prenoti e chiedici se ti serve un check-in anticipato o un check-out posticipato.')]),
   ],
   'gallery': [
    ('gardens.jpg', T('The gardens', 'I giardini')),

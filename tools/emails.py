@@ -313,9 +313,9 @@ def family_2():
                         f'<p style="margin:4px 0 0;font:600 14px/1.4 {SANS};color:{INK}">{rich(sub)}</p>'
                         f'<p style="margin:8px 0 0;font:400 13px/1.5 {SANS};color:{MUTED}">{rich(txt)}</p></div></td>'
                         for e, big, sub, txt in [
-                            (('First direct booking', 'Prima prenotazione diretta'), '€20', ('in-house voucher', 'voucher da spendere in hotel'),
-                             ('For food and drink or the spa, for first-time guests booking directly. Valid for your first stay; it expires at check-out.',
-                              'Per food and beverage o la spa, per chi prenota direttamente per la prima volta. Valido per il primo soggiorno; scade al check-out.')),
+                            (('Welcome coupon', 'Buono di benvenuto'), '€50', ('off your next stay', 'sul prossimo soggiorno'),
+                             ('Code FAMILY50, for guests on our family list who book directly. Add it in the promo field when you book.',
+                              'Codice FAMILY50, per chi è iscritto alla lista famiglie e prenota direttamente. Inseriscilo nel campo promo quando prenoti.')),
                             (('Your next stay', 'Il tuo prossimo soggiorno'), '10%', ('off the room rate', 'sulla tariffa della camera'),
                              ('Book your next stay at the hotel during your visit. Free cancellation up to 6 months before arrival; dates can change up to 6 weeks before.',
                               'Prenota il prossimo soggiorno in hotel durante la visita. Cancellazione gratuita fino a 6 mesi prima; date modificabili fino a 6 settimane prima.'))]) +

@@ -79,3 +79,15 @@ In `assets/js/site.js`:
 - `FORMS_ENDPOINT` — receives booking requests, messages, reviews, sign-ups and referrals as JSON `{form, lang, page, sentAt, data}`.
 - `REVIEW_VERIFY_ENDPOINT` — receives `{reference, email}` and answers `{verified: true|false, name?}`. Only answer `true` when the booking exists and its check-out date has passed, so only real guests can review. After check-out, email each guest a personal link such as `index.html#review-VM-AB12CD`; it opens the review check with the reference filled in.
 - `CHAT_ENDPOINT` — the Help chat sends `{messages, lang, facts}` and expects `{reply}`. Your server should call an AI model with `facts` as its only source. Without it, the chat uses Claude inside the claude.ai preview, and instant FAQ answers everywhere else (labelled "Instant answers").
+
+## Seasons on the home page
+From 1 October to 31 May the home page shows its autumn/winter version (indoor Linfa spa,
+business stays, weekend breaks; outdoor pools and Kids Club "open in summer"). The switch is a
+small script in the `<head>` of `index.html`; add `?season=winter` or `?season=summer` to the
+address to preview either version. Blocks are marked `data-season="summer"` / `data-season="winter"`.
+
+## Settings still to fill in
+`assets/js/site.js`: `FORMS_ENDPOINT`, `HOTEL.legalName`, `HOTEL.vat`, `HOTEL.whatsapp`,
+`HOTEL.reviews.rating` / `count` / `quotes` (first names), `OFFERS.familyDiscount`.
+`assets/js/booking.js`: `RATES` (nightly price per room; shown as "From €X / night" on the
+Rooms and booking pages). Empty fields stay hidden on the site.

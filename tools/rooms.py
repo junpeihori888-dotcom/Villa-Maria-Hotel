@@ -121,10 +121,10 @@ def show_card(r):
     return f'''<article class="room-card is-display" id="room-{v}">
 {media(photos)}
 <div class="rc-body">
-<div class="rc-head"><h3 class="rc-name" data-it="{A(n_it)}">{n_en}</h3></div>
+<div class="rc-head"><h3 class="rc-name" data-it="{A(n_it)}">{n_en}</h3><span class="rc-price" data-rate="{v}"></span></div>
 <p class="rc-text" data-it="{A(d_it)}">{d_en}</p>
 {feats(fs)}
-<a class="btn btn-sky rc-book" data-book="{v}" data-it="Prenota questa camera →">Book this room →</a>
+<a class="btn btn-sky rc-book" data-book="{v}" href="booking.html#{v}" data-it="Prenota questa camera →">Book this room →</a>
 </div>
 </article>
 '''

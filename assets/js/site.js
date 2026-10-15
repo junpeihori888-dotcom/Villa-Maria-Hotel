@@ -15,13 +15,13 @@
     facebook: 'https://www.facebook.com/villamariahotelspa',
     legalName: '',            // company name as registered, e.g. 'Villa Maria S.r.l.'
     vat: '',                  // P.IVA, e.g. '01234567890'
-    cin: '',                  // Codice Identificativo Nazionale, e.g. 'IT069035A1XXXXXXXX'
+    cin: 'IT069035A1QK5DDWCK', // Codice Identificativo Nazionale, as in the footer of the hotel's official site
     phone: '+39 085 45 00 51',   // from the hotel's official contact page
     whatsapp: '',             // digits only with country code, e.g. '39333000000'
     email: 'info@hvillamaria.it', // from the hotel's official contact page
     conciergeHours: { en: '', it: '' },   // e.g. { en: 'Concierge desk: 7:00–23:00, every day', it: 'Concierge: 7:00–23:00, tutti i giorni' }
-    checkIn: '',              // e.g. '14:00'
-    checkOut: '',             // e.g. '11:00'
+    checkIn: '14:00',         // from the hotel's own business-travel texts
+    checkOut: '11:00',
     // Shown next to the message button. Keep it true to how fast the team really answers.
     replyTime: { en: 'We typically reply within 30 minutes', it: 'Di solito rispondiamo entro 30 minuti' },
     // Address as shown on booking sites. Confirm before going live.
@@ -30,7 +30,18 @@
     reviews: {
       rating: '',             // e.g. '4.6' — shown only together with count
       count: '',              // e.g. '1,240'
-      source: 'Google'        // where the rating comes from
+      source: 'Google',       // where the rating comes from
+      url: 'https://www.google.com/maps/search/?api=1&query=Villa+Maria+Hotel+%26+Spa+Francavilla+al+Mare',  // the Google listing
+      // Up to 3 short guest quotes for the home page: { text: {en, it}, name: 'Anna', date: {en, it} }.
+      // Paste real quotes only. These three come from the hotel's campaign PDFs; add first names when known.
+      quotes: [
+        { text: { en: 'A place of peace and serenity. Thank you, Villa Maria — we’ll be back!', it: 'Un luogo di pace e serenità. Grazie, Villa Maria, torneremo!' },
+          name: '', date: { en: 'July 2026 · translated', it: 'luglio 2026' } },
+        { text: { en: 'Everything excellent: friendly staff, a restorative spa, a wonderful restaurant.', it: 'Tutto eccellente: personale cordiale, una spa rigenerante, un ristorante meraviglioso.' },
+          name: '', date: { en: '2026 · translated', it: '2026' } },
+        { text: { en: 'Courteous staff, a beautiful spa with superb treatments, and an excellent breakfast.', it: 'Personale cortese, una bellissima spa con trattamenti superbi e un’ottima colazione.' },
+          name: '', date: { en: '2026 · translated', it: '2026' } }
+      ]
     }
   };
 
@@ -295,9 +306,9 @@
     [/kid|child|family|teen|famil|bambin|ragazz/i,
       'In July and August the Kids Club has a play room with games, books and puzzles, workshops from Tuesday to Saturday and an outdoor play area. There is the Riviera Pool for children, the park and padel, and a free shuttle to a white-sand beach with a partner lido. Nearby: the Guardiagrele adventure park and the zoo in Lanciano. The Family Discount includes room, breakfast and spa.',
       'A luglio e agosto il Kids Club offre sala giochi con giochi, libri e puzzle, laboratori dal martedì al sabato e un’area giochi all’aperto. Ci sono la Riviera Pool per i bambini, il parco e il padel, e una navetta gratuita per una spiaggia di sabbia bianca con lido convenzionato. Nei dintorni: il parco avventura di Guardiagrele e lo zoo di Lanciano. Lo Sconto Famiglia include camera, colazione e spa.'],
-    [/discount|voucher|€\s?20|20\s?€|offer|sconto|offerta/i,
-      'With the Family Discount, first-time guests who book directly get a €20 in-house voucher for food and drink or the spa (valid during that stay). Book your next stay during your visit and get 10% off the room rate.',
-      'Con lo Sconto Famiglia, chi prenota direttamente per la prima volta riceve un voucher da 20 € per food and beverage o spa (valido durante il soggiorno). Prenota il prossimo soggiorno durante la visita e hai il 10% sulla camera.'],
+    [/discount|voucher|coupon|buono|€\s?50|50\s?€|family50|offer|sconto|offerta/i,
+      'Join our family list on the home page and you get the code FAMILY50: €50 off your next stay when you book directly. Book your next stay during your visit and get 10% off the room rate.',
+      'Iscriviti alla lista famiglie sulla home page e ricevi il codice FAMILY50: 50 € di sconto sul prossimo soggiorno prenotando direttamente. Prenota il prossimo soggiorno durante la visita e hai il 10% sulla camera.'],
     [/meeting|conference|auditorium|room for.*people|video|riunion|conferenz|sala/i,
       'We have five conference rooms, from small meeting rooms to an auditorium, with video-conferencing and fast Wi-Fi. Send us a message with your group size and we will confirm the right room.',
       'Abbiamo cinque sale congressi, dalle sale riservate all’auditorium, con videoconferenza e Wi-Fi veloce. Scrivici il numero di partecipanti e ti confermiamo la sala giusta.'],
@@ -849,14 +860,32 @@
   document.querySelectorAll('[data-review-score]').forEach(function (el) {
     var r = HOTEL.reviews;
     if (r.rating && r.count) {
-      el.textContent = r.rating + '/5 ' + t('on ' + r.source + ' from ', 'su ' + r.source + ' da ') + r.count + t(' reviews', ' recensioni');
+      var txt = esc(r.rating) + '/5 ' + t('on ' + r.source + ' from ', 'su ' + r.source + ' da ') + esc(r.count) + t(' reviews', ' recensioni');
+      el.innerHTML = '<span class="stars" aria-hidden="true">★★★★★</span> ' + (r.url ? '<a href="' + esc(r.url) + '" rel="noopener" target="_blank">' + txt + '</a>' : txt);
     } else el.hidden = true;
+  });
+  document.querySelectorAll('[data-review-link]').forEach(function (el) {
+    if (HOTEL.reviews.url) el.href = HOTEL.reviews.url; else el.hidden = true;
+  });
+  document.querySelectorAll('[data-review-quotes]').forEach(function (el) {
+    var q = HOTEL.reviews.quotes || [];
+    if (!q.length) { el.hidden = true; return; }
+    el.innerHTML = q.slice(0, 3).map(function (x) {
+      var who = [x.name, HOTEL.reviews.source, x.date ? t(x.date.en, x.date.it) : ''].filter(Boolean).join(' · ');
+      return '<figure><blockquote>“' + esc(t(x.text.en, x.text.it)) + '”</blockquote><figcaption><span>★★★★★</span><em>' + esc(who) + '</em></figcaption></figure>';
+    }).join('');
   });
   document.querySelectorAll('[data-hotel]').forEach(function (el) {
     var k = el.getAttribute('data-hotel');
     if (k === 'contact') el.innerHTML = contactList();
     else if (k === 'maps') el.href = HOTEL.mapsUrl;
     else if (k === 'address') el.textContent = HOTEL.address;
+    else if (k === 'legal') {
+      var lines = ['<b>' + esc(HOTEL.legalName || HOTEL.name) + '</b>', esc(HOTEL.address)];
+      if (HOTEL.vat) lines.push(t('VAT no. ', 'P.IVA ') + esc(HOTEL.vat));
+      if (HOTEL.cin) lines.push('CIN ' + esc(HOTEL.cin));
+      el.innerHTML = '<p class="legal-block">' + lines.join('<br>') + '</p>';
+    }
   });
 
   /* ---------- Menu ---------- */

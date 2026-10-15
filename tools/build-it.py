@@ -26,7 +26,7 @@ IT_META = {
     'italian-memories.html': ('Italian Memories · Villa Maria Hotel & Spa',
                               'I ricordi italiani iniziano qui: hotel & spa quattro stelle sul mare a Francavilla al Mare, pensato per il relax e il tempo insieme.'),
     'family-reset-package.html': ('Sconto Famiglia · Villa Maria Hotel & Spa',
-                                  'Sconto Famiglia a Villa Maria Hotel & Spa: camera, colazione e spa inclusi prenotando direttamente, più un voucher da 20 € e il 10% sul prossimo soggiorno.'),
+                                  'Sconto Famiglia a Villa Maria Hotel & Spa: camera, colazione e spa inclusi prenotando direttamente, più un buono di benvenuto da 50 € e il 10% sul prossimo soggiorno.'),
     'ciao-again.html': ('Ciao Again · Villa Maria Hotel & Spa',
                         'Ciao di nuovo: per le famiglie che tornano a Villa Maria Hotel & Spa. La tua storia italiana continua.'),
     'business-travel.html': ('Viaggiare per lavoro, senza pressione · Villa Maria Hotel & Spa',
