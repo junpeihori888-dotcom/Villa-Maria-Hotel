@@ -71,7 +71,9 @@ ROOMS = [
     ('family-room', 'Family Room', 'Family Room',
      'The ideal solution for families who want total privacy and maximum comfort. Tell us who is coming and we will prepare the right layout.',
      'La soluzione ideale per le famiglie che vogliono privacy totale e il massimo comfort. Dicci chi viene e prepariamo la sistemazione giusta.',
-     [],
+     [('rooms/family-1.jpg', 'Double bed and a sofa bed for the children, with the park outside', 'Letto matrimoniale e divano letto per i bambini, con il parco fuori'),
+      ('rooms/family-2.jpg', 'The sofa bed, made up for two children', 'Il divano letto, pronto per due bambini'),
+      ('rooms/family-3.jpg', 'Family bathroom with a bathtub and towels for four', 'Bagno di famiglia con vasca e asciugamani per quattro')],
      [('family', 'Space for the whole family', 'Spazio per tutta la famiglia'), ('quiet', 'Privacy and comfort', 'Privacy e comfort'),
       ('kids', 'Kids Club in July & August', 'Kids Club a luglio e agosto'), ('kit', 'Spa access & wellness kit', 'Accesso spa e kit benessere')]),
     ('mini-spa', 'Mini SPA Suite', 'Mini SPA Suite',
@@ -90,7 +92,7 @@ ROOMS = [
     ('cottage', 'Cottage', 'Cottage',
      'A small annex at the hotel entrance with its own entrance, made for guests travelling with a pet of any size.',
      'Una piccola dépendance all’ingresso dell’hotel con entrata indipendente, pensata per chi viaggia con un animale di qualsiasi taglia.',
-     [],
+     [('rooms/cottage-1.jpg', 'The Cottage: its own entrance and a fenced garden for your dog', 'Il Cottage: ingresso indipendente e giardino recintato per il tuo cane')],
      [('paw', 'Fenced garden for pets of all sizes', 'Giardino recintato per animali di ogni taglia'), ('door', 'Own entrance, about 39 m²', 'Ingresso indipendente, circa 39 m²'),
       ('kettle', 'Kitchenette, microwave & coffee machine', 'Angolo cottura, microonde e macchina del caffè'), ('park', 'Park view', 'Vista parco')])
 ]
