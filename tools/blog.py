@@ -47,16 +47,16 @@ UI = {
     'en': dict(blog='Blog', family='For families', business='For business', read='min read', lang_name='English',
                faq='Questions & answers', faq_h='Good to know <i>before you go.</i>', more='More from the blog',
                all='All articles →', help='Help', index_t='Stories from <i>Villa Maria.</i>',
-               index_p='Ideas and stories for your holiday on the Adriatic coast of Abruzzo.',
+               index_p='Stories for families and business travellers on the Adriatic coast of Abruzzo. Family articles are in English, business articles in Italian.',
                index_title='Blog · Villa Maria Hotel & Spa',
-               index_desc='Stories from Villa Maria Hotel & Spa in Francavilla al Mare: ideas for family holidays in Abruzzo.',
+               index_desc='Stories from Villa Maria Hotel & Spa in Francavilla al Mare: family holidays and business travel in Abruzzo.',
                en='English', it='Italiano'),
     'it': dict(blog='Blog', family='Per le famiglie', business='Per il business', read='min di lettura', lang_name='Italiano',
                faq='Domande frequenti', faq_h='Utile da sapere <i>prima di partire.</i>', more='Altri articoli dal blog',
                all='Tutti gli articoli →', help='Aiuto', index_t='Storie da <i>Villa Maria.</i>',
-               index_p='Idee e storie per i tuoi viaggi di lavoro sulla costa adriatica, a pochi minuti da Pescara.',
+               index_p='Storie per chi viaggia per lavoro e per le famiglie sulla costa adriatica d’Abruzzo. Gli articoli per il business sono in italiano, quelli per le famiglie in inglese.',
                index_title='Blog · Villa Maria Hotel & Spa',
-               index_desc='Storie da Villa Maria Hotel & Spa a Francavilla al Mare: idee per i viaggi di lavoro vicino a Pescara.',
+               index_desc='Storie da Villa Maria Hotel & Spa a Francavilla al Mare: viaggi di lavoro vicino a Pescara e vacanze in famiglia.',
                en='English', it='Italiano'),
 }
 
@@ -224,8 +224,10 @@ def index(posts, lang):
 </div>
 </section>
 '''
-    for lst in ('family', 'business'):
-        group = [p for p in posts if p['list'] == lst and p['lang'] == lang]   # only articles in this language
+    # The index lists every article in both languages (the MENU shows only the visitor's language).
+    # Italian visitors see the business articles first.
+    for lst in (('business', 'family') if lang == 'it' else ('family', 'business')):
+        group = [p for p in posts if p['list'] == lst]
         if not group:
             continue
         out += f'''<section class="section{' white' if lst == 'business' else ''} tight" id="{lst}">
